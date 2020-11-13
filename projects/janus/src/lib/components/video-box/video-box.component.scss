@@ -1,0 +1,21 @@
+div.display-name {
+    display: flex;
+    z-index: 1;
+
+    span.separator {
+        margin: 0 5px 0 10px;
+    }
+
+    i.fas {
+        font-size: 14px;
+        margin: 0 5px 0 5px;
+        cursor: pointer;
+    }
+}
+
+div.maximize {
+   left: auto !important;
+   right: 1px;
+   cursor: pointer;
+   z-index: 1;
+}

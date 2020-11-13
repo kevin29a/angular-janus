@@ -1,0 +1,22 @@
+div.video-room-viewport {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    /* background-color: #a5adb7; */
+
+    div {
+        /* border: 2px solid black; */ 
+    }
+}
+
+div.speaker {
+    position: absolute;
+    z-index: 1;
+}

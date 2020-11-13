@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "janus": {
+      "projectType": "library",
+      "root": "projects/janus",
+      "sourceRoot": "projects/janus/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/janus/tsconfig.lib.json",
+            "project": "projects/janus/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/janus/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/janus/src/test.ts",
+            "tsConfig": "projects/janus/tsconfig.spec.json",
+            "karmaConfig": "projects/janus/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/janus/tsconfig.lib.json",
+              "projects/janus/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "janus"
 }

@@ -1,0 +1,66 @@
+<div class='video-container'>
+  <div class='interior-box'>
+    <video
+      #videoElement
+      id='{{videoId}}'
+      autoplay
+      playsinline
+      (play)='onPlay()'
+    ></video>
+
+    <div
+      *ngIf="remoteFeed.displayName"
+      data-cy='video-box-display-name'
+      class='overlay display-name'>
+      {{ remoteFeed.displayName }}
+      <div
+        *ngIf='isAdmin()'
+        class='options'>
+        <i
+          *ngIf='!optionsOpen'
+          class="fas fa-ellipsis-v"
+          data-cy='video-box-toggle-options'
+          (click)='toggleOptions()'
+        ></i>
+
+        <span *ngIf='optionsOpen' class='separator'>|</span>
+        <i
+          *ngIf='optionsOpen'
+          class="fas fa-user-slash"
+          data-cy='video-box-kick-user'
+          (click)='onKickUser()'
+         ></i>
+        <i
+          *ngIf='optionsOpen'
+          class="fas fa-times"
+          (click)='toggleOptions()'
+        ></i>
+      </div>
+    </div>
+
+    <div
+      data-cy='video-box-maximize-button'
+      class='overlay maximize'
+      (click)='onMaximize()' 
+      >
+
+      <i
+        *ngIf='mode === "grid"'
+        class="fas fa-expand"
+        matTooltip="Show Full Size">
+      </i>
+
+      <i
+        *ngIf='mode === "speaker"'
+        class="fas fa-compress"
+        matTooltip="Show All Speakers">
+      </i>
+    </div>
+
+    <div 
+      *ngIf='!videoAvailable'
+      class='loading-blocker'>
+      <p> Loading... </p>
+    </div>
+  </div>
+</div>

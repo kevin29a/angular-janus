@@ -1,0 +1,8 @@
+<janus-default-video-room
+  [roomInfo]='roomInfo$ | async'
+  [remoteFeeds$]='remoteFeeds$'
+  [role]='role'
+  [devices]='devices'
+  (kickUser)='onKickUser($event)'
+  >
+</janus-default-video-room>

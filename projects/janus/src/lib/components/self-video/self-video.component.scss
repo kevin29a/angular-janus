@@ -1,0 +1,29 @@
+ul.filter-list {
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: block;
+    }
+
+    img.active {
+        border: 1px solid white;
+    }
+
+    img:hover {
+        border: 1px solid #ccc;
+    }
+}
+
+div.filter-box {
+    img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 3px;
+        border: 1px solid rgba(0,0,0,0);    // Prevents resizing when adding a visible border
+    }
+
+    padding: 2px !important;
+}

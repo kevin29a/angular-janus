@@ -1,0 +1,63 @@
+div.video-container {
+    height: 100%;
+
+    video,canvas {
+        height: 100%;
+        width: 100%;
+        font-size: 0px;
+        display: block;
+        object-fit: fill;
+    }
+
+    canvas {
+        transform: scaleX(-1);
+    }
+    video {
+        /* border: 1px solid rgba(0,0,0,.5); */
+    }
+
+    div.interior-box {
+        height: 100%;
+        position: relative;
+        border: 1px solid rgba(0,0,0,.5);
+    }
+
+    div.self {
+        border: 1px solid #8ae010;
+    }
+
+    div.overlay {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        padding: 5px;
+        background-color: rgba(53,53,53,.7);
+
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        color: #ffffff;
+    }
+}
+
+div.loading-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 24px;
+        color: #777;
+    }
+}
