@@ -1,4 +1,6 @@
 import * as moment from 'moment';
+
+// @ts-ignore
 import * as Factory from 'factory.ts';
 
 import { VideoQualityHelper, VideoStats, VideoRunRecord } from './video-quality-helper';

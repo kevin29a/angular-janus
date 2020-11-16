@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelfVideoComponent } from './self-video.component';
-import { Store } from '@ngrx/store';
-import { WebrtcService } from '../../../services/janus.service';
+import { WebrtcService } from '../../services/janus.service';
 import { RoomInfoFactory } from '../../factories/janus.factories';
 import { RoomInfoState, PublishState, Devices } from '../../models/janus.models';
 
@@ -14,7 +13,6 @@ describe('SelfVideoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SelfVideoComponent ],
       providers: [
-        { provide: Store, useValue: {dispatch: () => {}}},
         { provide: WebrtcService, useValue: null},
       ]
     })

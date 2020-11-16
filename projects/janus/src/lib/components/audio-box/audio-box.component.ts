@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 
-import { Store } from '@ngrx/store';
-import { JanusState, AttachMediaStream } from '../../store';
 import { RemoteFeed, Devices } from '../../models/janus.models';
+import { JanusService } from '../../services/janus.service';
 
 @Component({
   selector: 'janus-nvid-audio-box',
@@ -28,7 +27,7 @@ export class AudioBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('audioElement') audio: ElementRef;
 
   constructor(
-    private store: Store<JanusState>,
+    private janusService: JanusService,
   ) { }
 
   ngOnInit(): void {
@@ -38,8 +37,7 @@ export class AudioBoxComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const payload = {elemId: this.audioId, streamId: this.remoteFeed.streamId};
-    this.store.dispatch(new AttachMediaStream(payload));
+    this.janusService.attachMediaStream(this.audioId, this.remoteFeed.streamId);
   }
 
   setSpeaker(devices: Devices): void {

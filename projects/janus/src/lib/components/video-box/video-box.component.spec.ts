@@ -1,7 +1,6 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Store } from '@ngrx/store';
 import { VideoBoxComponent } from './video-box.component';
 
 import { RemoteFeedFactory } from '../../factories/janus.factories';
@@ -13,12 +12,7 @@ describe('VideoBoxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ VideoBoxComponent ],
-      providers: [
-        {
-          provide: Store,
-          useValue: null,
-        }
-      ]
+      providers: []
     })
     .compileComponents();
   }));
@@ -115,6 +109,5 @@ describe('VideoBoxComponent', () => {
       expect(component.videoQualityHelper.ping).toHaveBeenCalledWith(0);
       expect(component.switchSubstream).toHaveBeenCalledWith(1);
     });
-
   });
 });

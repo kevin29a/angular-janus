@@ -17,11 +17,9 @@ import {
 import { Subject, interval, fromEvent } from 'rxjs';
 import { first, takeUntil, debounce } from 'rxjs/operators';
 
-import { Store } from '@ngrx/store';
-
-import { JanusState, AttachMediaStream, RequestSubstream } from '../../store';
 import { RemoteFeed, JanusRole, Devices } from '../../models/janus.models';
 import { randomString } from '../../shared';
+import { JanusService } from '../../services/janus.service';
 
 import { VideoQualityHelper } from './video-quality-helper';
 
@@ -55,6 +53,9 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   @Output()
   maximize = new EventEmitter<RemoteFeed>();
 
+  @Output()
+  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+
   public videoId: string;
   public optionsOpen = false;
   public videoAvailable = false;
@@ -67,8 +68,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   @ViewChild('videoElement') video: ElementRef;
 
   constructor(
-    // Injecting the store so we don't have to bubble events all the way to chat-room
-    private store: Store<JanusState>,
+    private janusService: JanusService
   ) {
     this.videoQualityHelper = new VideoQualityHelper(3);
   }
@@ -119,8 +119,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   }
 
   _attachMediaStream(): void {
-    const payload = {elemId: this.videoId, streamId: this.remoteFeed.streamId};
-    this.store.dispatch(new AttachMediaStream(payload));
+    this.janusService.attachMediaStream(this.videoId, this.remoteFeed.streamId);
   }
 
   private setSpeaker(devices: Devices): void {
@@ -167,7 +166,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     // Switch the substream if we haven't already requested this substream
     if (this.remoteFeed.requestedSubstream !== substreamId) {
       console.log('switching substream', substreamId, this.videoId);
-      this.store.dispatch(new RequestSubstream({feed: this.remoteFeed, substreamId}));
+      this.requestSubstream.emit({feed: this.remoteFeed, substreamId});
     }
   }
 

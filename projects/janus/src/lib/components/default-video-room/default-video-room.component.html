@@ -13,6 +13,7 @@
       data-cy='default-video-room-self-video'
       [roomInfo]="roomInfo"
       [devices]='devices'
+      (publishOwnFeed)='onPublishOwnFeed($event)'
       ></janus-self-video>
   </div>
 
@@ -32,6 +33,7 @@
         [devices]='devices'
         (kickUser)='onKickUser($event)'
         (maximize)='onMaximize($event)'
+        (requestSubstream)='onRequestSubstream($event)'
       ></janus-video-box>
     </div>
   </ng-container>
@@ -50,6 +52,7 @@
         [devices]='devices'
         (kickUser)='onKickUser($event)'
         (maximize)='onMaximize($event)'
+        (requestSubstream)='onRequestSubstream($event)'
       ></janus-video-box>
     </div>
 

@@ -23,6 +23,8 @@ export class WebrtcService {
       audio: audioDeviceId !== null ? {deviceId: audioDeviceId} : false,
       video: {deviceId: videoDeviceId, width: 1920, height: 1080},
     };
+
+    console.log('constraints:', constraints)
     return navigator.mediaDevices.getUserMedia(constraints);
   }
 
@@ -188,6 +190,9 @@ export class JanusService {
           message: fromModels.ON_MESSAGE,
           payload: {msg, jsep},
         });
+        if (!!jsep) {
+          instance.handleRemoteJsep(jsep);
+        }
       },
       onlocalstream(stream): void {
         const streamId = instance._get_random_string();
@@ -247,31 +252,26 @@ export class JanusService {
   }
 
   handleRemoteJsep(jsep): void {
+    console.log("Handle remote jsep");
     this.handle.handleRemoteJsep({jsep});
   }
 
-  answerRemoteFeedJsep(jsep, feed: RemoteFeed, room: RoomInfo): Observable<boolean> {
+  answerRemoteFeedJsep(jsep, feed: RemoteFeed, room: RoomInfo): void {
     // Handle a jsep message for a remote feed
 
     const handle = this.remoteHandles[feed.id];
-    return new Observable(
-      subscriber => {
-        handle.createAnswer({
-          jsep,
-          trickle: true,
-          media: { audioSend: false, videoSend: false },  // We want recvonly audio/video
-          success(jsepBody): void {
-            const body = { request: 'start', room: room.id };
-            handle.send({message: body, jsep: jsepBody});
-            subscriber.next(true);
-            subscriber.complete();
-          },
-          error(error): void {
-            subscriber.error(error);
-          }
-        });
+    handle.createAnswer({
+      jsep,
+      trickle: true,
+      media: { audioSend: false, videoSend: false },  // We want recvonly audio/video
+      success(jsepBody): void {
+        const body = { request: 'start', room: room.id };
+        handle.send({message: body, jsep: jsepBody});
+      },
+      error(error): void {
+        console.log('ERROR in JSEP RESPONSE');
       }
-    );
+    });
   }
 
   draw(canvasContext, videoElement): void {
@@ -438,7 +438,7 @@ export class JanusService {
           trickle: true,
         });
       }
-    );
+    ).catch((error) => console.log("GUM ERROR:", error, audioDeviceId, videoDeviceId));
   }
 
   attachMediaStream(elemId: string, streamId: string): void {
@@ -481,6 +481,7 @@ export class JanusService {
           },
 
           onmessage(msg, jsep): void {
+            console.log("MESSAGE", msg);
             subscriber.next({
               message: fromModels.ON_REMOTE_FEED_MESSAGE,
               payload: {
@@ -490,6 +491,9 @@ export class JanusService {
                 room,
               },
             });
+            if (!!jsep) {
+              instance.answerRemoteFeedJsep(jsep, feed, room);
+            }
           },
 
           webrtcState(on): void {
@@ -519,6 +523,7 @@ export class JanusService {
           onremotestream(stream): void {
             // Save off remote stream
 
+            console.log("HAVE REMOTE STREAM", stream);
             const streamId = instance._get_random_string();
             instance.streams[streamId] = stream;
 

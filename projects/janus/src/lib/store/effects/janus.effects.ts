@@ -111,23 +111,20 @@ export class JanusEffects {
     })
   );
 
-  @Effect()
+  @Effect({dispatch: false})
   answerRemoteFeedJsep$ = this.actions$.pipe(
     ofType(janusActions.ATTACH_CALLBACK),
     map((action: janusActions.AttachCallback) => action.payload),
     filter((actionPayload) => {
       return actionPayload.message === ON_REMOTE_FEED_MESSAGE && !!actionPayload.payload.jsep;
     }),
-    switchMap((actionPayload) => {
-      return this.janusService.answerRemoteFeedJsep(
-          actionPayload.payload.jsep,
-          actionPayload.payload.feed,
-          actionPayload.payload.room)
-        .pipe(
-          map(() => new janusActions.AnswerRemoteFeedJsepSuccess()),
-          catchError((error) => of(new janusActions.AnswerRemoteFeedJsepFail(error)))
-        );
-    })
+    tap((actionPayload) => {
+      this.janusService.answerRemoteFeedJsep(
+        actionPayload.payload.jsep,
+        actionPayload.payload.feed,
+        actionPayload.payload.room);
+      }
+    )
   );
 
   // Some callbacks have jsep state, which is stored in the service

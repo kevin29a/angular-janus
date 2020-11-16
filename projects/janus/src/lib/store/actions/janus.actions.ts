@@ -65,9 +65,21 @@ export const PUBLISH_OWN_FEED = '[Janus] Publish Own Feed';
 export const PUBLISH_OWN_FEED_SUCCESS = '[Janus] Publish Own Feed Success';
 export const PUBLISH_OWN_FEED_FAIL = '[Janus] Publish Own Feed Fail';
 
+export interface PublishOwnFeedPayload {
+  audioDeviceId: string;
+  videoDeviceId: string;
+  canvasId: string;
+}
+
+export interface AttachRemoteFeedPayload {
+  feed: RemoteFeed;
+  roomInfo: RoomInfo;
+  pin: string;
+}
+
 export class AttachRemoteFeed implements Action {
   readonly type = ATTACH_REMOTE_FEED;
-  constructor(public payload: {feed: RemoteFeed, roomInfo: RoomInfo, pin: string}) {}
+  constructor(public payload: AttachRemoteFeedPayload) {}
 }
 
 export class AttachRemoteFeedFail implements Action {
@@ -77,7 +89,7 @@ export class AttachRemoteFeedFail implements Action {
 
 export class PublishOwnFeed implements Action {
   readonly type = PUBLISH_OWN_FEED;
-  constructor(public payload: {audioDeviceId: string, videoDeviceId: string, canvasId: string}) {}
+  constructor(public payload: PublishOwnFeedPayload) {}
 }
 
 export class PublishOwnFeedSuccess implements Action {
@@ -150,4 +162,5 @@ export type JanusAction =
   | InitializeJanus
   | InitializeJanusSuccess
   | InitializeJanusFail
+  | Register
   | TestAddRemoteFeed;

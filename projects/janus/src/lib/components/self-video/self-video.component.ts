@@ -2,11 +2,11 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output
 } from '@angular/core';
-
-import { Store } from '@ngrx/store';
 
 import { WebrtcService } from '../../services/janus.service';
 import {
@@ -16,7 +16,7 @@ import {
   Devices,
 } from '../../models/janus.models';
 
-import { JanusState, PublishOwnFeed } from '../../store';
+import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 
 @Component({
   selector: 'janus-self-video',
@@ -38,11 +38,13 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
     this.currentDevices = devices;
   }
 
+  @Output()
+  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
+
   private currentDevices: Devices;
   private afterViewInitRan = false;
 
   constructor(
-    private store: Store<JanusState>,
   ) { }
 
   ngOnInit(): void { }
@@ -54,17 +56,17 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       throw new Error('RoomInfo.state must be "joined" before creating a self-video component');
     }
     if (this.devices) {
-      this.publishOwnFeed(this.devices.audioDeviceId, this.devices.videoDeviceId);
+      this._publishOwnFeed(this.devices.audioDeviceId, this.devices.videoDeviceId);
     }
   }
 
-  publishOwnFeed(audioDeviceId: string, videoDeviceId: string): void {
+  _publishOwnFeed(audioDeviceId: string, videoDeviceId: string): void {
     // Separate this for testing
-    this.store.dispatch(new PublishOwnFeed({
+    this.publishOwnFeed.emit({
       audioDeviceId,
       videoDeviceId,
       canvasId: 'canvas-self',
-    }));
+    });
   }
 
   onDevicesChange(previousDevices: Devices, newDevices: Devices): void {
@@ -87,6 +89,6 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.publishOwnFeed(newDevices.audioDeviceId, newDevices.videoDeviceId);
+    this._publishOwnFeed(newDevices.audioDeviceId, newDevices.videoDeviceId);
   }
 }

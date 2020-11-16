@@ -374,6 +374,16 @@ export function reducer(
       break;
     }
 
+    case janusActions.REGISTER: {
+      return {
+        ...state,
+        roomInfo: {
+          ...state.roomInfo,
+          state: RoomInfoState.joining,
+        },
+      };
+    }
+
     case janusActions.TEST_ADD_REMOTE_FEED: {
       const remoteFeed = action.payload as RemoteFeed;
       return {

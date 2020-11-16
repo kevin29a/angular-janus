@@ -16,7 +16,7 @@ import {
 import { fromEvent, Observable, Subscription, interval } from 'rxjs';
 import { debounce, withLatestFrom } from 'rxjs/operators';
 
-import { VideoBoxComponent } from '../video-box/video-box.component';
+import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 
 import {
   Devices,
@@ -42,6 +42,12 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
 
   @Output()
   kickUser = new EventEmitter<RemoteFeed>();
+
+  @Output()
+  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+
+  @Output()
+  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
 
   @ViewChild('viewport') viewport: ElementRef;
 
@@ -96,6 +102,14 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     } else {
       this.mode = 'grid';
     }
+  }
+
+  onRequestSubstream(event: {feed: RemoteFeed, substreamId: number}): void {
+    this.requestSubstream.emit(event);
+  }
+
+  onPublishOwnFeed(event: PublishOwnFeedPayload): void {
+    this.publishOwnFeed.emit(event);
   }
 
   trackByFeedId(index: number, remoteFeed: RemoteFeed): string {

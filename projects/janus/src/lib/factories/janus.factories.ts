@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as Factory from 'factory.ts';
 
 import {
@@ -18,6 +19,9 @@ export const RemoteFeedFactory = Factory.Sync.makeFactory<RemoteFeed>({
   displayName: Factory.each(i => 'name' + i.toString()),
   audio_codec: Factory.each(i => 'audio' + i.toString()),
   video_codec: Factory.each(i => 'video' + i.toString()),
+  muted: false,
+  volume: 64,
+  slowLink: null,
 });
 
 export const RoomInfoFactory = Factory.Sync.makeFactory<RoomInfo>({

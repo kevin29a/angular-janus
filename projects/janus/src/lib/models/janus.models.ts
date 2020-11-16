@@ -22,6 +22,7 @@ export enum RoomInfoState {
   attaching = 'attaching',
   attached = 'attached',
   attach_failed = 'attach_failed',
+  joining = 'joining',
   joined = 'joined',
   error = 'error',
 }
@@ -88,7 +89,7 @@ export enum JanusRole {
 export interface JanusEnvironment {
   iceServers: {urls: string}[];
   janusServer: {
-    httpUrl: 'http://192.168.1.3:8088/janus',
-    wsUrl: 'ws://192.168.1.3:8188/janus',
+    httpUrl: string,
+    wsUrl: string,
   };
 }

@@ -48,13 +48,6 @@ export interface JanusMessage {
   reason?: string;
 }
 
-export interface Participant {
-  id: string;
-  display: string;
-  publisher: boolean;
-  talking: boolean;
-}
-
 export enum CustomErrors {
   kicked = 9991,
   server_down = 9992,
@@ -83,7 +76,7 @@ export const JanusErrors = {
   },
   425: {
     janusCode: 'JANUS_VIDEOROOM_ERROR_ALREADY_JOINED',
-    messag: 'You have already joined this room',
+    message: 'You have already joined this room',
   },
   426: {
     janusCode: 'JANUS_VIDEOROOM_ERROR_NO_SUCH_ROOM',

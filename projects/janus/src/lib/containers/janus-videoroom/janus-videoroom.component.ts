@@ -14,7 +14,6 @@ import {
 
 import { first, startWith, shareReplay, takeUntil, switchMap } from 'rxjs/operators';
 import { Observable, Subject, combineLatest } from 'rxjs';
-import { Store } from '@ngrx/store';
 
 import {
   Devices,
@@ -27,15 +26,17 @@ import {
   RoomInfoState,
   JanusEnvironment,
 } from '../../models/janus.models';
-import * as fromStore from '../../store';
 
+import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
+import { JanusStore } from '../../store/janus.store';
 import { JanusErrors } from '../../models/janus-server.models';
 
 @Component({
-  selector: 'janus-janus-videoroom',
+  selector: 'janus-videoroom',
   templateUrl: './janus-videoroom.component.html',
   styleUrls: ['./janus-videoroom.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [JanusStore],
 })
 export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
@@ -80,7 +81,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   private janusServerUrl: string;
 
   constructor(
-    private store: Store<fromStore.JanusState>,
+    private readonly janusStore: JanusStore
   ) { }
 
   ngOnInit(): void {
@@ -88,10 +89,11 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
     this.janusServerUrl = this.environment.janusServer.wsUrl;
 
-    this.remoteFeeds$ = this.store.select(fromStore.getReadyRemoteFeeds).pipe(
+    this.remoteFeeds$ = this.janusStore.readyRemoteFeeds$.pipe(
       shareReplay(1),
     );
-    this.roomInfo$ = this.store.select(fromStore.getRoomInfo).pipe(
+
+    this.roomInfo$ = this.janusStore.roomInfo$.pipe(
       shareReplay(1)
     );
 
@@ -101,14 +103,14 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     // @ts-ignore
     if (window.Cypress) {
       // @ts-ignore
-      window.janusStore = this.store;
+      window.janusStore = this.janusStore;
     }
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.store.dispatch(new fromStore.DestroyJanus());
+    this.janusStore.destroy();
   }
 
   ngOnChanges(changes): void {
@@ -126,7 +128,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
         this.isMuted !== roomInfo.muted
         && roomInfo.publishState === PublishState.publishing
       ) {
-        this.store.dispatch(new fromStore.ToggleMute());
+        this.janusStore.toggleMute();
       }
     });
   }
@@ -142,11 +144,11 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     for (const feed of remoteFeeds) {
       if (feed.state === RemoteFeedState.initialized) {
 
-        this.store.dispatch(new fromStore.AttachRemoteFeed({
+        this.janusStore.attachRemoteFeed({
           roomInfo,
           feed,
           pin,
-        }));
+        });
         // Only fire one dispatch per subscribe
         break;
       }
@@ -156,41 +158,43 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   setupJanusRoom(roomId: string, userId: string, userName: string, pin: string): void {
     // Setup comms with janus server
 
-    this.store.dispatch(new fromStore.InitializeJanus(this.environment));
+    this.janusStore.initialize(this.environment);
 
-    const allRemoteFeeds$: Observable<RemoteFeed[]> = this.store.select(fromStore.getAllRemoteFeeds).pipe(
+    const allRemoteFeeds$: Observable<RemoteFeed[]> = this.janusStore.remoteFeeds$.pipe(
       startWith([])
     );
-    combineLatest(this.roomInfo$, allRemoteFeeds$).pipe(
+    this.janusStore.state$.pipe(
       takeUntil(this.destroy$),
-    ).subscribe(([roomInfo, remoteFeeds]) => {
+    ).subscribe(({roomInfo, remoteFeeds}) => {
+
+      const remoteFeedsArray = Object.keys(remoteFeeds).map(id => remoteFeeds[id]);
       this._syncIsMuted();
       if (roomInfo.publishState === PublishState.error) {
         const message = JanusErrors[roomInfo.errorCode].message;
         this.janusError.emit({code: roomInfo.errorCode, message});
       }
 
-      this.attachRemoteFeeds(remoteFeeds, roomInfo, pin);
-      this.emitRemoteFeeds(remoteFeeds);
+      this.attachRemoteFeeds(remoteFeedsArray, roomInfo, pin);
+      this.emitRemoteFeeds(remoteFeedsArray);
 
       switch (roomInfo.state) {
         case RoomInfoState.initialized: {
-          this.store.dispatch(new fromStore.AttachVideoRoom(this.janusServerUrl));
+          this.janusStore.attachVideoRoom(this.janusServerUrl);
           break;
         }
         case RoomInfoState.attached: {
-          this.store.dispatch(new fromStore.Register({
-            name: userName,
-            pin,
+          this.janusStore.register(
+            userName,
             userId,
             roomId,
-          }));
+            pin,
+          );
           break;
         }
         case RoomInfoState.attach_failed: {
           if (this.janusServerUrl !== this.environment.janusServer.httpUrl) {
             this.janusServerUrl = this.environment.janusServer.httpUrl;
-            this.store.dispatch(new fromStore.AttachVideoRoom(this.janusServerUrl));
+            this.janusStore.attachVideoRoom(this.janusServerUrl);
           } else {
             this.janusError.emit({code: 9999, message: 'Unable to connect to media server'});
           }
@@ -202,5 +206,14 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
   onKickUser(remoteFeed: RemoteFeed): void {
     this.kickUser.emit({publisherId: remoteFeed.id, displayName: remoteFeed.displayName});
+  }
+
+  onPublishOwnFeed(payload: PublishOwnFeedPayload): void {
+    this.janusStore.publishOwnFeed(payload);
+  }
+
+  onRequestSubstream(payload: {feed: RemoteFeed, substreamId: number}): void {
+    const {feed, substreamId} = payload;
+    this.janusStore.requestSubstream(feed, substreamId);
   }
 }

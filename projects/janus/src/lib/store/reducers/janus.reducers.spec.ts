@@ -2,10 +2,9 @@ import * as moment from 'moment';
 
 import * as fromJanus from './janus.reducers';
 import * as fromActions from '../actions/janus.actions';
-import * as fromServiceModels from '../../../services/janus.models';
+import * as fromServiceModels from '../../models/janus-server.models';
 import { RemoteFeedState, RoomInfo, RoomInfoState, PublishState } from '../../models/janus.models';
 import { RemoteFeedFactory, RoomInfoFactory } from '../../factories/janus.factories';
-
 
 
 describe('JanusReducer', () => {
@@ -17,7 +16,7 @@ describe('JanusReducer', () => {
 
   describe('Initialize', () => {
     it('should return to a default initial state upon an init', () => {
-      const action = new fromActions.InitializeJanus();
+      const action = new fromActions.InitializeJanus({iceServers: [], janusServer: {wsUrl: '', httpUrl: ''}});
 
       const incomingState = {
         ...initialState,
@@ -140,7 +139,7 @@ describe('JanusReducer', () => {
     });
 
     it('should dispatch a joined message correctly -- includes a publisher', () => {
-      const publisher: fromServiceModels.Publisher = {
+      const publisher: fromServiceModels.Pub = {
         id: '123',
         display: 'jt',
         audio_codec: 'audio',
@@ -186,14 +185,14 @@ describe('JanusReducer', () => {
     });
 
     it('should dispatch a joined message correctly -- includes a publisher and already had remoteFeeds', () => {
-      const newPublisher: fromServiceModels.Publisher = {
+      const newPublisher: fromServiceModels.Pub = {
         id: '789',
         display: 'kt',
         audio_codec: 'audio789',
         video_codec: 'video789',
       };
 
-      const existingPublisher: fromServiceModels.Publisher = {
+      const existingPublisher: fromServiceModels.Pub = {
         id: '123',
         display: 'jt',
         audio_codec: 'audio123',
@@ -244,7 +243,7 @@ describe('JanusReducer', () => {
     });
 
     it('should add any new publishers found in an "event" message', () => {
-      const newPublisher: fromServiceModels.Publisher = {
+      const newPublisher: fromServiceModels.Pub = {
         id: '789',
         display: 'kt',
         audio_codec: 'audio789',
