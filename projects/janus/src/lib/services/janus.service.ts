@@ -562,6 +562,19 @@ export class JanusService {
     return this.handle.isAudioMuted();
   }
 
+  setMute(mute: boolean): void {
+    const muted = this.handle.isAudioMuted();
+    if (muted === mute) {
+      return;
+    }
+
+    if (mute) {
+        this.handle.muteAudio();
+    } else {
+        this.handle.unmuteAudio();
+    }
+  }
+
   requestSubstream(feed: RemoteFeed, substreamId: number): void {
     this.remoteHandles[feed.id].send({message: {request: 'configure', substream: substreamId}});
   }

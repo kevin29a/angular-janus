@@ -6,7 +6,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -38,7 +37,7 @@ import { JanusErrors } from '../../models/janus-server.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [JanusStore],
 })
-export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
+export class JanusVideoroomComponent implements OnInit, OnDestroy {
 
   @Input()
   roomId: string;
@@ -53,7 +52,10 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   userName: string;
 
   @Input()
-  isMuted: boolean;
+  set isMuted(muted: boolean) {
+    this.muted = muted;
+    this._setMuted(muted);
+  }
 
   @Input()
   role: JanusRole = JanusRole.publisher;
@@ -76,7 +78,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   roomInfo$: Observable<RoomInfo>;
   remoteFeeds$: Observable<RemoteFeed[]>;
 
-  private roomInfoMuted: boolean;
+  private muted: boolean;
   private destroy$ = new Subject();
   private janusServerUrl: string;
 
@@ -113,24 +115,8 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     this.janusStore.destroy();
   }
 
-  ngOnChanges(changes): void {
-    if ('isMuted' in changes && this.roomInfo$) {
-      this._syncIsMuted();
-    }
-  }
-
-  _syncIsMuted(): void {
-    // Determine if we need to sync up isMuted
-
-    if (!this.roomInfo$) { return; }
-    this.roomInfo$.pipe(first()).subscribe((roomInfo) => {
-      if (
-        this.isMuted !== roomInfo.muted
-        && roomInfo.publishState === PublishState.publishing
-      ) {
-        this.janusStore.toggleMute();
-      }
-    });
+  _setMuted(muted: boolean): void {
+    this.janusStore.setMute(muted);
   }
 
   emitRemoteFeeds(remoteFeeds: RemoteFeed[]): void {
@@ -168,7 +154,9 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     ).subscribe(({roomInfo, remoteFeeds}) => {
 
       const remoteFeedsArray = Object.keys(remoteFeeds).map(id => remoteFeeds[id]);
-      this._syncIsMuted();
+      if (roomInfo.muted !== this.muted) {
+        this._setMuted(this.muted);
+      }
       if (roomInfo.publishState === PublishState.error) {
         const message = JanusErrors[roomInfo.errorCode].message;
         this.janusError.emit({code: roomInfo.errorCode, message});

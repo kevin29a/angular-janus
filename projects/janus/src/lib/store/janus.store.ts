@@ -118,16 +118,6 @@ export class JanusStore extends ComponentStore<VideoroomState> {
     );
   });
 
-  readonly toggleMute = this.effect((obs$: Observable<null>) => {
-    return obs$.pipe(
-      tap(() => {
-        this.log('toggleMute');
-        const muted = this.janusService.toggleMute();
-        this.reduce(new actions.ToggleMuteSuccess(muted));
-      })
-    );
-  });
-
   /************************************
    *     Effects without dispatch
    ************************************/
@@ -152,6 +142,16 @@ export class JanusStore extends ComponentStore<VideoroomState> {
     this.log('requestSubstream', feed, substreamId);
     this.reduce(new actions.RequestSubstream({feed, substreamId}));
     this.janusService.requestSubstream(feed, substreamId);
+  }
+
+  setMute(muted: boolean): void {
+    this.log('setMute', muted);
+    try {
+      this.janusService.setMute(muted);
+      this.reduce(new actions.ToggleMuteSuccess(muted));
+    } catch {
+      this.log("Error in setMute");
+    }
   }
 
   log(msg: any, ...args: any[]): void {
