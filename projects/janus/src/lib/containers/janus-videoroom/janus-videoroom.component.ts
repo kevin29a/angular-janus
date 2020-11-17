@@ -23,7 +23,7 @@ import {
   RemoteFeedState,
   RoomInfo,
   RoomInfoState,
-  JanusEnvironment,
+  IceServer,
 } from '../../models/janus.models';
 
 import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
@@ -43,7 +43,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   roomId: string;
 
   @Input()
-  privateData: any;
+  pin: string;
 
   @Input()
   userId: string;
@@ -52,19 +52,25 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   userName: string;
 
   @Input()
+  role: JanusRole = JanusRole.publisher;
+
+  @Input()
   set isMuted(muted: boolean) {
     this.muted = muted;
     this._setMuted(muted);
   }
 
   @Input()
-  role: JanusRole = JanusRole.publisher;
-
-  @Input()
   devices: Devices;
 
   @Input()
-  environment: JanusEnvironment;
+  wsUrl: string;
+
+  @Input()
+  httpUrl: string;
+
+  @Input()
+  iceServers: IceServer[] = [{urls: 'stun:stun2.l.google.com:19302'}];
 
   @Output()
   janusError = new EventEmitter<{ code: number, message: string }>();
@@ -75,7 +81,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   roomInfo$: Observable<RoomInfo>;
   remoteFeeds$: Observable<RemoteFeed[]>;
 
-  private muted: boolean;
+  private muted = false;
   private destroy$ = new Subject();
   private janusServerUrl: string;
 
@@ -86,7 +92,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Initialize variables and load the room/user
 
-    this.janusServerUrl = this.environment.janusServer.wsUrl;
+    this.janusServerUrl = this.wsUrl ? this.wsUrl : this.httpUrl;
 
     this.remoteFeeds$ = this.janusStore.readyRemoteFeeds$.pipe(
       shareReplay(1),
@@ -96,7 +102,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
       shareReplay(1)
     );
 
-    const pin = this.privateData ? this.privateData.pin : null;
+    const pin = this.pin ? this.pin : null;
     this.setupJanusRoom(this.roomId, this.userId, this.userName, pin);
 
     // @ts-ignore
@@ -141,7 +147,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   setupJanusRoom(roomId: string, userId: string, userName: string, pin: string): void {
     // Setup comms with janus server
 
-    this.janusStore.initialize(this.environment);
+    this.janusStore.initialize(this.iceServers);
 
     const allRemoteFeeds$: Observable<RemoteFeed[]> = this.janusStore.remoteFeeds$.pipe(
       startWith([])
@@ -177,9 +183,11 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
           break;
         }
         case RoomInfoState.attach_failed: {
-          if (this.janusServerUrl !== this.environment.janusServer.httpUrl) {
-            this.janusServerUrl = this.environment.janusServer.httpUrl;
-            this.janusStore.attachVideoRoom(this.janusServerUrl);
+          if (this.janusServerUrl !== this.httpUrl) {
+            this.janusServerUrl = this.httpUrl;
+            setTimeout(() => {
+              this.janusStore.attachVideoRoom(this.janusServerUrl);
+            }, 100);
           } else {
             this.janusError.emit({code: 9999, message: 'Unable to connect to media server'});
           }

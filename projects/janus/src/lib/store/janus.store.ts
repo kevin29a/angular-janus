@@ -7,7 +7,7 @@ import { switchMap, mergeMap, tap, map, catchError, filter } from 'rxjs/operator
 import { VideoroomState, initialState, reducer } from './reducers/janus.reducers';
 import * as actions from './actions/janus.actions';
 import { JanusService } from '../services/janus.service';
-import { JanusEnvironment, RoomInfo, RemoteFeed, RemoteFeedState } from '../models/janus.models';
+import { IceServer, RoomInfo, RemoteFeed, RemoteFeedState } from '../models/janus.models';
 import { JanusAttachCallbackData } from '../models/janus-server.models';
 
 
@@ -47,12 +47,12 @@ export class JanusStore extends ComponentStore<VideoroomState> {
   /************************************
    *            Effects
    ************************************/
-  readonly initialize = this.effect((environment$: Observable<JanusEnvironment>) => {
-    return environment$.pipe(
-      switchMap((environment: JanusEnvironment) => {
-        this.log('initialize', environment);
-        this.reduce(new actions.InitializeJanus(environment));
-        return this.janusService.init(environment)
+  readonly initialize = this.effect((iceServers$: Observable<IceServer[]>) => {
+    return iceServers$.pipe(
+      switchMap((iceServers: IceServer[]) => {
+        this.log('initialize', iceServers);
+        this.reduce(new actions.InitializeJanus(iceServers));
+        return this.janusService.init(iceServers)
           .pipe(
             tap(() => this.reduce(new actions.InitializeJanusSuccess())),
             catchError((error) => of(this.reduce(new actions.InitializeJanusFail()))),

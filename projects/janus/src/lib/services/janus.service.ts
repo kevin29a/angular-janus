@@ -6,7 +6,7 @@ import { tap, takeWhile } from 'rxjs/operators';
 import Janus from '../3rdparty/janus.es';
 
 import * as fromModels from '../models/janus-server.models';
-import { RemoteFeed, RoomInfo, JanusEnvironment } from '../models/janus.models';
+import { RemoteFeed, RoomInfo, IceServer } from '../models/janus.models';
 
 
 import { randomString } from '../shared';
@@ -91,10 +91,10 @@ export class JanusService {
     private webrtcService: WebrtcService,
   ) { }
 
-  init(environment: JanusEnvironment): Observable<any> {
+  init(iceServers: IceServer[]): Observable<any> {
     // Initialize Janus
 
-    this.iceServers = environment.iceServers;
+    this.iceServers = iceServers;
 
     if (this.initialized) {
       console.log('Warning: called janus init twice');
@@ -218,6 +218,7 @@ export class JanusService {
   attachVideoRoom(url): Observable<fromModels.JanusAttachCallbackData> {
     // Create session
     const instance = this;
+    console.log("URL", url);
     return new Observable(
       subscriber => {
         instance.janus = new Janus({
@@ -230,7 +231,7 @@ export class JanusService {
             subscriber.error(error);
           },
           destroyed(): void {
-            window.location.reload();
+            // window.location.reload();
           }
         });
       }

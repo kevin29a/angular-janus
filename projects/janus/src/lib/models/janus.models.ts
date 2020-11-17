@@ -86,10 +86,8 @@ export enum JanusRole {
   listener = 'listener',
 }
 
-export interface JanusEnvironment {
-  iceServers: {urls: string}[];
-  janusServer: {
-    httpUrl: string,
-    wsUrl: string,
-  };
+export interface IceServer {
+  urls: string;
+  username?: string;
+  credential?: string;
 }

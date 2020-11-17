@@ -7,7 +7,7 @@
 
 
 import { JanusAttachCallbackData } from '../../models/janus-server.models';
-import { RemoteFeed, RoomInfo, JanusEnvironment } from '../../models/janus.models';
+import { RemoteFeed, RoomInfo, IceServer } from '../../models/janus.models';
 
 interface Action {
   type: string;
@@ -22,7 +22,7 @@ export const DESTROY_JANUS = '[Janus] Destroy Janus';
 
 export class InitializeJanus implements Action {
   readonly type = INITIALIZE_JANUS;
-  constructor(public payload: JanusEnvironment) {}
+  constructor(public payload: IceServer[]) {}
 }
 
 export class InitializeJanusSuccess implements Action {
