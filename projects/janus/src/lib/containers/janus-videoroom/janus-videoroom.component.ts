@@ -67,9 +67,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   environment: JanusEnvironment;
 
   @Output()
-  kickUser = new EventEmitter<{publisherId: string, displayName: string}>();
-
-  @Output()
   janusError = new EventEmitter<{ code: number, message: string }>();
 
   @Output()
@@ -190,10 +187,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  onKickUser(remoteFeed: RemoteFeed): void {
-    this.kickUser.emit({publisherId: remoteFeed.id, displayName: remoteFeed.displayName});
   }
 
   onPublishOwnFeed(payload: PublishOwnFeedPayload): void {

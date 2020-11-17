@@ -1,7 +1,18 @@
-import { Action } from '@ngrx/store';
+/*
+ * janus.actions.ts
+ *
+ * Originally for actions as part of an ngrx global store. Repurposing some of
+ * this to work in a component store when breaking this into a library
+ */
+
 
 import { JanusAttachCallbackData } from '../../models/janus-server.models';
 import { RemoteFeed, RoomInfo, JanusEnvironment } from '../../models/janus.models';
+
+interface Action {
+  type: string;
+  payload?: any;
+}
 
 // Initialize Janus
 export const INITIALIZE_JANUS = '[Janus] Initialize Janus';

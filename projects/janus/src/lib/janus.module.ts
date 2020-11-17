@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { JanusComponent } from './janus.component';
 
-import { reducers, effects } from './store';
-
 import { JanusVideoroomComponent } from './containers/janus-videoroom/janus-videoroom.component';
 import * as fromComponents from './components';
 

@@ -23,8 +23,6 @@ export class WebrtcService {
       audio: audioDeviceId !== null ? {deviceId: audioDeviceId} : false,
       video: {deviceId: videoDeviceId, width: 1920, height: 1080},
     };
-
-    console.log('constraints:', constraints)
     return navigator.mediaDevices.getUserMedia(constraints);
   }
 
@@ -252,7 +250,6 @@ export class JanusService {
   }
 
   handleRemoteJsep(jsep): void {
-    console.log("Handle remote jsep");
     this.handle.handleRemoteJsep({jsep});
   }
 

@@ -36,7 +36,6 @@ import { VideoQualityHelper } from './video-quality-helper';
 export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() remoteFeed: RemoteFeed;
-  @Input() role: JanusRole;
   @Input() mode: 'speaker' | 'grid';
   @Input()
   get devices(): Devices {
@@ -46,9 +45,6 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     this.localDevices = devices;
     this.onDeviceChange(devices);
   }
-
-  @Output()
-  kickUser = new EventEmitter<RemoteFeed>();
 
   @Output()
   maximize = new EventEmitter<RemoteFeed>();
@@ -168,18 +164,6 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
       console.log('switching substream', substreamId, this.videoId);
       this.requestSubstream.emit({feed: this.remoteFeed, substreamId});
     }
-  }
-
-  isAdmin(): boolean {
-    return this.role === JanusRole.admin;
-  }
-
-  toggleOptions(): void {
-    this.optionsOpen = !this.optionsOpen;
-  }
-
-  onKickUser(): void {
-    this.kickUser.emit(this.remoteFeed);
   }
 
   onMaximize(): void {

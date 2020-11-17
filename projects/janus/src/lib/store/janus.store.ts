@@ -150,7 +150,7 @@ export class JanusStore extends ComponentStore<VideoroomState> {
       this.janusService.setMute(muted);
       this.reduce(new actions.ToggleMuteSuccess(muted));
     } catch {
-      this.log("Error in setMute");
+      // This can fail if we set the mute before everything is loaded. Ignoring for now as it will work fine after the fact.
     }
   }
 

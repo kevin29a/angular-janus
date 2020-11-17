@@ -1,3 +1,10 @@
+/*
+ * janus.reducers.ts
+ *
+ * Originally for reducers as part of an ngrx global store. Repurposing some of
+ * this to work in a component store when breaking this into a library
+ */
+
 import * as moment from 'moment';
 import * as janusActions from '../actions/janus.actions';
 import {

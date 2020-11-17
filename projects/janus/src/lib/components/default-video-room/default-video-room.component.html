@@ -29,9 +29,7 @@
         data-cy='default-video-room-video-box'
         [remoteFeed]='remoteFeed'
         [mode]='mode'
-        [role]='role'
         [devices]='devices'
-        (kickUser)='onKickUser($event)'
         (maximize)='onMaximize($event)'
         (requestSubstream)='onRequestSubstream($event)'
       ></janus-video-box>
@@ -48,9 +46,7 @@
         data-cy='default-video-room-speaker-video-box'
         [remoteFeed]='speaker'
         [mode]='mode'
-        [role]='role'
         [devices]='devices'
-        (kickUser)='onKickUser($event)'
         (maximize)='onMaximize($event)'
         (requestSubstream)='onRequestSubstream($event)'
       ></janus-video-box>

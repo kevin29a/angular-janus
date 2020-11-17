@@ -41,9 +41,6 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   @Input() devices: Devices;
 
   @Output()
-  kickUser = new EventEmitter<RemoteFeed>();
-
-  @Output()
   requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
 
   @Output()
@@ -89,10 +86,6 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
 
   get publishing(): boolean {
     return this.role === 'admin' || this.role === 'publisher';
-  }
-
-  onKickUser(remoteFeed: RemoteFeed): void {
-    this.kickUser.emit(remoteFeed);
   }
 
   onMaximize(remoteFeed: RemoteFeed): void {

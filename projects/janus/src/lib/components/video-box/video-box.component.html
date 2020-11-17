@@ -13,29 +13,6 @@
       data-cy='video-box-display-name'
       class='overlay display-name'>
       {{ remoteFeed.displayName }}
-      <div
-        *ngIf='isAdmin()'
-        class='options'>
-        <i
-          *ngIf='!optionsOpen'
-          class="fas fa-ellipsis-v"
-          data-cy='video-box-toggle-options'
-          (click)='toggleOptions()'
-        ></i>
-
-        <span *ngIf='optionsOpen' class='separator'>|</span>
-        <i
-          *ngIf='optionsOpen'
-          class="fas fa-user-slash"
-          data-cy='video-box-kick-user'
-          (click)='onKickUser()'
-         ></i>
-        <i
-          *ngIf='optionsOpen'
-          class="fas fa-times"
-          (click)='toggleOptions()'
-        ></i>
-      </div>
     </div>
 
     <div

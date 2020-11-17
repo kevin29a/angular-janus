@@ -32,7 +32,7 @@ describe('SelfVideoComponent', () => {
 
   describe('change devices', () => {
     it('should publish a new feed if the input devices have not been previously specified', () => {
-      spyOn(component, 'publishOwnFeed');
+      spyOn(component, '_publishOwnFeed');
       component.roomInfo = RoomInfoFactory.build({state: RoomInfoState.joined, publishState: PublishState.ready});
 
       const oldDevices = null;
@@ -44,11 +44,11 @@ describe('SelfVideoComponent', () => {
 
       component.onDevicesChange(oldDevices, newDevices);
 
-      expect(component.publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id');
+      expect(component._publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id');
     });
 
     it('should re-publish if the input devices have not been previously specified', () => {
-      spyOn(component, 'publishOwnFeed');
+      spyOn(component, '_publishOwnFeed');
       component.roomInfo = RoomInfoFactory.build({state: RoomInfoState.joined, publishState: PublishState.publishing});
 
       const oldDevices = null;
@@ -60,11 +60,11 @@ describe('SelfVideoComponent', () => {
 
       component.onDevicesChange(oldDevices, newDevices);
 
-      expect(component.publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id');
+      expect(component._publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id');
     });
 
     it('should not publish a new feed if the input devices are the same', () => {
-      spyOn(component, 'publishOwnFeed');
+      spyOn(component, '_publishOwnFeed');
       component.roomInfo = RoomInfoFactory.build({state: RoomInfoState.joined, publishState: PublishState.publishing});
 
       const oldDevices: Devices = {
@@ -78,11 +78,11 @@ describe('SelfVideoComponent', () => {
 
       component.onDevicesChange(oldDevices, newDevices);
 
-      expect(component.publishOwnFeed).not.toHaveBeenCalled();
+      expect(component._publishOwnFeed).not.toHaveBeenCalled();
     });
 
     it('should publish a new feed if the input devices have changed', () => {
-      spyOn(component, 'publishOwnFeed');
+      spyOn(component, '_publishOwnFeed');
       component.roomInfo = RoomInfoFactory.build({state: RoomInfoState.joined, publishState: PublishState.publishing});
 
       const oldDevices: Devices = {
@@ -97,7 +97,7 @@ describe('SelfVideoComponent', () => {
 
       component.onDevicesChange(oldDevices, newDevices);
 
-      expect(component.publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id2');
+      expect(component._publishOwnFeed).toHaveBeenCalledWith('a-id', 'v-id2');
     });
   });
 });
