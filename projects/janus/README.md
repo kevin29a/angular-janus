@@ -39,11 +39,11 @@ The following is a non-exhaustive list of necessary items for most webapps that
 are not implemented by `JanusVideoroomComponent`. These will have to be
 implemented by the application outside of this library.
 
-- *Janus room configuration* Create/edit/delete operations on janus rooms are not supported
-- *UI elements for interaction* Mute, change device, etc. are supported by the component, but it does not include UI elements for these.
-- *User Authentication*
-- *Backend Storage*
-- *Janus gateway deployment*
+- **Janus room configuration** Create/edit/delete operations on janus rooms are not supported
+- **UI elements for interaction** Mute, change device, etc. are supported by the component, but it does not include UI elements for these.
+- **User Authentication**
+- **Backend Storage**
+- **Janus gateway deployment**
 
 
 ## How to use
