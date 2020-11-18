@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>janus documentation</title>
+        <title>janus-angular documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="./" class="navbar-brand">janus documentation</a>
+            <a href="./" class="navbar-brand">janus-angular documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -48,11 +48,13 @@ to understand intimate details of webrtc.</p>
 <li><strong>Room ID</strong> You can specify any <code>roomId</code> that is available on the janus gateway.</li>
 <li><strong>http and websocket connections</strong> You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.</li>
 <li><strong>PINs</strong> You can specify a PIN for any room that requires it.</li>
-<li><strong>Display Names</strong> You can specify the display name for anyone joining a videoroom</li>
+<li><strong>Auto Resize</strong> Videos are automatically enlarged to take up the maximum screen real estate upon changing the size or orientation of the screen.</li>
+<li><strong>Multiple Aspect Ratios</strong> Different source video aspect ratios are handled smoothly.</li>
+<li><strong>Display Names</strong> You can specify the display name for anyone joining a videoroom.</li>
 <li><strong>Publishers or Read Only Users</strong> Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don&#39;t transmit anything.</li>
 <li><strong>Devices</strong> Device IDs can be input and dynamically changed so that users can change which input or output devices to use.</li>
-<li><strong>ICE Servers</strong> In addition the the janus gateway, custom STUN/TURN servers can be specified .</li>
-<li><strong>Mute Audio</strong> Audio can be muted for publishers</li>
+<li><strong>ICE Servers</strong> In addition the the janus gateway, custom STUN/TURN servers can be specified.</li>
+<li><strong>Mute Audio</strong> Audio can be muted for publishers.</li>
 </ul>
 <h2 id="what-does-this-not-implement">What does this <strong>not</strong> implement?</h2>
 <p>In the spirit of doing one thing well, the <code>janus-videoroom</code> component does not
@@ -87,12 +89,24 @@ implemented by the application outside of this library.</p>
   ],
 })
 export class YourAppModule { }</code></pre></div><h3 id="using-the-directive">Using the directive</h3>
-<p>The following minimal use of the directive will work with the demo deploy of janus.</p>
-<div><pre class="line-numbers"><code class="language-none">&lt;janus-videoroom
-    [roomId]=&#39;1234&#39;
-    [wsUrl]=&#39;wss://janus.conf.meetecho.com/ws&#39;
-&gt;
-&lt;/janus-videoroom&gt;</code></pre></div><p>Inputs/Outputs for the component are documented in the API docs on this site. Page for the
+<p>The following minimal component will work with the demo deploy of janus.</p>
+<div><pre class="line-numbers"><code class="language-none">import { Component } from &#39;&#64;angular/core&#39;;
+
+&#64;Component({
+  selector: &#39;app-root&#39;,
+  styleUrls: [&#39;./app.component.scss&#39;],
+  template: `
+    &lt;janus-videoroom
+      [roomId]=&#39;roomId&#39;
+      [wsUrl]=&#39;wsUrl&#39;
+    &gt;
+    &lt;/janus-videoroom&gt;
+  `
+})
+export class AppComponent {
+  roomId = 1234;
+  wsUrl = &#39;wss://janus.conf.meetecho.com/ws&#39;;
+}</code></pre></div><p>Inputs/Outputs for the component are documented in the API docs on this site. Page for the
 component docs is <a href="/angular-janus/components/JanusVideoroomComponent.html">here</a></p>
 <h2 id="future-work">Future Work</h2>
 <p>In addition to tireless bug fixing and making sure it works on all platforms

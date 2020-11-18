@@ -86,7 +86,7 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   get publishing(): boolean {
-    return this.role === 'admin' || this.role === 'publisher';
+    return this.role === 'publisher';
   }
 
   onMaximize(remoteFeed: RemoteFeed): void {

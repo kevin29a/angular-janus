@@ -1,6 +1,25 @@
 {
-  "name": "janus",
-  "version": "0.0.1",
+  "name": "janus-angular",
+  "version": "0.1.0",
+  "description": "Angular library for use with the janus media server",
+  "author": "Kevin Thompson <kevin29a@gmail.com>",
+  "repository": {
+     "type": "git",
+     "url": "https://github.com/kevin29a/angular-janus"
+  },
+  "bugs": {
+    "url": "https://github.com/kevin29a/angular-janus/issues"
+  },
+  "homepage": "https://kevin29a.github.io/angular-janus",
+  "keywords": [
+    "angular",
+    "janus",
+    "typescript",
+    "sfu",
+    "videoroom",
+    "webrtc"
+  ],
+  "license": "MIT",
   "scripts": {
       "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs"
   },
@@ -9,7 +28,6 @@
     "@angular/core": "^10.1.1"
   },
   "dependencies": {
-    "@compodoc/compodoc": "^1.1.11",
     "tslib": "^2.0.0"
   }
 }

@@ -21,11 +21,13 @@ The core function provided by this library is a component called `JanusVideoroom
 - **Room ID** You can specify any `roomId` that is available on the janus gateway.
 - **http and websocket connections** You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.
 - **PINs** You can specify a PIN for any room that requires it.
-- **Display Names** You can specify the display name for anyone joining a videoroom
+- **Auto Resize** Videos are automatically enlarged to take up the maximum screen real estate upon changing the size or orientation of the screen.
+- **Multiple Aspect Ratios** Different source video aspect ratios are handled smoothly.
+- **Display Names** You can specify the display name for anyone joining a videoroom.
 - **Publishers or Read Only Users** Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
 - **Devices** Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
-- **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified .
-- **Mute Audio** Audio can be muted for publishers
+- **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified.
+- **Mute Audio** Audio can be muted for publishers.
 
 ## What does this **not** implement?
 
@@ -77,13 +79,25 @@ export class YourAppModule { }
 
 ### Using the directive
 
-The following minimal use of the directive will work with the demo deploy of janus.
+The following minimal component will work with the demo deploy of janus.
 ```
-<janus-videoroom
-    [roomId]='1234'
-    [wsUrl]='wss://janus.conf.meetecho.com/ws'
->
-</janus-videoroom>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  styleUrls: ['./app.component.scss'],
+  template: `
+    <janus-videoroom
+      [roomId]='roomId'
+      [wsUrl]='wsUrl'
+    >
+    </janus-videoroom>
+  `
+})
+export class AppComponent {
+  roomId = 1234;
+  wsUrl = 'wss://janus.conf.meetecho.com/ws';
+}
 ```
 
 Inputs/Outputs for the component are documented in the API docs on this site. Page for the

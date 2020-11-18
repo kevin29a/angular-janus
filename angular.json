@@ -42,6 +42,127 @@
           }
         }
       }
+    },
+    "sample-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-app",
+      "sourceRoot": "projects/sample-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-app",
+            "index": "projects/sample-app/src/index.html",
+            "main": "projects/sample-app/src/main.ts",
+            "polyfills": "projects/sample-app/src/polyfills.ts",
+            "tsConfig": "projects/sample-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-app/src/favicon.ico",
+              "projects/sample-app/src/assets"
+            ],
+            "styles": [
+              "projects/sample-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-app/src/environments/environment.ts",
+                  "with": "projects/sample-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-app/src/test.ts",
+            "polyfills": "projects/sample-app/src/polyfills.ts",
+            "tsConfig": "projects/sample-app/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-app/karma.conf.js",
+            "assets": [
+              "projects/sample-app/src/favicon.ico",
+              "projects/sample-app/src/assets"
+            ],
+            "styles": [
+              "projects/sample-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-app/tsconfig.app.json",
+              "projects/sample-app/tsconfig.spec.json",
+              "projects/sample-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-app/e2e/protractor.conf.js",
+            "devServerTarget": "sample-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-app:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "janus"
 }
