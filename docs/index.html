@@ -47,14 +47,14 @@ to understand intimate details of webrtc.</p>
 <ul>
 <li><strong>Room ID</strong> You can specify any <code>roomId</code> that is available on the janus gateway.</li>
 <li><strong>http and websocket connections</strong> You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.</li>
-<li><em>PINs</em> You can specify a PIN for any room that requires it.</li>
-<li><em>Display Names</em> You can specify the display name for anyone joining a videoroom</li>
-<li><em>Publishers or Read Only Users</em> Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don&#39;t transmit anything.</li>
-<li><em>Devices</em> Device IDs can be input and dynamically changed so that users can change which input or output devices to use.</li>
-<li><em>ICE Servers</em> In addition the the janus gateway, custom STUN/TURN servers can be specified .</li>
-<li><em>Mute Audio</em> Audio can be muted for publishers</li>
+<li><strong>PINs</strong> You can specify a PIN for any room that requires it.</li>
+<li><strong>Display Names</strong> You can specify the display name for anyone joining a videoroom</li>
+<li><strong>Publishers or Read Only Users</strong> Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don&#39;t transmit anything.</li>
+<li><strong>Devices</strong> Device IDs can be input and dynamically changed so that users can change which input or output devices to use.</li>
+<li><strong>ICE Servers</strong> In addition the the janus gateway, custom STUN/TURN servers can be specified .</li>
+<li><strong>Mute Audio</strong> Audio can be muted for publishers</li>
 </ul>
-<h2 id="what-does-this-not-implement">What does this <em>not</em> implement?</h2>
+<h2 id="what-does-this-not-implement">What does this <strong>not</strong> implement?</h2>
 <p>In the spirit of doing one thing well, the <code>janus-videoroom</code> component does not
 implement many necessary parts of an application. For example, the component
 supports muting the feed of a publisher. However, it does not implement a mute
@@ -92,7 +92,9 @@ export class YourAppModule { }</code></pre></div><h3 id="using-the-directive">Us
     [roomId]=&#39;1234&#39;
     [wsUrl]=&#39;wss://janus.conf.meetecho.com/ws&#39;
 &gt;
-&lt;/janus-videoroom&gt;</code></pre></div><h2 id="future-work">Future Work</h2>
+&lt;/janus-videoroom&gt;</code></pre></div><p>Inputs/Outputs for the component are documented in the API docs on this site. Page for the
+component docs is <a href="/angular-janus/components/JanusVideoroomComponent.html">here</a></p>
+<h2 id="future-work">Future Work</h2>
 <p>In addition to tireless bug fixing and making sure it works on all platforms
 and networks, future work will include adding additional touchpoints in which
 someone can customize the videoroom. Overlays work great to give rough

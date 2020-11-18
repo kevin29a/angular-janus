@@ -20,14 +20,14 @@ The core function provided by this library is a component called `JanusVideoroom
 
 - **Room ID** You can specify any `roomId` that is available on the janus gateway.
 - **http and websocket connections** You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.
-- *PINs* You can specify a PIN for any room that requires it.
-- *Display Names* You can specify the display name for anyone joining a videoroom
-- *Publishers or Read Only Users* Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
-- *Devices* Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
-- *ICE Servers* In addition the the janus gateway, custom STUN/TURN servers can be specified .
-- *Mute Audio* Audio can be muted for publishers
+- **PINs** You can specify a PIN for any room that requires it.
+- **Display Names** You can specify the display name for anyone joining a videoroom
+- **Publishers or Read Only Users** Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
+- **Devices** Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
+- **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified .
+- **Mute Audio** Audio can be muted for publishers
 
-## What does this *not* implement?
+## What does this **not** implement?
 
 In the spirit of doing one thing well, the `janus-videoroom` component does not
 implement many necessary parts of an application. For example, the component
@@ -85,6 +85,9 @@ The following minimal use of the directive will work with the demo deploy of jan
 >
 </janus-videoroom>
 ```
+
+Inputs/Outputs for the component are documented in the API docs on this site. Page for the
+component docs is [here](/angular-janus/components/JanusVideoroomComponent.html)
 
 ## Future Work
 
