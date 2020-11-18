@@ -6,6 +6,7 @@
     "@angular/core": "^10.1.1"
   },
   "dependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "tslib": "^2.0.0"
   }
 }

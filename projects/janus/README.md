@@ -18,16 +18,16 @@ to understand intimate details of webrtc.
 
 The core function provided by this library is a component called `JanusVideoroomComponent` that implements a videoroom. The selector for the component is `janus-videoroom`. You can have a fully functional videoroom only specifying the URL of the janus gateway and the room ID. The videoroom supports the following features:
 
-- *Room ID* You can specify any `roomId` that is available on the janus gateway.
-- *http and websocket connections* You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.
-- *PINs* You can specify a PIN for any room that requires it.
-- *Display Names* You can specify the display name for anyone joining a videoroom
-- *Publishers or Read Only Users* Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
-- *Devices* Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
-- *ICE Servers* In addition the the janus gateway, custom STUN/TURN servers can be specified .
-- *Mute Audio* Audio can be muted for publishers
+- **Room ID** You can specify any `roomId` that is available on the janus gateway.
+- **http and websocket connections** You can specify an http and/or websocket URL. The component will prefer the websocket URL and fallback to the http URL.
+- **PINs** You can specify a PIN for any room that requires it.
+- **Display Names** You can specify the display name for anyone joining a videoroom
+- **Publishers or Read Only Users** Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
+- **Devices** Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
+- **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified .
+- **Mute Audio** Audio can be muted for publishers
 
-## What does this *not* implement?
+## What does this **not** implement?
 
 In the spirit of doing one thing well, the `janus-videoroom` component does not
 implement many necessary parts of an application. For example, the component
@@ -77,7 +77,7 @@ export class YourAppModule { }
 
 ### Using the directive
 
-The following minimal deployment of the directive will work with the demo deploy of janus.
+The following minimal use of the directive will work with the demo deploy of janus.
 ```
 <janus-videoroom
     [roomId]='1234'
@@ -86,15 +86,15 @@ The following minimal deployment of the directive will work with the demo deploy
 </janus-videoroom>
 ```
 
-#### Properties
-
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
+Inputs/Outputs for the component are documented in the API docs on this site. Page for the
+component docs is [here](/angular-janus/components/JanusVideoroomComponent.html)
 
 ## Future Work
 
-
+In addition to tireless bug fixing and making sure it works on all platforms
+and networks, future work will include adding additional touchpoints in which
+someone can customize the videoroom. Overlays work great to give rough
+functionality to all supported features. However, there are often times when an
+app wants to implement buttons on a publisher video itself, or change the
+entire look and feel of the videoroom.
 
