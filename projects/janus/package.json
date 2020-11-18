@@ -1,6 +1,9 @@
 {
   "name": "janus",
   "version": "0.0.1",
+  "scripts": {
+      "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs"
+  },
   "peerDependencies": {
     "@angular/common": "^10.1.1",
     "@angular/core": "^10.1.1"

@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "compodoc": "npx compodoc -p tsconfig.lib.json projects/janus"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
