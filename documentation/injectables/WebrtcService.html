@@ -1,0 +1,1106 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>WebrtcService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/janus/src/lib/services/janus.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Various helper functions for querying devices</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getDefaultDevices">getDefaultDevices</a>
+                            </li>
+                            <li>
+                                <a href="#getUserMedia">getUserMedia</a>
+                            </li>
+                            <li>
+                                <a href="#isSupportedDevice">isSupportedDevice</a>
+                            </li>
+                            <li>
+                                <a href="#listDevices">listDevices</a>
+                            </li>
+                            <li>
+                                <a href="#supportsSpeakerSelection">supportsSpeakerSelection</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultDevices"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getDefaultDevices
+                        </b>
+                        <a href="#getDefaultDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDefaultDevices()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the device IDs for the default audio, video, and speaker device</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserMedia"></a>
+                    <span class="name">
+                        <b>
+                            getUserMedia
+                        </b>
+                        <a href="#getUserMedia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserMedia(audioDeviceId: string | null, videoDeviceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Wrapper around getUserMedia that allows the user to specify the audio and video device ids</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>audioDeviceId</td>
+                                    <td>
+                                            <code>string | null</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Device ID of the desired audio device. If null, audio will not be included</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>videoDeviceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Device ID of the desired video device.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSupportedDevice"></a>
+                    <span class="name">
+                        <b>
+                            isSupportedDevice
+                        </b>
+                        <a href="#isSupportedDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSupportedDevice()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if the current device is supported. Currently, iPhone 6 and older are not supported.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listDevices"></a>
+                    <span class="name">
+                        <b>
+                            listDevices
+                        </b>
+                        <a href="#listDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listDevices()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Wrapper around <code>navigator.mediaDevices.enumerateDevices</code></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="supportsSpeakerSelection"></a>
+                    <span class="name">
+                        <b>
+                            supportsSpeakerSelection
+                        </b>
+                        <a href="#supportsSpeakerSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>supportsSpeakerSelection()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">projects/janus/src/lib/services/janus.service.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if the current platform supports setting the speaker. Some devices, e.g., most android
+phones, do not allow the dynamic setting of the speaker from within the browser. For those devices,
+it&#39;s necessary to change the output device outside of the browser.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { Observable, of, interval } from &#x27;rxjs&#x27;;
+import { tap, takeWhile } from &#x27;rxjs/operators&#x27;;
+
+import Janus from &#x27;../3rdparty/janus.es&#x27;;
+
+import * as fromModels from &#x27;../models/janus-server.models&#x27;;
+import { RemoteFeed, RoomInfo, IceServer } from &#x27;../models/janus.models&#x27;;
+
+
+import { randomString } from &#x27;../shared&#x27;;
+
+/**
+ * Various helper functions for querying devices
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class WebrtcService {
+  // Wrappers around some common webrtc functions
+
+  constructor() { }
+
+  /**
+   * Wrapper around getUserMedia that allows the user to specify the audio and video device ids
+   *
+   * @param audioDeviceId Device ID of the desired audio device. If null, audio will not be included
+   * @param videoDeviceId Device ID of the desired video device.
+   */
+  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise&lt;any&gt; {
+    const constraints &#x3D; {
+      audio: audioDeviceId !&#x3D;&#x3D; null ? {deviceId: audioDeviceId} : false,
+      video: {deviceId: videoDeviceId, width: 1920, height: 1080},
+    };
+    return navigator.mediaDevices.getUserMedia(constraints);
+  }
+
+  /**
+   * Wrapper around &#x60;navigator.mediaDevices.enumerateDevices&#x60;
+   */
+  listDevices(): Promise&lt;any&gt; {
+    return navigator.mediaDevices.enumerateDevices();
+  }
+
+  /**
+   * Returns the device IDs for the default audio, video, and speaker device
+   */
+  async getDefaultDevices(): Promise&lt;{audioDeviceId: string, videoDeviceId: string, speakerDeviceId}&gt; {
+    const devices &#x3D; await this.listDevices();
+    const audioDevices &#x3D; devices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;audioinput&#x27;);
+    const videoDevices &#x3D; devices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;videoinput&#x27;);
+    const speakerDevices &#x3D; devices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;audiooutput&#x27;);
+    const audioDeviceId &#x3D; audioDevices.length &lt; 1 ? null : audioDevices[0].deviceId;
+    const videoDeviceId &#x3D; videoDevices.length &lt; 1 ? null : videoDevices[0].deviceId;
+    const speakerDeviceId &#x3D; speakerDevices.length &lt; 1 ? null : speakerDevices[0].deviceId;
+
+    return {audioDeviceId, videoDeviceId, speakerDeviceId};
+  }
+
+  /**
+   * Determines if the current platform supports setting the speaker. Some devices, e.g., most android
+   * phones, do not allow the dynamic setting of the speaker from within the browser. For those devices,
+   * it&#x27;s necessary to change the output device outside of the browser.
+   */
+  supportsSpeakerSelection(): boolean {
+    const videoElement &#x3D; document.createElement(&#x27;video&#x27;);
+    const support &#x3D; &#x27;setSinkId&#x27; in videoElement;
+    videoElement.remove();
+    return support;
+  }
+
+  /**
+   * Determines if the current device is supported. Currently, iPhone 6 and older are not supported.
+   */
+  isSupportedDevice(): boolean {
+    return this.supportsAppVersion(navigator.appVersion);
+  }
+
+  /** @internal */
+  supportsAppVersion(appVersion: string): boolean {
+    // returns true iff it supports the device identified by the supplied navigator.appVersion string
+    const match &#x3D; appVersion ? appVersion.match(/iPhone OS (\d+)_(\d+)/) : false;
+    if (!match) {
+      return true;
+    }
+    const version &#x3D; [
+      parseInt(match[1], 10),
+      parseInt(match[2], 10),
+    ];
+
+    return version[0] &gt;&#x3D; 13;
+  }
+}
+
+/** @internal */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class JanusService {
+  private streams &#x3D; {};
+  private initialized &#x3D; false;
+  private janus: any;
+  private server: string;
+  private opaqueId: string &#x3D; randomString(16);
+  public handle;   // Handle to the videoroom plugin
+  private remoteHandles: { [id: number]: any } &#x3D; {};   // Handles to remote streams
+
+  private videoElement: any;
+  private localStream: any;
+  private publishWebrtcState &#x3D; false;
+
+  private drawLoopActive: boolean;
+  private iceServers: {urls: string}[];
+
+  constructor(
+    private webrtcService: WebrtcService,
+  ) {}
+
+  init(iceServers: IceServer[]): Observable&lt;any&gt; {
+    // Initialize Janus
+
+    this.iceServers &#x3D; iceServers;
+
+    if (this.initialized) {
+      console.log(&#x27;Warning: called janus init twice&#x27;);
+      return of(true);
+    }
+
+    return new Observable(
+      subscriber &#x3D;&gt; {
+        Janus.init({
+          debug: &#x27;none&#x27;,
+          callback(): void {
+            // Make sure the browser supports WebRTC
+            if (!Janus.isWebrtcSupported()) {
+              subscriber.error(&#x27;WebRTC is not supported&#x27;);
+            }
+            subscriber.next();
+            subscriber.complete();
+          }
+        });
+      }
+    );
+  }
+
+  destroy(): void {
+    const leave &#x3D; { request: &#x27;leave&#x27; };
+
+    if (this.handle) {
+      this.handle.send({message: leave});
+    }
+    this.cleanupLocalStream();
+    this.janus.destroy({unload: true});
+
+    // Clean up all variables used
+    this.janus &#x3D; null;
+    this.handle &#x3D; null;
+    this.streams &#x3D; {};
+    this.initialized &#x3D; false;
+    this.janus &#x3D; null;
+    this.server &#x3D; null;
+    this.handle &#x3D; null;
+    this.remoteHandles &#x3D; {};
+    this.videoElement &#x3D; null;
+    this.localStream &#x3D; null;
+    this.publishWebrtcState &#x3D; false;
+    this.drawLoopActive &#x3D; null;
+    this.iceServers &#x3D; [];
+  }
+
+  cleanupLocalStream(): void {
+    if (this.videoElement) {
+      this.videoElement.remove();
+    }
+    if (this.localStream) {
+      for (const track of this.localStream.getTracks()) {
+        track.stop();
+        this.localStream.removeTrack(track);
+      }
+    }
+    this.drawLoopActive &#x3D; false;
+  }
+
+  _get_random_string(): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  }
+
+  _attachVideoRoomHelper(subscriber): void {
+    const instance &#x3D; this;
+    this.janus.attach({
+      plugin: &#x27;janus.plugin.videoroom&#x27;,
+      opaqueId: this.opaqueId,
+      success(pluginHandle): void {
+        instance.handle &#x3D; pluginHandle;
+        subscriber.next({
+          message: fromModels.ATTACH_SUCCESS
+        });
+      },
+      error(error): void {
+        subscriber.error(error);
+      },
+      consentDialog(on): void {
+        subscriber.next({
+          message: fromModels.CONSENT_DIALOG,
+          payload: {on},
+        });
+      },
+      mediaState(medium, on): void {
+        subscriber.next({
+          message: fromModels.MEDIA_STATE,
+          payload: {medium, on},
+        });
+      },
+      webrtcState(on): void {
+        instance.publishWebrtcState &#x3D; on;
+        subscriber.next({
+          message: fromModels.WEBRTC_STATE,
+          payload: {on},
+        });
+      },
+      iceState(arg1, arg2): void {
+        // console.log(&#x27;ICE STATE&#x27;, arg1, arg2);
+      },
+      slowLink(msg): void {
+      },
+      onmessage(msg, jsep): void {
+        subscriber.next({
+          message: fromModels.ON_MESSAGE,
+          payload: {msg, jsep},
+        });
+        if (!!jsep) {
+          instance.handleRemoteJsep(jsep);
+        }
+      },
+      onlocalstream(stream): void {
+        const streamId &#x3D; instance._get_random_string();
+        instance.streams[streamId] &#x3D; stream;
+        subscriber.next({
+          message: fromModels.ON_LOCAL_STREAM,
+          payload: {stream_id: streamId},
+        });
+      },
+      onremotestream(stream): void {
+        // Don&#x27;t expect this to ever happen
+        subscriber.next({
+          message: fromModels.ON_REMOTE_STREAM,
+          payload: {stream},
+        });
+      },
+      oncleanup(): void {
+        subscriber.next({
+          message: fromModels.ON_CLEANUP,
+        });
+      }
+    });
+  }
+
+  attachVideoRoom(url): Observable&lt;fromModels.JanusAttachCallbackData&gt; {
+    // Create session
+    const instance &#x3D; this;
+    return new Observable(
+      subscriber &#x3D;&gt; {
+        instance.janus &#x3D; new Janus({
+          server: url,
+          iceServers: this.iceServers,
+          success: () &#x3D;&gt; {
+            instance._attachVideoRoomHelper(subscriber);
+          },
+          error(error): void {
+            subscriber.error(error);
+          },
+          destroyed(): void {
+            // window.location.reload();
+          }
+        });
+      }
+    );
+  }
+
+  register(name: string, userId: string, roomId: string | number, pin: string): void {
+    const register &#x3D; {
+      request: &#x27;join&#x27;,
+      room: roomId,
+      ptype: &#x27;publisher&#x27;,
+      display: name,
+      id: userId,
+      pin,
+    };
+    this.handle.send({message: register});
+  }
+
+  handleRemoteJsep(jsep): void {
+    this.handle.handleRemoteJsep({jsep});
+  }
+
+  answerRemoteFeedJsep(jsep, feed: RemoteFeed, room: RoomInfo): void {
+    // Handle a jsep message for a remote feed
+
+    const handle &#x3D; this.remoteHandles[feed.id];
+    handle.createAnswer({
+      jsep,
+      trickle: true,
+      media: { audioSend: false, videoSend: false },  // We want recvonly audio/video
+      success(jsepBody): void {
+        const body &#x3D; { request: &#x27;start&#x27;, room: room.id };
+        handle.send({message: body, jsep: jsepBody});
+      },
+      error(error): void {
+        console.log(&#x27;ERROR in JSEP RESPONSE&#x27;);
+      }
+    });
+  }
+
+  draw(canvasContext, videoElement): void {
+    canvasContext.drawImage(videoElement, 0, 0);
+    const centerX &#x3D; canvasContext.canvas.width / 2;
+    const centerY &#x3D; canvasContext.canvas.height / 2;
+    const videoWidth &#x3D; videoElement.videoWidth;
+    const videoHeight &#x3D; videoElement.videoHeight;
+
+    canvasContext.fillStyle &#x3D; &#x27;#000&#x27;;
+    canvasContext.fillRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+
+    canvasContext.save();
+    canvasContext.translate(centerX, centerY);
+    canvasContext.drawImage(
+      videoElement,
+      -videoWidth / 2,
+      -videoHeight / 2,
+      videoWidth,
+      videoHeight,
+    );
+    canvasContext.restore();
+  }
+
+  startDrawingLoop(canvasElement, videoElement, frameRate: number): void {
+    // Drawing loop using AudioContext oscillator. requestAnimationFrame doesn&#x27;t fire
+    // on background tabs, so this is a hack to make this work when the user switches tabs
+
+    const instance &#x3D; this;
+    instance.drawLoopActive &#x3D; true;
+    const canvasContext &#x3D; canvasElement.getContext(&#x27;2d&#x27;);
+
+    const stepMilliSeconds &#x3D; 1000 / frameRate;
+
+    function step(): void {
+      if (instance.drawLoopActive) {
+        instance.draw(canvasContext, videoElement);
+        setTimeout(step, stepMilliSeconds);
+        // requestAnimationFrame(step);
+      }
+    }
+    step();
+  }
+
+  _muteVideo(videoElement): void {
+    // Mute a given video element
+
+    const instance &#x3D; this;
+    function mute(event): void {
+      videoElement.muted &#x3D; &#x27;muted&#x27;;
+      videoElement.removeEventListener(&#x27;playing&#x27;, mute);
+    }
+
+    videoElement.addEventListener(&#x27;playing&#x27;, mute);
+  }
+
+  _sizeCanvasElement(videoWidth: number, videoHeight: number): {canvasWidth: number, canvasHeight: number} {
+    // We&#x27;re keeping the height the same. Goal is to add black bars to the sides
+    // if we&#x27;re in portrait mode and crop to the center if we&#x27;re in landscape.
+    return {
+      canvasWidth: videoHeight * 4 / 3,
+      canvasHeight: videoHeight,
+    };
+  }
+
+  _createVideoElement(canvasId: string, videoStream: any): any {
+    // Create the video element and attach it to the canvas
+
+    const videoElement &#x3D; document.createElement(&#x27;video&#x27;);
+    const canvasElement: any &#x3D; document.getElementById(canvasId);
+    const canvasStream &#x3D; canvasElement.captureStream();
+    const videoSettings &#x3D; videoStream.getVideoTracks()[0].getSettings();
+
+    Janus.attachMediaStream(videoElement, videoStream);
+    videoElement.autoplay &#x3D; true;
+    videoElement.setAttribute(&#x27;playsinline&#x27;, &#x27;true&#x27;);
+    videoElement.setAttribute(&#x27;id&#x27;, &#x27;self-video&#x27;);
+
+    // Chrome doesn&#x27;t like it if we set the muted attribute before the video is playing
+    this._muteVideo(videoElement);
+
+    const { canvasWidth, canvasHeight } &#x3D; this._sizeCanvasElement(videoSettings.width, videoSettings.height);
+    canvasElement.width &#x3D; canvasWidth;
+    canvasElement.height &#x3D; canvasHeight;
+
+    const audioTrack &#x3D; videoStream.getAudioTracks().find((item) &#x3D;&gt; item);
+    if (!!audioTrack) {
+        canvasStream.addTrack(videoStream.getAudioTracks()[0]);
+    }
+
+    this.startDrawingLoop(canvasElement, videoElement, videoSettings.frameRate);
+    // this.startDrawingLoop(canvasElement, videoElement, 20);
+
+    return {
+      videoElement,
+      canvasStream,
+    };
+  }
+
+  unPublishOwnFeed(): void {
+    // Unpublish your own feed
+    const unpublish &#x3D; { request: &#x27;unpublish&#x27; };
+    this.handle.send({ message: unpublish });
+    this.cleanupLocalStream();
+  }
+
+  publishOwnFeed(
+    audioDeviceId: string | null,
+    videoDeviceId: string,
+    canvasId: string &#x3D; &#x27;canvas-self&#x27;,
+  ): Observable&lt;boolean&gt; {
+    // Publish our own feed
+    return new Observable(
+      subscriber &#x3D;&gt; {
+        if (this.publishWebrtcState) {
+          // Already publishing. Need to unpublish, wait until we&#x27;re done unpublishing, and then republish
+          this.unPublishOwnFeed();
+          interval(100).pipe(
+            takeWhile(() &#x3D;&gt; this.publishWebrtcState)
+          ).subscribe({
+            complete: () &#x3D;&gt; {
+              this.createOffer(subscriber, audioDeviceId, videoDeviceId, canvasId);
+            }
+          });
+        } else {
+          // Simple case. Not publishing yet
+          this.createOffer(subscriber, audioDeviceId, videoDeviceId, canvasId);
+        }
+      }
+    );
+  }
+
+  createOffer(
+    subscriber,
+    audioDeviceId: string | null,
+    videoDeviceId: string,
+    canvasId: string,
+    retryCount &#x3D; 0,
+  ): void {
+    const instance &#x3D; this;
+    instance.webrtcService.getUserMedia(audioDeviceId, videoDeviceId)
+    .then(
+      (videoStream) &#x3D;&gt; {
+        instance.localStream &#x3D; videoStream;
+        const {videoElement, canvasStream} &#x3D; instance._createVideoElement(canvasId, videoStream);
+        instance.videoElement &#x3D; videoElement;
+        this.handle.createOffer({
+          media: { audioRecv: false, videoRecv: false, audioSend: true, videoSend: true },
+          success(jsep): void {
+            const publish &#x3D; { request: &#x27;configure&#x27;, audio: true, video: true };
+            instance.handle.send({message: publish, jsep});
+            subscriber.next(true);
+            subscriber.complete();
+          },
+          error(error): void {
+            subscriber.error(error);
+          },
+          simulcast: true,
+          simulcastMaxBitrates: {
+            high: 256000,
+            medium: 128000,
+            low: 64000,
+          },
+          stream: canvasStream,
+          trickle: true,
+        });
+      }
+    ).catch((error) &#x3D;&gt; {
+      // Some devices get intermittent errors. I&#x27;m doing a retry here. Not a warm-fuzzy solution. Future would might
+      // find a race condition where we need to wait for an event before calling getUserMedia
+      console.log(&quot;GUM ERROR:&quot;, error, audioDeviceId, videoDeviceId)
+      if (retryCount &lt; 2) {
+        setTimeout(() &#x3D;&gt; {
+          instance.createOffer(
+            subscriber,
+            audioDeviceId,
+            videoDeviceId,
+            canvasId,
+            retryCount &#x3D; retryCount + 1,
+          );
+        }, 1000);
+      }
+    });
+  }
+
+  attachMediaStream(elemId: string, streamId: string): void {
+    const element: any &#x3D; document.getElementById(elemId);
+    Janus.attachMediaStream(element, this.streams[streamId]);
+  }
+
+  attachRemoteFeed(
+    feed: RemoteFeed,
+    room: RoomInfo,
+    pin: string,
+  ): Observable&lt;fromModels.JanusAttachCallbackData&gt; {
+    // A new feed has been published, create a new plugin handle and attach to it as a subscriber
+
+    const instance &#x3D; this;
+
+    return new Observable(
+      subscriber &#x3D;&gt; {
+        instance.janus.attach({
+          plugin: &#x27;janus.plugin.videoroom&#x27;,
+          opaqueId: instance.opaqueId,
+          success(pluginHandle): void {
+            instance.remoteHandles[feed.id] &#x3D; pluginHandle;
+            instance.remoteHandles[feed.id].videoCodec &#x3D; feed.video_codec;
+
+            const subscribe &#x3D; {
+              request: &#x27;join&#x27;,
+              room: room.id,
+              ptype: &#x27;subscriber&#x27;,
+              feed: feed.id,
+              private_id: room.privateId,
+              substream: 0,
+              pin,
+            };
+            instance.remoteHandles[feed.id].send({message: subscribe});
+          },
+
+          error(error): void {
+            subscriber.error(error);
+          },
+
+          onmessage(msg, jsep): void {
+            console.log(&quot;MESSAGE&quot;, msg);
+            subscriber.next({
+              message: fromModels.ON_REMOTE_FEED_MESSAGE,
+              payload: {
+                msg,
+                jsep,
+                feed,
+                room,
+              },
+            });
+            if (!!jsep) {
+              instance.answerRemoteFeedJsep(jsep, feed, room);
+            }
+          },
+
+          webrtcState(on): void {
+            subscriber.next({
+              message: fromModels.REMOTE_FEED_WEBRTC_STATE,
+              payload: {
+                on,
+                feed,
+                room,
+              },
+            });
+          },
+
+          onlocalstream(stream): void {
+            console.log(&#x27;Would never expect to get here&#x27;);
+          },
+
+          slowLink(msg): void {
+            subscriber.next({
+              message: fromModels.REMOTE_FEED_SLOW_LINK,
+              payload: {
+                feedId: feed.id,
+              },
+            });
+          },
+
+          onremotestream(stream): void {
+            // Save off remote stream
+
+            console.log(&quot;HAVE REMOTE STREAM&quot;, stream);
+            const streamId &#x3D; instance._get_random_string();
+            instance.streams[streamId] &#x3D; stream;
+
+            const numVideoTracks &#x3D; stream.getVideoTracks() ? stream.getVideoTracks().length : 0;
+            subscriber.next({
+              message: fromModels.ON_REMOTE_REMOTE_STREAM,
+              payload: {
+                streamId,
+                numVideoTracks,
+                feed,
+                room,
+              },
+            });
+          },
+          oncleanup(): void {
+            subscriber.next({
+              message: fromModels.ON_REMOTE_CLEANUP,
+              payload: {
+                feed,
+                room,
+              },
+            });
+          }
+        });
+      }
+    );
+  }
+
+  toggleMute(): boolean {
+    const muted &#x3D; this.handle.isAudioMuted();
+    if (muted) {
+        this.handle.unmuteAudio();
+    } else {
+        this.handle.muteAudio();
+    }
+    return this.handle.isAudioMuted();
+  }
+
+  setMute(mute: boolean): boolean {
+    const muted &#x3D; this.handle.isAudioMuted();
+    if (muted &#x3D;&#x3D;&#x3D; mute) {
+      return this.handle.isAudioMuted();
+    }
+
+    if (mute) {
+        this.handle.muteAudio();
+    } else {
+        this.handle.unmuteAudio();
+    }
+    return this.handle.isAudioMuted();
+  }
+
+  requestSubstream(feed: RemoteFeed, substreamId: number): void {
+    this.remoteHandles[feed.id].send({message: {request: &#x27;configure&#x27;, substream: substreamId}});
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'WebrtcService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

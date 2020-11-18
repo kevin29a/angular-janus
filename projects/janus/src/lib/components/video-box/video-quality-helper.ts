@@ -1,16 +1,19 @@
 import * as moment from 'moment';
 
+/** @internal */
 export interface VideoRunRecord {
   ended: moment.Moment;
   duration: number;   // Length of stream ending
 }
 
+/** @internal */
 export interface VideoStats {
   started: moment.Moment;
   runs: VideoRunRecord[];
   errors: VideoRunRecord[];
 }
 
+/** @internal */
 export class VideoQualityHelper {
   streams: { [id: number]: VideoStats } = {};
 
@@ -33,7 +36,7 @@ export class VideoQualityHelper {
     this.noise = Math.random() + .5;
   }
 
-  logStreamSuccess(substream: number) {
+  logStreamSuccess(substream: number): void {
     // Log the current state to our substreamPerformance structure
 
     if (!this.streams[substream].started) {
@@ -41,7 +44,7 @@ export class VideoQualityHelper {
     }
   }
 
-  testUpgrade(substream) {
+  testUpgrade(substream): number {
     // We upgrade if we've been on the current stream for a consecutive upgradeTimeout period and
     // It's been at least retryTimeoutBase ** numErrors since the last error on the higher stream
     // or there has never been an error at the higher stream
@@ -95,7 +98,7 @@ export class VideoQualityHelper {
     };
   }
 
-  streamError(substream: number) {
+  streamError(substream: number): void {
     // Mark a stream as ending in error
     this.streams[substream].errors.push(
       this._createVideoRunRecord(this.streams[substream].started)
@@ -103,7 +106,7 @@ export class VideoQualityHelper {
     this.streams[substream].started = null;
   }
 
-  streamEnd(substream: number) {
+  streamEnd(substream: number): void {
     // Mark a stream as ending with success
     this.streams[substream].runs.push(
       this._createVideoRunRecord(this.streams[substream].started)

@@ -16,6 +16,7 @@ import {
 } from '../../models/janus.models';
 import * as fromServiceModels from '../../models/janus-server.models';
 
+/** @internal */
 export interface VideoroomState {
   roomInfo: RoomInfo;
   remoteFeeds: { [id: string]: RemoteFeed };
@@ -38,6 +39,7 @@ export const initialState: VideoroomState = {
   remoteFeeds: {},
 };
 
+/** @internal */
 function on_message_reducer(
   state: VideoroomState,
   data: fromServiceModels.JanusMessage,
@@ -167,6 +169,7 @@ function on_message_reducer(
   return state;
 }
 
+/** @internal */
 function callback_reducer(
   state: VideoroomState,
   data: fromServiceModels.JanusAttachCallbackData
@@ -273,6 +276,7 @@ function callback_reducer(
   return state;
 }
 
+/** @internal */
 export function reducer(
   state = initialState,
   action: janusActions.JanusAction
@@ -348,10 +352,6 @@ export function reducer(
       } else {
         return state;
       }
-    }
-
-    case janusActions.DESTROY_JANUS: {
-      return initialState;
     }
 
     case janusActions.TOGGLE_MUTE_SUCCESS: {

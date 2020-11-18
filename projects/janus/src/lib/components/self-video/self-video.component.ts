@@ -18,6 +18,7 @@ import {
 
 import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 
+/** @internal */
 @Component({
   selector: 'janus-self-video',
   templateUrl: './self-video.component.html',
@@ -45,11 +46,12 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
   private afterViewInitRan = false;
 
   constructor(
+    private webrtc: WebrtcService
   ) { }
 
   ngOnInit(): void { }
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
     // Attach the canvas-self element
     this.afterViewInitRan = true;
     if (this.roomInfo.state !== RoomInfoState.joined) {
@@ -57,6 +59,9 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
     }
     if (this.devices) {
       this._publishOwnFeed(this.devices.audioDeviceId, this.devices.videoDeviceId);
+    } else {
+      const devices = await this.webrtc.getDefaultDevices();
+      this._publishOwnFeed(devices.audioDeviceId, devices.videoDeviceId);
     }
   }
 
@@ -88,7 +93,6 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       // Same devices. nothing to do here
       return;
     }
-
     this._publishOwnFeed(newDevices.audioDeviceId, newDevices.videoDeviceId);
   }
 }

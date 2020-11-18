@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 
 import { Observable, of, EMPTY } from 'rxjs';
@@ -11,8 +11,9 @@ import { IceServer, RoomInfo, RemoteFeed, RemoteFeedState } from '../models/janu
 import { JanusAttachCallbackData } from '../models/janus-server.models';
 
 
+/** @internal */
 @Injectable()
-export class JanusStore extends ComponentStore<VideoroomState> {
+export class JanusStore extends ComponentStore<VideoroomState> implements OnDestroy {
 
   constructor(private readonly janusService: JanusService) {
     super(initialState);
@@ -64,7 +65,7 @@ export class JanusStore extends ComponentStore<VideoroomState> {
   readonly attachVideoRoom = this.effect((url$: Observable<string>) => {
     return url$.pipe(
       switchMap((url: string) => {
-        this.log('attache', url);
+        this.log('attach', url);
         this.reduce(new actions.AttachVideoRoom(url));
         return this.janusService.attachVideoRoom(url)
           .pipe(
@@ -118,44 +119,52 @@ export class JanusStore extends ComponentStore<VideoroomState> {
     );
   });
 
-  /************************************
-   *     Effects without dispatch
-   ************************************/
-  destroy(): void {
-    this.log('destroy');
-    this.reduce(new actions.DestroyJanus());
-    this.janusService.destroy();
-  }
+  readonly register = this.effect((payload$: Observable<actions.RegisterPayload>) => {
+    return payload$.pipe(
+      tap((payload: actions.RegisterPayload) => {
+        const {name, userId, roomId, pin} = payload;
+        this.log('register', payload);
+        this.reduce(new actions.Register(payload));
+        this.janusService.register(name, userId, roomId, pin);
+      })
+    );
+  });
 
-  register(name, userId, roomId, pin): void {
-    this.log('register', name, userId, roomId, pin);
-    this.reduce(new actions.Register({name, userId, roomId, pin}));
-    this.janusService.register(name, userId, roomId, pin);
-  }
+  readonly requestSubstream = this.effect((payload$: Observable<actions.RequestSubstreamPayload>) => {
+    return payload$.pipe(
+      tap((payload: actions.RequestSubstreamPayload) => {
+        const {feed, substreamId} = payload;
+        this.log('requestSubstream', payload);
+        this.reduce(new actions.RequestSubstream({feed, substreamId}));
+        this.janusService.requestSubstream(feed, substreamId);
+      })
+    );
+  });
+
+  readonly setMute = this.effect((muted$: Observable<boolean>) => {
+    return muted$.pipe(
+      tap((muted: boolean) => {
+        this.log('setMute', muted);
+        try {
+          const realMuted = this.janusService.setMute(muted);
+          this.reduce(new actions.ToggleMuteSuccess(realMuted));
+        } catch (error) {
+          // This can fail if we set the mute before everything is loaded. Ignoring for now as it will work fine after the fact.
+        }
+      })
+    );
+  });
 
   attachMediaStream(elemId, streamId): void {
     this.log('attachMediaStream', elemId, streamId);
     this.janusService.attachMediaStream(elemId, streamId);
   }
 
-  requestSubstream(feed: RemoteFeed, substreamId: number): void {
-    this.log('requestSubstream', feed, substreamId);
-    this.reduce(new actions.RequestSubstream({feed, substreamId}));
-    this.janusService.requestSubstream(feed, substreamId);
-  }
-
-  setMute(muted: boolean): void {
-    this.log('setMute', muted);
-    try {
-      this.janusService.setMute(muted);
-      this.reduce(new actions.ToggleMuteSuccess(muted));
-    } catch {
-      // This can fail if we set the mute before everything is loaded. Ignoring for now as it will work fine after the fact.
-    }
+  ngOnDestroy(): void {
+    this.janusService.destroy();
   }
 
   log(msg: any, ...args: any[]): void {
     console.log(msg, ...args);
   }
-
 }

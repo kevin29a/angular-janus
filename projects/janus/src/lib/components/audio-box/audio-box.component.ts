@@ -3,6 +3,7 @@ import { AfterViewInit, Component, Input, OnInit, ChangeDetectionStrategy, ViewC
 import { RemoteFeed, Devices } from '../../models/janus.models';
 import { JanusService } from '../../services/janus.service';
 
+/** @internal */
 @Component({
   selector: 'janus-nvid-audio-box',
   templateUrl: './audio-box.component.html',

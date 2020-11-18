@@ -11,6 +11,9 @@ import { RemoteFeed, RoomInfo, IceServer } from '../models/janus.models';
 
 import { randomString } from '../shared';
 
+/**
+ * Various helper functions for querying devices
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +21,14 @@ export class WebrtcService {
   // Wrappers around some common webrtc functions
 
   constructor() { }
-  async getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise<any> {
+
+  /**
+   * Wrapper around getUserMedia that allows the user to specify the audio and video device ids
+   *
+   * @param audioDeviceId Device ID of the desired audio device. If null, audio will not be included
+   * @param videoDeviceId Device ID of the desired video device.
+   */
+  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise<any> {
     const constraints = {
       audio: audioDeviceId !== null ? {deviceId: audioDeviceId} : false,
       video: {deviceId: videoDeviceId, width: 1920, height: 1080},
@@ -26,10 +36,16 @@ export class WebrtcService {
     return navigator.mediaDevices.getUserMedia(constraints);
   }
 
+  /**
+   * Wrapper around `navigator.mediaDevices.enumerateDevices`
+   */
   listDevices(): Promise<any> {
     return navigator.mediaDevices.enumerateDevices();
   }
 
+  /**
+   * Returns the device IDs for the default audio, video, and speaker device
+   */
   async getDefaultDevices(): Promise<{audioDeviceId: string, videoDeviceId: string, speakerDeviceId}> {
     const devices = await this.listDevices();
     const audioDevices = devices.filter((device) => device.kind === 'audioinput');
@@ -42,6 +58,11 @@ export class WebrtcService {
     return {audioDeviceId, videoDeviceId, speakerDeviceId};
   }
 
+  /**
+   * Determines if the current platform supports setting the speaker. Some devices, e.g., most android
+   * phones, do not allow the dynamic setting of the speaker from within the browser. For those devices,
+   * it's necessary to change the output device outside of the browser.
+   */
   supportsSpeakerSelection(): boolean {
     const videoElement = document.createElement('video');
     const support = 'setSinkId' in videoElement;
@@ -49,10 +70,14 @@ export class WebrtcService {
     return support;
   }
 
+  /**
+   * Determines if the current device is supported. Currently, iPhone 6 and older are not supported.
+   */
   isSupportedDevice(): boolean {
     return this.supportsAppVersion(navigator.appVersion);
   }
 
+  /** @internal */
   supportsAppVersion(appVersion: string): boolean {
     // returns true iff it supports the device identified by the supplied navigator.appVersion string
     const match = appVersion ? appVersion.match(/iPhone OS (\d+)_(\d+)/) : false;
@@ -68,6 +93,7 @@ export class WebrtcService {
   }
 }
 
+/** @internal */
 @Injectable({
   providedIn: 'root'
 })
@@ -89,7 +115,7 @@ export class JanusService {
 
   constructor(
     private webrtcService: WebrtcService,
-  ) { }
+  ) {}
 
   init(iceServers: IceServer[]): Observable<any> {
     // Initialize Janus
@@ -125,7 +151,22 @@ export class JanusService {
       this.handle.send({message: leave});
     }
     this.cleanupLocalStream();
-    // this.janus.destroy({unload: true});
+    this.janus.destroy({unload: true});
+
+    // Clean up all variables used
+    this.janus = null;
+    this.handle = null;
+    this.streams = {};
+    this.initialized = false;
+    this.janus = null;
+    this.server = null;
+    this.handle = null;
+    this.remoteHandles = {};
+    this.videoElement = null;
+    this.localStream = null;
+    this.publishWebrtcState = false;
+    this.drawLoopActive = null;
+    this.iceServers = [];
   }
 
   cleanupLocalStream(): void {
@@ -218,7 +259,6 @@ export class JanusService {
   attachVideoRoom(url): Observable<fromModels.JanusAttachCallbackData> {
     // Create session
     const instance = this;
-    console.log("URL", url);
     return new Observable(
       subscriber => {
         instance.janus = new Janus({
@@ -238,7 +278,7 @@ export class JanusService {
     );
   }
 
-  register(name: string, userId: string, roomId: string, pin: string): void {
+  register(name: string, userId: string, roomId: string | number, pin: string): void {
     const register = {
       request: 'join',
       room: roomId,
@@ -407,6 +447,7 @@ export class JanusService {
     audioDeviceId: string | null,
     videoDeviceId: string,
     canvasId: string,
+    retryCount = 0,
   ): void {
     const instance = this;
     instance.webrtcService.getUserMedia(audioDeviceId, videoDeviceId)
@@ -436,7 +477,22 @@ export class JanusService {
           trickle: true,
         });
       }
-    ).catch((error) => console.log("GUM ERROR:", error, audioDeviceId, videoDeviceId));
+    ).catch((error) => {
+      // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future would might
+      // find a race condition where we need to wait for an event before calling getUserMedia
+      console.log("GUM ERROR:", error, audioDeviceId, videoDeviceId)
+      if (retryCount < 2) {
+        setTimeout(() => {
+          instance.createOffer(
+            subscriber,
+            audioDeviceId,
+            videoDeviceId,
+            canvasId,
+            retryCount = retryCount + 1,
+          );
+        }, 1000);
+      }
+    });
   }
 
   attachMediaStream(elemId: string, streamId: string): void {
@@ -560,10 +616,10 @@ export class JanusService {
     return this.handle.isAudioMuted();
   }
 
-  setMute(mute: boolean): void {
+  setMute(mute: boolean): boolean {
     const muted = this.handle.isAudioMuted();
     if (muted === mute) {
-      return;
+      return this.handle.isAudioMuted();
     }
 
     if (mute) {
@@ -571,6 +627,7 @@ export class JanusService {
     } else {
         this.handle.unmuteAudio();
     }
+    return this.handle.isAudioMuted();
   }
 
   requestSubstream(feed: RemoteFeed, substreamId: number): void {

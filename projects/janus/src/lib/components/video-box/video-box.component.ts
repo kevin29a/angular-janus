@@ -24,6 +24,7 @@ import { JanusService } from '../../services/janus.service';
 import { VideoQualityHelper } from './video-quality-helper';
 
 
+/** @internal */
 @Component({
   selector: 'janus-video-box',
   templateUrl: './video-box.component.html',

@@ -20,11 +20,13 @@ export const ON_REMOTE_LOCAL_STREAM = '[remote] local stream';
 export const ON_REMOTE_REMOTE_STREAM = '[remote] remote stream';
 export const ON_REMOTE_CLEANUP = '[remote] cleanup';
 
+/** @internal */
 export interface JanusAttachCallbackData {
   message: string;
   payload?: any;
 }
 
+/** @internal */
 export interface Pub {
   id: string;
   display: string;
@@ -33,6 +35,7 @@ export interface Pub {
   talking?: boolean;
 }
 
+/** @internal */
 export interface JanusMessage {
   videoroom: string;
   room: string;
@@ -48,11 +51,13 @@ export interface JanusMessage {
   reason?: string;
 }
 
+/** @internal */
 export enum CustomErrors {
   kicked = 9991,
   server_down = 9992,
 }
 
+/** @internal */
 export const JanusErrors = {
   499: {
     janusCode: 'JANUS_VIDEOROOM_ERROR_UNKNOWN_ERROR',

@@ -27,6 +27,7 @@ import {
   RoomInfoState,
 } from '../../models/janus.models';
 
+/** @internal */
 @Component({
   selector: 'janus-default-video-room',
   templateUrl: './default-video-room.component.html',
@@ -38,7 +39,7 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   @Input() roomInfo: RoomInfo;
   @Input() remoteFeeds$: Observable<RemoteFeed[]>;
   @Input() role: JanusRole;
-  @Input() devices: Devices;
+  @Input() devices?: Devices;
 
   @Output()
   requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();

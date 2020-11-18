@@ -81,23 +81,6 @@ describe('JanusReducer', () => {
     });
   });
 
-  describe('Destroy', () => {
-    it('should return to the default initial state upon a destroy', () => {
-      const action = new fromActions.DestroyJanus();
-
-      const incomingState = {
-        ...initialState,
-        roomInfo: RoomInfoFactory.build({state: RoomInfoState.joined}),
-        remoteFeeds: {
-          123: RemoteFeedFactory.build()
-        }
-      };
-
-      const state = fromJanus.reducer(incomingState, action);
-      expect(state).toEqual(initialState);
-    });
-  });
-
   describe('undefined action', () => {
     it('should return the default state', () => {
       const action = {} as any;

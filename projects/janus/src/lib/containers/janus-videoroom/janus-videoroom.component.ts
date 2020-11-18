@@ -30,6 +30,19 @@ import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 import { JanusStore } from '../../store/janus.store';
 import { JanusErrors } from '../../models/janus-server.models';
 
+/**
+ * Janus videoroom component. This is a high level component to easily embed a janus videoroom in any angular webapp.
+ * There are many options that can be set through Inputs. However, you can get started with the minimal example below.
+ * Refer to the {@link https://janus.conf.meetecho.com/docs/videoroom.html|Janus Videoroom Docs} for deploying your own
+ * Janus media server.
+ * @example
+ * <janus-videoroom
+ *              [roomId]='1234'
+ *              [wsUrl]='wss://janus.conf.meetecho.com/ws'
+ * >
+ * </janus-videoroom>
+ *
+ */
 @Component({
   selector: 'janus-videoroom',
   templateUrl: './janus-videoroom.component.html',
@@ -39,46 +52,100 @@ import { JanusErrors } from '../../models/janus-server.models';
 })
 export class JanusVideoroomComponent implements OnInit, OnDestroy {
 
+  /**
+   * *Required* Janus room id. Can be either a string or a number. This must match server configuration.
+   */
   @Input()
-  roomId: string;
+  roomId: string | number;
 
+  /**
+   * URL for the websocket interface of the Janus server. At least one of wsUrl or httpUrl must be specified.
+   *
+   * Example: `wss://janus.conf.meetecho.com/ws`
+   */
   @Input()
-  pin: string;
+  wsUrl: string;
 
+  /**
+   * URL for the http(s) interface of the Janus server. At least one of wsUrl or httpUrl must be specified.
+   *
+   * Example: `https://janus.conf.meetecho.com/janus`
+   */
   @Input()
-  userId: string;
+  httpUrl: string;
 
+  /**
+   * PIN for joining room. Must be specified if `pin_required` is true for the requested roomId.
+   */
   @Input()
-  userName: string;
+  pin?: string;
 
+  /**
+   * Display name for the user in the videoroom
+   */
+  @Input()
+  userName = 'janus user';
+
+  /**
+   * Role for the user in the videoroom.
+   *
+   * Users can either be publishers or subscribers. Publishers will publish their video and audio to the room.
+   * Subscribers will see/hear all publishers, but won't broadcast anything.
+   */
   @Input()
   role: JanusRole = JanusRole.publisher;
 
+  /**
+   * Numeric or string Id of publisher. Type must match server configuration. If not provided,
+   * janus server will automatically assign an ID to the user.
+   */
+  @Input()
+  userId?: string;
+
+  /**
+   * Input/output devices to use. If not provided, will use the default system devices
+   */
+  @Input()
+  devices?: Devices;
+
+  /**
+   * STUN/TURN servers to use for the connection. These are passed directly to `RTCPeerConnection`
+   * Refer to the {@link https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer|MDN Docs} for details on the format.
+   * The component will use a public STUN server if nothing is specified here. However, it's highly recommended that the user
+   * deploy and use their own STUN/TURN server(s) for better reliability.
+   */
+  @Input()
+  iceServers: IceServer[] = [{urls: 'stun:stun2.l.google.com:19302'}];
+
+  /**
+   * When set to true, the user's audio is muted.
+   */
   @Input()
   set isMuted(muted: boolean) {
     this.muted = muted;
     this._setMuted(muted);
   }
 
-  @Input()
-  devices: Devices;
+  /**
+   * @ignore
+   */
+  get isMuted(): boolean { return this.muted; }
 
-  @Input()
-  wsUrl: string;
-
-  @Input()
-  httpUrl: string;
-
-  @Input()
-  iceServers: IceServer[] = [{urls: 'stun:stun2.l.google.com:19302'}];
-
+  /**
+   * Emits errors encountered. These errors are fatal.
+   */
   @Output()
   janusError = new EventEmitter<{ code: number, message: string }>();
 
+  /**
+   * Emits list of current publishers whenever there is a change to the publisher list
+   */
   @Output()
   publishers = new EventEmitter<Publisher[]>();
 
+  /** @internal */
   roomInfo$: Observable<RoomInfo>;
+  /** @internal */
   remoteFeeds$: Observable<RemoteFeed[]>;
 
   private muted = false;
@@ -115,18 +182,20 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.janusStore.destroy();
   }
 
+  /** @internal */
   _setMuted(muted: boolean): void {
     this.janusStore.setMute(muted);
   }
 
+  /** @internal */
   emitRemoteFeeds(remoteFeeds: RemoteFeed[]): void {
     const publishers: Publisher[] = remoteFeeds.filter((feed) => feed.state === RemoteFeedState.ready);
     this.publishers.emit(publishers);
   }
 
+  /** @internal */
   attachRemoteFeeds(remoteFeeds: RemoteFeed[], roomInfo: RoomInfo, pin: string): void {
     // Attach remote feeds
 
@@ -144,7 +213,8 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
     }
   }
 
-  setupJanusRoom(roomId: string, userId: string, userName: string, pin: string): void {
+  /** @internal */
+  setupJanusRoom(roomId: string | number, userId: string, userName: string, pin: string): void {
     // Setup comms with janus server
 
     this.janusStore.initialize(this.iceServers);
@@ -157,7 +227,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
     ).subscribe(({roomInfo, remoteFeeds}) => {
 
       const remoteFeedsArray = Object.keys(remoteFeeds).map(id => remoteFeeds[id]);
-      if (roomInfo.muted !== this.muted) {
+      if (roomInfo.muted !== this.muted && roomInfo.publishState === PublishState.publishing) {
         this._setMuted(this.muted);
       }
       if (roomInfo.publishState === PublishState.error) {
@@ -174,12 +244,12 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
           break;
         }
         case RoomInfoState.attached: {
-          this.janusStore.register(
-            userName,
+          this.janusStore.register({
+            name: userName,
             userId,
             roomId,
             pin,
-          );
+          });
           break;
         }
         case RoomInfoState.attach_failed: {
@@ -197,12 +267,14 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** @internal */
   onPublishOwnFeed(payload: PublishOwnFeedPayload): void {
     this.janusStore.publishOwnFeed(payload);
   }
 
+  /** @internal */
   onRequestSubstream(payload: {feed: RemoteFeed, substreamId: number}): void {
     const {feed, substreamId} = payload;
-    this.janusStore.requestSubstream(feed, substreamId);
+    this.janusStore.requestSubstream({feed, substreamId});
   }
 }

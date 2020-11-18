@@ -1,0 +1,1108 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>JanusVideoroomComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Janus videoroom component. This is a high level component to easily embed a janus videoroom in any angular webapp.
+There are many options that can be set through Inputs. However, you can get started with the minimal example below.
+Refer to the <a href="https://janus.conf.meetecho.com/docs/videoroom.html">Janus Videoroom Docs</a> for deploying your own
+Janus media server.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;janus-videoroom
+  [roomId]='1234'
+  [wsUrl]='wss://janus.conf.meetecho.com/ws'
+&gt;
+&lt;/janus-videoroom&gt;</code></pre>
+                </div>
+    </div>
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>JanusStore</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>janus-videoroom</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./janus-videoroom.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./janus-videoroom.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#devices">devices</a>
+                            </li>
+                            <li>
+                                <a href="#httpUrl">httpUrl</a>
+                            </li>
+                            <li>
+                                <a href="#iceServers">iceServers</a>
+                            </li>
+                            <li>
+                                <a href="#isMuted">isMuted</a>
+                            </li>
+                            <li>
+                                <a href="#pin">pin</a>
+                            </li>
+                            <li>
+                                <a href="#role">role</a>
+                            </li>
+                            <li>
+                                <a href="#roomId">roomId</a>
+                            </li>
+                            <li>
+                                <a href="#userId">userId</a>
+                            </li>
+                            <li>
+                                <a href="#userName">userName</a>
+                            </li>
+                            <li>
+                                <a href="#wsUrl">wsUrl</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#janusError">janusError</a>
+                            </li>
+                            <li>
+                                <a href="#publishers">publishers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#isMuted">isMuted</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(janusStore: JanusStore)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:153</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>janusStore</td>
+                                                  
+                                                        <td>
+                                                                    <code>JanusStore</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <b>devices</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:109</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input/output devices to use. If not provided, will use the default system devices</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="httpUrl"></a>
+                        <b>httpUrl</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:75</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>URL for the http(s) interface of the Janus server. At least one of wsUrl or httpUrl must be specified.</p>
+<p>Example: <code>https://janus.conf.meetecho.com/janus</code></p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="iceServers"></a>
+                        <b>iceServers</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IceServer.html" target="_self" >IceServer[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{urls: &#x27;stun:stun2.l.google.com:19302&#x27;}]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:118</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>STUN/TURN servers to use for the connection. These are passed directly to <code>RTCPeerConnection</code>
+Refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer">MDN Docs</a> for details on the format.
+The component will use a public STUN server if nothing is specified here. However, it&#39;s highly recommended that the user
+deploy and use their own STUN/TURN server(s) for better reliability.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isMuted"></a>
+                        <b>isMuted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:124</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>When set to true, the user&#39;s audio is muted.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pin"></a>
+                        <b>pin</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:81</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>PIN for joining room. Must be specified if <code>pin_required</code> is true for the requested roomId.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="role"></a>
+                        <b>role</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#JanusRole" target="_self" >JanusRole</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>JanusRole.publisher</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:96</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Role for the user in the videoroom.</p>
+<p>Users can either be publishers or subscribers. Publishers will publish their video and audio to the room.
+Subscribers will see/hear all publishers, but won&#39;t broadcast anything.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roomId"></a>
+                        <b>roomId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | number</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><em>Required</em> Janus room id. Can be either a string or a number. This must match server configuration.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userId"></a>
+                        <b>userId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:103</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Numeric or string Id of publisher. Type must match server configuration. If not provided,
+janus server will automatically assign an ID to the user.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userName"></a>
+                        <b>userName</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;janus user&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Display name for the user in the videoroom</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="wsUrl"></a>
+                        <b>wsUrl</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>URL for the websocket interface of the Janus server. At least one of wsUrl or httpUrl must be specified.</p>
+<p>Example: <code>wss://janus.conf.meetecho.com/ws</code></p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="janusError"></a>
+                        <b>janusError</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:138</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits errors encountered. These errors are fatal.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="publishers"></a>
+                        <b>publishers</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:144</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits list of current publishers whenever there is a change to the publisher list</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isMuted"></a>
+                        <span class="name"><b>isMuted</b><a href="#isMuted"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>isMuted(muted: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">projects/janus/src/lib/containers/janus-videoroom/janus-videoroom.component.ts:124</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>When set to true, the user&#39;s audio is muted.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>muted</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as moment from &#x27;moment&#x27;;
+
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from &#x27;@angular/core&#x27;;
+
+import { first, startWith, shareReplay, takeUntil, switchMap } from &#x27;rxjs/operators&#x27;;
+import { Observable, Subject, combineLatest } from &#x27;rxjs&#x27;;
+
+import {
+  Devices,
+  JanusRole,
+  PublishState,
+  Publisher,
+  RemoteFeed,
+  RemoteFeedState,
+  RoomInfo,
+  RoomInfoState,
+  IceServer,
+} from &#x27;../../models/janus.models&#x27;;
+
+import { PublishOwnFeedPayload } from &#x27;../../store/actions/janus.actions&#x27;;
+import { JanusStore } from &#x27;../../store/janus.store&#x27;;
+import { JanusErrors } from &#x27;../../models/janus-server.models&#x27;;
+
+/**
+ * Janus videoroom component. This is a high level component to easily embed a janus videoroom in any angular webapp.
+ * There are many options that can be set through Inputs. However, you can get started with the minimal example below.
+ * Refer to the {@link https://janus.conf.meetecho.com/docs/videoroom.html|Janus Videoroom Docs} for deploying your own
+ * Janus media server.
+ * @example
+ * &lt;janus-videoroom
+ *              [roomId]&#x3D;&#x27;1234&#x27;
+ *              [wsUrl]&#x3D;&#x27;wss://janus.conf.meetecho.com/ws&#x27;
+ * &gt;
+ * &lt;/janus-videoroom&gt;
+ *
+ */
+@Component({
+  selector: &#x27;janus-videoroom&#x27;,
+  templateUrl: &#x27;./janus-videoroom.component.html&#x27;,
+  styleUrls: [&#x27;./janus-videoroom.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [JanusStore],
+})
+export class JanusVideoroomComponent implements OnInit, OnDestroy {
+
+  /**
+   * *Required* Janus room id. Can be either a string or a number. This must match server configuration.
+   */
+  @Input()
+  roomId: string | number;
+
+  /**
+   * URL for the websocket interface of the Janus server. At least one of wsUrl or httpUrl must be specified.
+   *
+   * Example: &#x60;wss://janus.conf.meetecho.com/ws&#x60;
+   */
+  @Input()
+  wsUrl: string;
+
+  /**
+   * URL for the http(s) interface of the Janus server. At least one of wsUrl or httpUrl must be specified.
+   *
+   * Example: &#x60;https://janus.conf.meetecho.com/janus&#x60;
+   */
+  @Input()
+  httpUrl: string;
+
+  /**
+   * PIN for joining room. Must be specified if &#x60;pin_required&#x60; is true for the requested roomId.
+   */
+  @Input()
+  pin?: string;
+
+  /**
+   * Display name for the user in the videoroom
+   */
+  @Input()
+  userName &#x3D; &#x27;janus user&#x27;;
+
+  /**
+   * Role for the user in the videoroom.
+   *
+   * Users can either be publishers or subscribers. Publishers will publish their video and audio to the room.
+   * Subscribers will see/hear all publishers, but won&#x27;t broadcast anything.
+   */
+  @Input()
+  role: JanusRole &#x3D; JanusRole.publisher;
+
+  /**
+   * Numeric or string Id of publisher. Type must match server configuration. If not provided,
+   * janus server will automatically assign an ID to the user.
+   */
+  @Input()
+  userId?: string;
+
+  /**
+   * Input/output devices to use. If not provided, will use the default system devices
+   */
+  @Input()
+  devices?: Devices;
+
+  /**
+   * STUN/TURN servers to use for the connection. These are passed directly to &#x60;RTCPeerConnection&#x60;
+   * Refer to the {@link https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer|MDN Docs} for details on the format.
+   * The component will use a public STUN server if nothing is specified here. However, it&#x27;s highly recommended that the user
+   * deploy and use their own STUN/TURN server(s) for better reliability.
+   */
+  @Input()
+  iceServers: IceServer[] &#x3D; [{urls: &#x27;stun:stun2.l.google.com:19302&#x27;}];
+
+  /**
+   * When set to true, the user&#x27;s audio is muted.
+   */
+  @Input()
+  set isMuted(muted: boolean) {
+    this.muted &#x3D; muted;
+    this._setMuted(muted);
+  }
+
+  /**
+   * @ignore
+   */
+  get isMuted(): boolean { return this.muted; }
+
+  /**
+   * Emits errors encountered. These errors are fatal.
+   */
+  @Output()
+  janusError &#x3D; new EventEmitter&lt;{ code: number, message: string }&gt;();
+
+  /**
+   * Emits list of current publishers whenever there is a change to the publisher list
+   */
+  @Output()
+  publishers &#x3D; new EventEmitter&lt;Publisher[]&gt;();
+
+  /** @internal */
+  roomInfo$: Observable&lt;RoomInfo&gt;;
+  /** @internal */
+  remoteFeeds$: Observable&lt;RemoteFeed[]&gt;;
+
+  private muted &#x3D; false;
+  private destroy$ &#x3D; new Subject();
+  private janusServerUrl: string;
+
+  constructor(
+    private readonly janusStore: JanusStore
+  ) { }
+
+  ngOnInit(): void {
+    // Initialize variables and load the room/user
+
+    this.janusServerUrl &#x3D; this.wsUrl ? this.wsUrl : this.httpUrl;
+
+    this.remoteFeeds$ &#x3D; this.janusStore.readyRemoteFeeds$.pipe(
+      shareReplay(1),
+    );
+
+    this.roomInfo$ &#x3D; this.janusStore.roomInfo$.pipe(
+      shareReplay(1)
+    );
+
+    const pin &#x3D; this.pin ? this.pin : null;
+    this.setupJanusRoom(this.roomId, this.userId, this.userName, pin);
+
+    // @ts-ignore
+    if (window.Cypress) {
+      // @ts-ignore
+      window.janusStore &#x3D; this.janusStore;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  /** @internal */
+  _setMuted(muted: boolean): void {
+    this.janusStore.setMute(muted);
+  }
+
+  /** @internal */
+  emitRemoteFeeds(remoteFeeds: RemoteFeed[]): void {
+    const publishers: Publisher[] &#x3D; remoteFeeds.filter((feed) &#x3D;&gt; feed.state &#x3D;&#x3D;&#x3D; RemoteFeedState.ready);
+    this.publishers.emit(publishers);
+  }
+
+  /** @internal */
+  attachRemoteFeeds(remoteFeeds: RemoteFeed[], roomInfo: RoomInfo, pin: string): void {
+    // Attach remote feeds
+
+    for (const feed of remoteFeeds) {
+      if (feed.state &#x3D;&#x3D;&#x3D; RemoteFeedState.initialized) {
+
+        this.janusStore.attachRemoteFeed({
+          roomInfo,
+          feed,
+          pin,
+        });
+        // Only fire one dispatch per subscribe
+        break;
+      }
+    }
+  }
+
+  /** @internal */
+  setupJanusRoom(roomId: string | number, userId: string, userName: string, pin: string): void {
+    // Setup comms with janus server
+
+    this.janusStore.initialize(this.iceServers);
+
+    const allRemoteFeeds$: Observable&lt;RemoteFeed[]&gt; &#x3D; this.janusStore.remoteFeeds$.pipe(
+      startWith([])
+    );
+    this.janusStore.state$.pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(({roomInfo, remoteFeeds}) &#x3D;&gt; {
+
+      const remoteFeedsArray &#x3D; Object.keys(remoteFeeds).map(id &#x3D;&gt; remoteFeeds[id]);
+      if (roomInfo.muted !&#x3D;&#x3D; this.muted &amp;&amp; roomInfo.publishState &#x3D;&#x3D;&#x3D; PublishState.publishing) {
+        this._setMuted(this.muted);
+      }
+      if (roomInfo.publishState &#x3D;&#x3D;&#x3D; PublishState.error) {
+        const message &#x3D; JanusErrors[roomInfo.errorCode].message;
+        this.janusError.emit({code: roomInfo.errorCode, message});
+      }
+
+      this.attachRemoteFeeds(remoteFeedsArray, roomInfo, pin);
+      this.emitRemoteFeeds(remoteFeedsArray);
+
+      switch (roomInfo.state) {
+        case RoomInfoState.initialized: {
+          this.janusStore.attachVideoRoom(this.janusServerUrl);
+          break;
+        }
+        case RoomInfoState.attached: {
+          this.janusStore.register({
+            name: userName,
+            userId,
+            roomId,
+            pin,
+          });
+          break;
+        }
+        case RoomInfoState.attach_failed: {
+          if (this.janusServerUrl !&#x3D;&#x3D; this.httpUrl) {
+            this.janusServerUrl &#x3D; this.httpUrl;
+            setTimeout(() &#x3D;&gt; {
+              this.janusStore.attachVideoRoom(this.janusServerUrl);
+            }, 100);
+          } else {
+            this.janusError.emit({code: 9999, message: &#x27;Unable to connect to media server&#x27;});
+          }
+          break;
+        }
+      }
+    });
+  }
+
+  /** @internal */
+  onPublishOwnFeed(payload: PublishOwnFeedPayload): void {
+    this.janusStore.publishOwnFeed(payload);
+  }
+
+  /** @internal */
+  onRequestSubstream(payload: {feed: RemoteFeed, substreamId: number}): void {
+    const {feed, substreamId} &#x3D; payload;
+    this.janusStore.requestSubstream({feed, substreamId});
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;janus-default-video-room
+  [roomInfo]&#x3D;&#x27;roomInfo$ | async&#x27;
+  [remoteFeeds$]&#x3D;&#x27;remoteFeeds$&#x27;
+  [role]&#x3D;&#x27;role&#x27;
+  [devices]&#x3D;&#x27;devices&#x27;
+  (publishOwnFeed)&#x3D;&#x27;onPublishOwnFeed($event)&#x27;
+  (requestSubstream)&#x3D;&#x27;onRequestSubstream($event)&#x27;
+  &gt;
+&lt;/janus-default-video-room&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./janus-videoroom.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><janus-default-video-room  [roomInfo]=\'roomInfo$ | async\'  [remoteFeeds$]=\'remoteFeeds$\'  [role]=\'role\'  [devices]=\'devices\'  (publishOwnFeed)=\'onPublishOwnFeed($event)\'  (requestSubstream)=\'onRequestSubstream($event)\'  ></janus-default-video-room></div>'
+    var COMPONENTS = [{'name': 'JanusVideoroomComponent', 'selector': 'janus-videoroom'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'JanusVideoroomComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'JanusVideoroomComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
