@@ -2,7 +2,6 @@
 
 This is an angular library with features to make it easy to embed a videoroom into any angular app. Once you have a properly configured, public instance of a janus server with the videoroom plugin enabled, this library includes an easy to use directive that will connect clients in a videoroom.
 
-
 ## Why build this?
 
 The objective when building this is to lower the barrier to implementing
@@ -122,3 +121,6 @@ functionality to all supported features. However, there are often times when an
 app wants to implement buttons on a publisher video itself, or change the
 entire look and feel of the videoroom.
 
+## Source Code
+
+Source code for this library lives [here](https://github.com/kevin29a/angular-janus)
