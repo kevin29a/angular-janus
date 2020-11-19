@@ -22,45 +22,69 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_JanusModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="142,-70 142,-268 354,-268 354,-70 142,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="48,-70 48,-268 448,-268 448,-70 48,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_JanusModule_declarations</title>
-<polygon fill="none" stroke="black" points="152,-78 152,-130 344,-130 344,-78 152,-78"/>
+<polygon fill="none" stroke="black" points="60,-78 60,-130 437,-130 437,-78 60,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust6" class="cluster">
 <title>cluster_JanusModule_exports</title>
-<polygon fill="none" stroke="black" points="150,-208 150,-260 346,-260 346,-208 150,-208"/>
+<polygon fill="none" stroke="black" points="56,-208 56,-260 440,-260 440,-208 56,-208"/>
 </g>
-<!-- JanusVideoroomComponent -->
+<!-- DeviceSelectorComponent -->
 <g id="node1" class="node">
-<title>JanusVideoroomComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="336.2,-122 159.8,-122 159.8,-86 336.2,-86 336.2,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">JanusVideoroomComponent</text>
+<title>DeviceSelectorComponent</title>
+<polygon fill="#ffffb3" stroke="black" points="429.34,-122 262.66,-122 262.66,-86 429.34,-86 429.34,-122"/>
+<text text-anchor="middle" x="346" y="-99.8" font-family="Times,serif" font-size="14.00">DeviceSelectorComponent</text>
 </g>
 <!-- JanusModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>JanusModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="293.15,-187 290.15,-191 269.15,-191 266.15,-187 202.85,-187 202.85,-151 293.15,-151 293.15,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">JanusModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="202.15,-187 199.15,-191 178.15,-191 175.15,-187 111.85,-187 111.85,-151 202.15,-151 202.15,-187"/>
+<text text-anchor="middle" x="157" y="-164.8" font-family="Times,serif" font-size="14.00">JanusModule</text>
+</g>
+<!-- DeviceSelectorComponent&#45;&gt;JanusModule -->
+<g id="edge1" class="edge">
+<title>DeviceSelectorComponent&#45;&gt;JanusModule</title>
+<path fill="none" stroke="black" d="M373.81,-122.02C373.81,-139.37 373.81,-163 373.81,-163 373.81,-163 212.19,-163 212.19,-163"/>
+<polygon fill="black" stroke="black" points="212.19,-159.5 202.19,-163 212.19,-166.5 212.19,-159.5"/>
+</g>
+<!-- JanusVideoroomComponent -->
+<g id="node2" class="node">
+<title>JanusVideoroomComponent</title>
+<polygon fill="#ffffb3" stroke="black" points="244.2,-122 67.8,-122 67.8,-86 244.2,-86 244.2,-122"/>
+<text text-anchor="middle" x="156" y="-99.8" font-family="Times,serif" font-size="14.00">JanusVideoroomComponent</text>
 </g>
 <!-- JanusVideoroomComponent&#45;&gt;JanusModule -->
-<g id="edge1" class="edge">
+<g id="edge2" class="edge">
 <title>JanusVideoroomComponent&#45;&gt;JanusModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<path fill="none" stroke="black" d="M157,-122.11C157,-122.11 157,-140.99 157,-140.99"/>
+<polygon fill="black" stroke="black" points="153.5,-140.99 157,-150.99 160.5,-140.99 153.5,-140.99"/>
+</g>
+<!-- DeviceSelectorComponent  -->
+<g id="node4" class="node">
+<title>DeviceSelectorComponent </title>
+<polygon fill="#fb8072" stroke="black" points="432.34,-252 261.66,-252 261.66,-216 432.34,-216 432.34,-252"/>
+<text text-anchor="middle" x="347" y="-229.8" font-family="Times,serif" font-size="14.00">DeviceSelectorComponent </text>
+</g>
+<!-- JanusModule&#45;&gt;DeviceSelectorComponent  -->
+<g id="edge3" class="edge">
+<title>JanusModule&#45;&gt;DeviceSelectorComponent </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M202.33,-175C250.01,-175 318.19,-175 318.19,-175 318.19,-175 318.19,-205.98 318.19,-205.98"/>
+<polygon fill="black" stroke="black" points="314.69,-205.98 318.19,-215.98 321.69,-205.98 314.69,-205.98"/>
 </g>
 <!-- JanusVideoroomComponent  -->
-<g id="node3" class="node">
+<g id="node5" class="node">
 <title>JanusVideoroomComponent </title>
-<polygon fill="#fb8072" stroke="black" points="337.7,-252 158.3,-252 158.3,-216 337.7,-216 337.7,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00">JanusVideoroomComponent </text>
+<polygon fill="#fb8072" stroke="black" points="243.7,-252 64.3,-252 64.3,-216 243.7,-216 243.7,-252"/>
+<text text-anchor="middle" x="154" y="-229.8" font-family="Times,serif" font-size="14.00">JanusVideoroomComponent </text>
 </g>
 <!-- JanusModule&#45;&gt;JanusVideoroomComponent  -->
-<g id="edge2" class="edge">
+<g id="edge4" class="edge">
 <title>JanusModule&#45;&gt;JanusVideoroomComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
-<polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M157,-187.11C157,-187.11 157,-205.99 157,-205.99"/>
+<polygon fill="black" stroke="black" points="153.5,-205.99 157,-215.99 160.5,-205.99 153.5,-205.99"/>
 </g>
 </g>
 </svg>

@@ -34,6 +34,7 @@ The core function provided by this library is a component called `JanusVideoroom
 - **Multiple Aspect Ratios** Different source video aspect ratios are handled smoothly.
 - **Display Names** You can specify the display name for anyone joining a videoroom.
 - **Publishers or Read Only Users** Users can be publishers, who will send a feed from their camera/microphone, or they can be read only users that don't transmit anything.
+- **Simulcast** Supported clients will publish 3 different quality video feeds and clients will dynamically pick the appropriate stream based on current network conditions
 - **Devices** Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
 - **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified.
 - **Mute Audio** Audio can be muted for publishers.
