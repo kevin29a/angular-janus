@@ -55,13 +55,17 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/JanusModule.html" data-type="entity-link">JanusModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-JanusModule-de5145b9afbe53e111b4980d9db409eb"' : 'data-target="#xs-components-links-module-JanusModule-de5145b9afbe53e111b4980d9db409eb"' }>
+                                            'data-target="#components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' : 'data-target="#xs-components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-JanusModule-de5145b9afbe53e111b4980d9db409eb"' :
-                                            'id="xs-components-links-module-JanusModule-de5145b9afbe53e111b4980d9db409eb"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' :
+                                            'id="xs-components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' }>
+                                            <li class="link">
+                                                <a href="components/DeviceSelectorComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">DeviceSelectorComponent</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="components/JanusVideoroomComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">JanusVideoroomComponent</a>

@@ -21,7 +21,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs"
+    "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs",
+    "docs:serve": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs -s"
   },
   "peerDependencies": {
     "@angular/common": "^10.1.1",

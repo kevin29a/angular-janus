@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DefaultVideoRoomComponent } from './default-video-room.component';
 import { RoomInfoState, PublishState } from '../../models/janus.models';
@@ -8,7 +8,7 @@ describe('DefaultVideoRoomComponent', () => {
   let component: DefaultVideoRoomComponent;
   let fixture: ComponentFixture<DefaultVideoRoomComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DefaultVideoRoomComponent ]
     })

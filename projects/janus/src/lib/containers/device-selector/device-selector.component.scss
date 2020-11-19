@@ -1,0 +1,17 @@
+div.form-row {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+
+    span.flex {
+        flex-grow: 1;
+    }
+
+    label {
+        width: 30%;
+    }
+
+    select {
+        width: 60%;
+    }
+}

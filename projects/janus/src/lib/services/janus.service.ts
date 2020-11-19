@@ -119,7 +119,6 @@ export class JanusService {
 
   init(iceServers: IceServer[]): Observable<any> {
     // Initialize Janus
-
     this.iceServers = iceServers;
 
     if (this.initialized) {
@@ -401,7 +400,6 @@ export class JanusService {
     }
 
     this.startDrawingLoop(canvasElement, videoElement, videoSettings.frameRate);
-    // this.startDrawingLoop(canvasElement, videoElement, 20);
 
     return {
       videoElement,
@@ -480,7 +478,6 @@ export class JanusService {
     ).catch((error) => {
       // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future would might
       // find a race condition where we need to wait for an event before calling getUserMedia
-      console.log("GUM ERROR:", error, audioDeviceId, videoDeviceId)
       if (retryCount < 2) {
         setTimeout(() => {
           instance.createOffer(
@@ -535,7 +532,6 @@ export class JanusService {
           },
 
           onmessage(msg, jsep): void {
-            console.log("MESSAGE", msg);
             subscriber.next({
               message: fromModels.ON_REMOTE_FEED_MESSAGE,
               payload: {
@@ -577,7 +573,6 @@ export class JanusService {
           onremotestream(stream): void {
             // Save off remote stream
 
-            console.log("HAVE REMOTE STREAM", stream);
             const streamId = instance._get_random_string();
             instance.streams[streamId] = stream;
 
