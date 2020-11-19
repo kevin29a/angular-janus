@@ -9,6 +9,16 @@ import { WebrtcService } from '../../services/janus.service';
 import { Devices } from '../../models/janus.models';
 
 
+/**
+ * Device selector form. Implements a form that will show the user options for picking their camera,
+ * microphone, and speaker device. The speaker option is only shown if the device supports dynamically
+ * changing the speaker. This class can be subclassed if style changes are desired.
+ * @example
+ * <janus-device-selector
+ *              [devices]=devices
+ *              (deviceUpdate)='onDeviceUpdate($event)'>
+ * </janus-device-selector>
+ */
 @Component({
   selector: 'janus-device-selector',
   templateUrl: './device-selector.component.html',
@@ -19,9 +29,15 @@ import { Devices } from '../../models/janus.models';
 })
 export class DeviceSelectorComponent implements OnInit, OnDestroy {
 
+  /**
+   * Currently selected devices
+   */
   @Input()
   devices: Devices;
 
+  /**
+   * Event emitted whenever the user changes the devices in the form
+   */
   @Output()
   deviceUpdate = new EventEmitter<Devices>();
 
@@ -65,6 +81,7 @@ export class DeviceSelectorComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  /** @internal */
   async getDevices(): Promise<void> {
     const allDevices = await this.webrtc.listDevices();
     this.supportsSpeakerSelection = this.webrtc.supportsSpeakerSelection();
