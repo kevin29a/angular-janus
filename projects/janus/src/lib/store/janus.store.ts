@@ -161,8 +161,8 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
-  readonly reset = this.effect((muted$: Observable<IceServer[]>) => {
-    return muted$.pipe(
+  readonly reset = this.effect((iceServers$: Observable<IceServer[]>) => {
+    return iceServers$.pipe(
       tap((iceServers: IceServer[]) => {
         this.janusService.destroy();
         this.resetState();
