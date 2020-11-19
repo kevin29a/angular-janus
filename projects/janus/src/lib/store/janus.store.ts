@@ -15,7 +15,7 @@ import { JanusAttachCallbackData } from '../models/janus-server.models';
 @Injectable()
 export class JanusStore extends ComponentStore<VideoroomState> implements OnDestroy {
 
-  private debug = false;
+  private debug = true;
 
   constructor(private readonly janusService: JanusService) {
     super(initialState);

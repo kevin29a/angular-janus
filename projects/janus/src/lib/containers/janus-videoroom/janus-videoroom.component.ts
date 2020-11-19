@@ -203,7 +203,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
         key in changes
         && !changes[key].firstChange
       ) {
-        console.log("RESETTING", changes, this.roomId);
         this.janusServerUrl = this.wsUrl ? this.wsUrl : this.httpUrl;
         this.janusStore.reset(this.iceServers);
         break;

@@ -18,7 +18,13 @@ import {
 
 import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 
-/** @internal */
+/** @internal
+ *
+ * Minor dragons:
+ * publishOwnFeed won't work unless we know the devices **and** the canvas element already exists.
+ * For this, we need both afterViewInit to have run and onDeviceChange to have run. However, the
+ * order of those 2 are not guaranteed.
+ */
 @Component({
   selector: 'janus-self-video',
   templateUrl: './self-video.component.html',
@@ -57,11 +63,9 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
     if (this.roomInfo.state !== RoomInfoState.joined) {
       throw new Error('RoomInfo.state must be "joined" before creating a self-video component');
     }
+
     if (this.devices) {
       this._publishOwnFeed(this.devices.audioDeviceId, this.devices.videoDeviceId);
-    } else {
-      const devices = await this.webrtc.getDefaultDevices();
-      this._publishOwnFeed(devices.audioDeviceId, devices.videoDeviceId);
     }
   }
 
@@ -90,7 +94,13 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       && newDevices.videoDeviceId === previousDevices.videoDeviceId
       && newDevices.audioDeviceId === previousDevices.audioDeviceId
     ) {
-      // Same devices. nothing to do here
+      // Same capture devices. nothing to do here
+      return;
+    }
+
+    // There still exists a tiny race condition here. If the user changes the deviceId between a publishOwnFeed
+    // call in ngAfterViewInit and before the publish is complete, that change won't be registered :/
+    if (this.roomInfo.publishState === PublishState.publishRequested) {
       return;
     }
     this._publishOwnFeed(newDevices.audioDeviceId, newDevices.videoDeviceId);

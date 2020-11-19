@@ -119,8 +119,6 @@ export class JanusService {
 
   init(iceServers: IceServer[]): Observable<any> {
     // Initialize Janus
-    console.log("INITIALIZING", iceServers);
-
     this.iceServers = iceServers;
 
     if (this.initialized) {
@@ -146,7 +144,6 @@ export class JanusService {
   }
 
   destroy(): void {
-    console.log("DESTROYING");
     const leave = { request: 'leave' };
 
     if (this.handle) {
@@ -260,7 +257,6 @@ export class JanusService {
 
   attachVideoRoom(url): Observable<fromModels.JanusAttachCallbackData> {
     // Create session
-    console.log("ATTACH", url);
     const instance = this;
     return new Observable(
       subscriber => {
@@ -282,7 +278,6 @@ export class JanusService {
   }
 
   register(name: string, userId: string, roomId: string | number, pin: string): void {
-    console.log("REGISTER", name, userId, roomId, pin);
     const register = {
       request: 'join',
       room: roomId,
@@ -425,7 +420,6 @@ export class JanusService {
     videoDeviceId: string,
     canvasId: string = 'canvas-self',
   ): Observable<boolean> {
-    console.log('pof');
     // Publish our own feed
     return new Observable(
       subscriber => {
@@ -485,7 +479,6 @@ export class JanusService {
     ).catch((error) => {
       // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future would might
       // find a race condition where we need to wait for an event before calling getUserMedia
-      console.log("GUM ERROR:", error, audioDeviceId, videoDeviceId)
       if (retryCount < 2) {
         setTimeout(() => {
           instance.createOffer(
