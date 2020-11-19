@@ -52,7 +52,17 @@ implemented by the application outside of this library.
 
 ### Installation
 
-Installation is available through `yarn` or `npm`
+#### Dependencies
+
+`janus-angular` has 3 peer dependencies: `webrtc-adapter`, `@ngrx/component-store`, and `moment`. These can be installed by `yarn`
+
+```
+yarn add webrtc-adapter @ngrx/component-store moment
+```
+
+#### Installing `janus-angular`
+
+Installation is available through `yarn`
 
 ```
 yarn add janus-angular

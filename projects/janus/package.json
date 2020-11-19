@@ -1,11 +1,11 @@
 {
   "name": "janus-angular",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular library for use with the janus media server",
   "author": "Kevin Thompson <kevin29a@gmail.com>",
   "repository": {
-     "type": "git",
-     "url": "https://github.com/kevin29a/angular-janus"
+    "type": "git",
+    "url": "https://github.com/kevin29a/angular-janus"
   },
   "bugs": {
     "url": "https://github.com/kevin29a/angular-janus/issues"
@@ -21,11 +21,13 @@
   ],
   "license": "MIT",
   "scripts": {
-      "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs"
+    "docs": "yarn run compodoc -p tsconfig.lib.json --theme Readthedocs --disableInternal --disableLifeCycleHooks --disablePrivate --disableCoverage -d ../../docs"
   },
   "peerDependencies": {
     "@angular/common": "^10.1.1",
-    "@angular/core": "^10.1.1"
+    "@angular/core": "^10.1.1",
+    "@ngrx/component-store": "^10.0.1",
+    "moment": "^2.29.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
