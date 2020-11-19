@@ -51,6 +51,17 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     return initialState;
   });
 
+  readonly testAddRemoteFeed = this.updater((state: VideoroomState, remoteFeed: RemoteFeed) => {
+    // Used to add a fake remote feed when testing
+    return {
+      ...state,
+      remoteFeeds: {
+        ...state.remoteFeeds,
+        [remoteFeed.id]: remoteFeed
+      }
+    };
+  });
+
   /************************************
    *            Effects
    ************************************/

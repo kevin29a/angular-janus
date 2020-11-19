@@ -173,6 +173,8 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     this.setupJanusRoom();
 
     // @ts-ignore
+    // console.log("JANUS STORE", window.Cypress, this.janusStore);
+    // @ts-ignore
     if (window.Cypress) {
       // @ts-ignore
       window.janusStore = this.janusStore;

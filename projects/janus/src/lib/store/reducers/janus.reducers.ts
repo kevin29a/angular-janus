@@ -390,17 +390,6 @@ export function reducer(
         },
       };
     }
-
-    case janusActions.TEST_ADD_REMOTE_FEED: {
-      const remoteFeed = action.payload as RemoteFeed;
-      return {
-        ...state,
-        remoteFeeds: {
-          ...state.remoteFeeds,
-          [remoteFeed.id]: remoteFeed
-        }
-      };
-    }
   }
   return state;
 }
