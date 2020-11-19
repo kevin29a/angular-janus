@@ -1,0 +1,738 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>DeviceSelectorComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/containers/device-selector/device-selector.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Device selector form. Implements a form that will show the user options for picking their camera,
+microphone, and speaker device. The speaker option is only shown if the device supports dynamically
+changing the speaker. This class can be subclassed if style changes are desired.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;janus-device-selector
+  [devices]=devices
+  (deviceUpdate)='onDeviceUpdate($event)'&gt;
+&lt;/janus-device-selector&gt;</code></pre>
+                </div>
+    </div>
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>janus-device-selector</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./device-selector.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./device-selector.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#availableAudioDevices">availableAudioDevices</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#availableSpeakerDevices">availableSpeakerDevices</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#availableVideoDevices">availableVideoDevices</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#devicesForm">devicesForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#supportsSpeakerSelection">supportsSpeakerSelection</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#devices">devices</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deviceUpdate">deviceUpdate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(changeDetector: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, builder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, webrtc: <a href="../injectables/WebrtcService.html">WebrtcService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:49</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>changeDetector</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>builder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>webrtc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WebrtcService.html" target="_self" >WebrtcService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <b>devices</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:36</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Currently selected devices</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deviceUpdate"></a>
+                        <b>deviceUpdate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:42</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted whenever the user changes the devices in the form</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="availableAudioDevices"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            availableAudioDevices</b>
+                            <a href="#availableAudioDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="availableSpeakerDevices"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            availableSpeakerDevices</b>
+                            <a href="#availableSpeakerDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="availableVideoDevices"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            availableVideoDevices</b>
+                            <a href="#availableVideoDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devicesForm"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            devicesForm</b>
+                            <a href="#devicesForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="supportsSpeakerSelection"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            supportsSpeakerSelection</b>
+                            <a href="#supportsSpeakerSelection"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/containers/device-selector/device-selector.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, ChangeDetectionStrategy, Input } from &#x27;@angular/core&#x27;;
+
+import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+
+import { Subject } from &#x27;rxjs&#x27;;
+import { takeUntil } from &#x27;rxjs/operators&#x27;;
+
+import { WebrtcService } from &#x27;../../services/janus.service&#x27;;
+import { Devices } from &#x27;../../models/janus.models&#x27;;
+
+
+/**
+ * Device selector form. Implements a form that will show the user options for picking their camera,
+ * microphone, and speaker device. The speaker option is only shown if the device supports dynamically
+ * changing the speaker. This class can be subclassed if style changes are desired.
+ * @example
+ * &lt;janus-device-selector
+ *              [devices]&#x3D;devices
+ *              (deviceUpdate)&#x3D;&#x27;onDeviceUpdate($event)&#x27;&gt;
+ * &lt;/janus-device-selector&gt;
+ */
+@Component({
+  selector: &#x27;janus-device-selector&#x27;,
+  templateUrl: &#x27;./device-selector.component.html&#x27;,
+  styleUrls: [
+    &#x27;./device-selector.component.scss&#x27;,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class DeviceSelectorComponent implements OnInit, OnDestroy {
+
+  /**
+   * Currently selected devices
+   */
+  @Input()
+  devices: Devices;
+
+  /**
+   * Event emitted whenever the user changes the devices in the form
+   */
+  @Output()
+  deviceUpdate &#x3D; new EventEmitter&lt;Devices&gt;();
+
+  public devicesForm;
+  public availableAudioDevices;
+  public availableVideoDevices;
+  public availableSpeakerDevices;
+  public supportsSpeakerSelection &#x3D; false;
+  private destroy$ &#x3D; new Subject();
+
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private builder: FormBuilder,
+    private webrtc: WebrtcService,
+  ) { }
+
+  ngOnInit(): void {
+
+    this.devicesForm &#x3D; this.builder.group({
+      audioDevice: [this.devices.audioDeviceId, [Validators.required]],
+      videoDevice: [this.devices.videoDeviceId, [Validators.required]],
+      speakerDevice: [this.devices.speakerDeviceId, [Validators.required]],
+    });
+    this.getDevices();
+
+    this.devicesForm.valueChanges.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() &#x3D;&gt; {
+      const devices &#x3D; {
+        audioDeviceId: this.devicesForm.get(&#x27;audioDevice&#x27;).value,
+        videoDeviceId: this.devicesForm.get(&#x27;videoDevice&#x27;).value,
+        speakerDeviceId: this.devicesForm.get(&#x27;speakerDevice&#x27;).value,
+      };
+      this.deviceUpdate.emit(devices);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  /** @internal */
+  async getDevices(): Promise&lt;void&gt; {
+    const allDevices &#x3D; await this.webrtc.listDevices();
+    this.supportsSpeakerSelection &#x3D; this.webrtc.supportsSpeakerSelection();
+    this.availableAudioDevices &#x3D; allDevices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;audioinput&#x27;);
+    this.availableVideoDevices &#x3D; allDevices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;videoinput&#x27;);
+    this.availableSpeakerDevices &#x3D; allDevices.filter((device) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;audiooutput&#x27;);
+    this.changeDetector.detectChanges();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;form 
+  *ngIf&#x3D;&#x27;devicesForm&#x27;
+  [formGroup]&#x3D;&#x27;devicesForm&#x27;&gt;
+    &lt;div class&#x3D;&#x27;form-row&#x27;&gt;
+      &lt;label&gt;Microphone&lt;/label&gt;
+      &lt;span class&#x3D;&#x27;flex&#x27;&gt;&lt;/span&gt;
+      &lt;select formControlName&#x3D;&#x27;audioDevice&#x27;&gt;
+        &lt;option
+          *ngFor&#x3D;&quot;let device of availableAudioDevices&quot;
+          [value]&#x3D;&#x27;device.deviceId&#x27;
+        &gt;{{ device.label }}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&#x27;form-row&#x27;&gt;
+      &lt;label&gt;Camera&lt;/label&gt;
+      &lt;span class&#x3D;&#x27;flex&#x27;&gt;&lt;/span&gt;
+      &lt;select formControlName&#x3D;&#x27;videoDevice&#x27;&gt;
+        &lt;option
+          *ngFor&#x3D;&quot;let device of availableVideoDevices&quot;
+          [value]&#x3D;&#x27;device.deviceId&#x27;
+          &gt;{{ device.label }}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      *ngIf&#x3D;&#x27;supportsSpeakerSelection&#x27;
+      class&#x3D;&#x27;form-row&#x27;&gt;
+      &lt;label&gt;Speakers&lt;/label&gt;
+      &lt;span class&#x3D;&#x27;flex&#x27;&gt;&lt;/span&gt;
+      &lt;select formControlName&#x3D;&#x27;speakerDevice&#x27;&gt;
+        &lt;option
+          *ngFor&#x3D;&quot;let device of availableSpeakerDevices&quot;
+          [value]&#x3D;&#x27;device.deviceId&#x27;
+          &gt;{{ device.label }}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./device-selector.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">div.form-row {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+
+    span.flex {
+        flex-grow: 1;
+    }
+
+    label {
+        width: 30%;
+    }
+
+    select {
+        width: 60%;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><form   *ngIf=\'devicesForm\'  [formGroup]=\'devicesForm\'>    <div class=\'form-row\'>      <label>Microphone</label>      <span class=\'flex\'></span>      <select formControlName=\'audioDevice\'>        <option          *ngFor="let device of availableAudioDevices"          [value]=\'device.deviceId\'        >{{ device.label }}</option>      </select>    </div>    <div class=\'form-row\'>      <label>Camera</label>      <span class=\'flex\'></span>      <select formControlName=\'videoDevice\'>        <option          *ngFor="let device of availableVideoDevices"          [value]=\'device.deviceId\'          >{{ device.label }}</option>      </select>    </div>    <div      *ngIf=\'supportsSpeakerSelection\'      class=\'form-row\'>      <label>Speakers</label>      <span class=\'flex\'></span>      <select formControlName=\'speakerDevice\'>        <option          *ngFor="let device of availableSpeakerDevices"          [value]=\'device.deviceId\'          >{{ device.label }}</option>      </select>    </div></form></div>'
+    var COMPONENTS = [{'name': 'DeviceSelectorComponent', 'selector': 'janus-device-selector'},{'name': 'JanusVideoroomComponent', 'selector': 'janus-videoroom'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DeviceSelectorComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceSelectorComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
