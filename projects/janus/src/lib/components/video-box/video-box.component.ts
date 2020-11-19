@@ -144,6 +144,13 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
       return;
     }
 
+    if (!this.videoAvailable && this.video) {
+      // Sometimes this needs a kick start. For example, if the user takes a second to click
+      // the "allow" button for video/mic access, the autoplay on the video element won't
+      // actually autoplay
+      this.video.nativeElement.play();
+    }
+
     const currentSubstream = this.remoteFeed.currentSubstream;
     if (this.remoteFeed.numVideoTracks === 0 || slowLink) {
       this.videoQualityHelper.streamError(currentSubstream);

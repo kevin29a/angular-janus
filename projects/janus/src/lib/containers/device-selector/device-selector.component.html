@@ -1,0 +1,38 @@
+<form 
+  *ngIf='devicesForm'
+  [formGroup]='devicesForm'>
+    <div class='form-row'>
+      <label>Microphone</label>
+      <span class='flex'></span>
+      <select formControlName='audioDevice'>
+        <option
+          *ngFor="let device of availableAudioDevices"
+          [value]='device.deviceId'
+        >{{ device.label }}</option>
+      </select>
+    </div>
+
+    <div class='form-row'>
+      <label>Camera</label>
+      <span class='flex'></span>
+      <select formControlName='videoDevice'>
+        <option
+          *ngFor="let device of availableVideoDevices"
+          [value]='device.deviceId'
+          >{{ device.label }}</option>
+      </select>
+    </div>
+
+    <div
+      *ngIf='supportsSpeakerSelection'
+      class='form-row'>
+      <label>Speakers</label>
+      <span class='flex'></span>
+      <select formControlName='speakerDevice'>
+        <option
+          *ngFor="let device of availableSpeakerDevices"
+          [value]='device.deviceId'
+          >{{ device.label }}</option>
+      </select>
+    </div>
+</form>

@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -50,7 +51,7 @@ import { JanusErrors } from '../../models/janus-server.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [JanusStore],
 })
-export class JanusVideoroomComponent implements OnInit, OnDestroy {
+export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
   /**
    * *Required* Janus room id. Can be either a string or a number. This must match server configuration.
@@ -169,8 +170,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
       shareReplay(1)
     );
 
-    const pin = this.pin ? this.pin : null;
-    this.setupJanusRoom(this.roomId, this.userId, this.userName, pin);
+    this.setupJanusRoom();
 
     // @ts-ignore
     if (window.Cypress) {
@@ -182,6 +182,33 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  ngOnChanges(changes): void {
+    // For some changes, we refresh the entire session from scratch
+
+    const resetKeys = [
+      'roomId',
+      'wsUrl',
+      'httpUrl',
+      'iceServers',
+      'pin',
+      'role',
+      'userName',
+      'userId',
+    ];
+
+    for (const key of resetKeys) {
+      if (
+        key in changes
+        && !changes[key].firstChange
+      ) {
+        console.log("RESETTING", changes, this.roomId);
+        this.janusServerUrl = this.wsUrl ? this.wsUrl : this.httpUrl;
+        this.janusStore.reset(this.iceServers);
+        break;
+      }
+    }
   }
 
   /** @internal */
@@ -214,7 +241,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
   }
 
   /** @internal */
-  setupJanusRoom(roomId: string | number, userId: string, userName: string, pin: string): void {
+  setupJanusRoom(): void {
     // Setup comms with janus server
 
     this.janusStore.initialize(this.iceServers);
@@ -226,6 +253,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
     ).subscribe(({roomInfo, remoteFeeds}) => {
 
+      const pin = this.pin ? this.pin : null;
       const remoteFeedsArray = Object.keys(remoteFeeds).map(id => remoteFeeds[id]);
       if (roomInfo.muted !== this.muted && roomInfo.publishState === PublishState.publishing) {
         this._setMuted(this.muted);
@@ -245,9 +273,9 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy {
         }
         case RoomInfoState.attached: {
           this.janusStore.register({
-            name: userName,
-            userId,
-            roomId,
+            name: this.userName,
+            userId: this.userId,
+            roomId: this.roomId,
             pin,
           });
           break;

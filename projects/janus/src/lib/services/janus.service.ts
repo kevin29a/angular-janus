@@ -119,6 +119,7 @@ export class JanusService {
 
   init(iceServers: IceServer[]): Observable<any> {
     // Initialize Janus
+    console.log("INITIALIZING", iceServers);
 
     this.iceServers = iceServers;
 
@@ -145,6 +146,7 @@ export class JanusService {
   }
 
   destroy(): void {
+    console.log("DESTROYING");
     const leave = { request: 'leave' };
 
     if (this.handle) {
@@ -258,6 +260,7 @@ export class JanusService {
 
   attachVideoRoom(url): Observable<fromModels.JanusAttachCallbackData> {
     // Create session
+    console.log("ATTACH", url);
     const instance = this;
     return new Observable(
       subscriber => {
@@ -279,6 +282,7 @@ export class JanusService {
   }
 
   register(name: string, userId: string, roomId: string | number, pin: string): void {
+    console.log("REGISTER", name, userId, roomId, pin);
     const register = {
       request: 'join',
       room: roomId,
@@ -343,6 +347,7 @@ export class JanusService {
     const canvasContext = canvasElement.getContext('2d');
 
     const stepMilliSeconds = 1000 / frameRate;
+    // const stepMilliSeconds = 1000 / 24;
 
     function step(): void {
       if (instance.drawLoopActive) {
@@ -401,7 +406,6 @@ export class JanusService {
     }
 
     this.startDrawingLoop(canvasElement, videoElement, videoSettings.frameRate);
-    // this.startDrawingLoop(canvasElement, videoElement, 20);
 
     return {
       videoElement,
@@ -421,6 +425,7 @@ export class JanusService {
     videoDeviceId: string,
     canvasId: string = 'canvas-self',
   ): Observable<boolean> {
+    console.log('pof');
     // Publish our own feed
     return new Observable(
       subscriber => {
@@ -535,7 +540,6 @@ export class JanusService {
           },
 
           onmessage(msg, jsep): void {
-            console.log("MESSAGE", msg);
             subscriber.next({
               message: fromModels.ON_REMOTE_FEED_MESSAGE,
               payload: {
@@ -577,7 +581,6 @@ export class JanusService {
           onremotestream(stream): void {
             // Save off remote stream
 
-            console.log("HAVE REMOTE STREAM", stream);
             const streamId = instance._get_random_string();
             instance.streams[streamId] = stream;
 

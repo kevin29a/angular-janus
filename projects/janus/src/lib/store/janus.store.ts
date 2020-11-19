@@ -15,6 +15,8 @@ import { JanusAttachCallbackData } from '../models/janus-server.models';
 @Injectable()
 export class JanusStore extends ComponentStore<VideoroomState> implements OnDestroy {
 
+  private debug = false;
+
   constructor(private readonly janusService: JanusService) {
     super(initialState);
   }
@@ -41,8 +43,12 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
    ************************************/
   readonly reduce = this.updater((state: VideoroomState, action: actions.JanusAction) => {
     const ret = reducer(state, action);
-    console.log('reduce:', action, state, ret);
+    this.log('reduce:', action, state, ret);
     return ret;
+  });
+
+  readonly resetState = this.updater((state: VideoroomState) => {
+    return initialState;
   });
 
   /************************************
@@ -155,6 +161,16 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
+  readonly reset = this.effect((muted$: Observable<IceServer[]>) => {
+    return muted$.pipe(
+      tap((iceServers: IceServer[]) => {
+        this.janusService.destroy();
+        this.resetState();
+        this.initialize(iceServers);
+      })
+    );
+  });
+
   attachMediaStream(elemId, streamId): void {
     this.log('attachMediaStream', elemId, streamId);
     this.janusService.attachMediaStream(elemId, streamId);
@@ -165,6 +181,8 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
   }
 
   log(msg: any, ...args: any[]): void {
-    console.log(msg, ...args);
+    if (this.debug){
+      console.log(msg, ...args);
+    }
   }
 }
