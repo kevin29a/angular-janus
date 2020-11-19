@@ -74,7 +74,10 @@ implemented by the application outside of this library.</p>
 </ul>
 <h2 id="how-to-use">How to use</h2>
 <h3 id="installation">Installation</h3>
-<p>Installation is available through <code>yarn</code> or <code>npm</code></p>
+<h4 id="dependencies">Dependencies</h4>
+<p><code>janus-angular</code> has 3 peer dependencies: <code>webrtc-adapter</code>, <code>@ngrx/component-store</code>, and <code>moment</code>. These can be installed by <code>yarn</code></p>
+<div><pre class="line-numbers"><code class="language-none">yarn add webrtc-adapter &#64;ngrx/component-store moment</code></pre></div><h4 id="installing-janus-angular">Installing <code>janus-angular</code></h4>
+<p>Installation is available through <code>yarn</code></p>
 <div><pre class="line-numbers"><code class="language-none">yarn add janus-angular</code></pre></div><h3 id="including-the-module">Including the module</h3>
 <p>The <code>JanusModule</code> must be included in your <code>imports</code> for the module in which you wish to use the directive</p>
 <div><pre class="line-numbers"><code class="language-none">import { JanusModule } from &#39;janus&#39;;
