@@ -342,7 +342,6 @@ export class JanusService {
     const canvasContext = canvasElement.getContext('2d');
 
     const stepMilliSeconds = 1000 / frameRate;
-    // const stepMilliSeconds = 1000 / 24;
 
     function step(): void {
       if (instance.drawLoopActive) {

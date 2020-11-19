@@ -2,8 +2,8 @@
 
 This is an angular library with features to make it easy to embed a videoroom
 into any angular app. Once you have a properly configured, public instance of a
-janus server with the videoroom plugin enabled, this library includes an easy
-to use directive that will connect clients in a videoroom.
+janus server with the videoroom plugin enabled, this library includes a
+directive that will connect clients in a videoroom.
 
 ## Why build this?
 
@@ -11,17 +11,17 @@ When building a product that incorporates a videoroom, the interesting part of
 the product is how it helps users find, create, edit, join, and view
 videorooms. That's what gives the product it's competitive advantage. However,
 when we started working on our own product, we spent the vast majority of our
-engineering time working with low level webrtc signalling. This mismatch led
-us to believe there's room for improvement in this field.
+engineering time working with low level webrtc signalling. This mismatch led us
+to believe there's room for improvement in this field. Our goal is to help
+other developers spend more time on their app and less time on webrtc details.
 
-The objective when building this is to lower the barrier to implementing
-videorooms. The Janus documentation and demos are great for understanding how
-the service works. However, the sample client code is not that easy to adopt
-into your own application. This makes it so that developers need to write a lot
-of the low level code themselves and understand many of the low level details
-of the videoroom plugin. While more knowledge is always better than less, we
-believe it's possible to implement a videoroom without requiring the developer
-to understand intimate details of webrtc.
+The Janus documentation and demos are great for understanding how the service
+works. However, the sample client code is not easy to adopt into your own
+application. This makes it so that developers need to write a lot of the low
+level code themselves and understand many of the details of the videoroom
+plugin. While more knowledge is always better than less, we believe it's
+possible to implement a videoroom without requiring the developer to understand
+intimate details of webrtc.
 
 ## What does this implement?
 
@@ -121,6 +121,11 @@ export class AppComponent {
 
 Inputs/Outputs for the component are documented in the API docs on this site. Page for the
 component docs is [here](https://kevin29a.github.io/angular-janus/components/JanusVideoroomComponent.html)
+
+### Sample Application
+
+We have written a small, sample application to show how to use the library. The
+repo lives [here](https://github.com/kevin29a/angular-janus-sample-app).
 
 ## Future Work
 
