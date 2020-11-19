@@ -110,7 +110,7 @@ export class AppComponent {
 ```
 
 Inputs/Outputs for the component are documented in the API docs on this site. Page for the
-component docs is [here](/angular-janus/components/JanusVideoroomComponent.html)
+component docs is [here](https://kevin29a.github.io/angular-janus/components/JanusVideoroomComponent.html)
 
 ## Future Work
 
