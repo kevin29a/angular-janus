@@ -186,17 +186,6 @@ export class AnswerRemoteFeedJsepFail implements Action {
   constructor(public payload: any) {}
 }
 
-
-// Actions for testing
-/** @internal */
-export const TEST_ADD_REMOTE_FEED = '[Janus Test] Add remote feed';
-
-/** @internal */
-export class TestAddRemoteFeed implements Action {
-  readonly type = TEST_ADD_REMOTE_FEED;
-  constructor(public payload: RemoteFeed) {}
-}
-
 /** @internal */
 export type JanusAction =
   | AttachRemoteFeed
@@ -214,5 +203,4 @@ export type JanusAction =
   | InitializeJanus
   | InitializeJanusSuccess
   | InitializeJanusFail
-  | Register
-  | TestAddRemoteFeed;
+  | Register;
