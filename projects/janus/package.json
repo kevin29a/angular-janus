@@ -1,6 +1,6 @@
 {
   "name": "janus-angular",
-  "version": "0.1.4a",
+  "version": "0.1.4b",
   "description": "Angular library for use with the janus media server",
   "author": "Kevin Thompson <kevin29a@gmail.com>",
   "repository": {

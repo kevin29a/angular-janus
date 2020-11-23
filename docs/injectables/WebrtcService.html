@@ -84,6 +84,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#clearMediaStream">clearMediaStream</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getDefaultDevices">getDefaultDevices</a>
                             </li>
@@ -135,6 +138,78 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearMediaStream"></a>
+                    <span class="name">
+                        <b>
+                            clearMediaStream
+                        </b>
+                        <a href="#clearMediaStream"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearMediaStream(stream: MediaStream)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/lib/services/janus.service.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clear all resources for a previously created media stream</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stream</td>
+                                    <td>
+                                            <code>MediaStream</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -261,7 +336,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+                        <b>Returns : </b>    <code>Promise&lt;MediaStream&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -432,7 +507,7 @@ export class WebrtcService {
    * @param audioDeviceId Device ID of the desired audio device. If null, audio will not be included
    * @param videoDeviceId Device ID of the desired video device.
    */
-  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise&lt;any&gt; {
+  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise&lt;MediaStream&gt; {
     const constraints &#x3D; {
       audio: audioDeviceId !&#x3D;&#x3D; null ? {deviceId: audioDeviceId} : false,
       video: {deviceId: videoDeviceId, width: 1920, height: 1080},
@@ -479,6 +554,16 @@ export class WebrtcService {
    */
   isSupportedDevice(): boolean {
     return this.supportsAppVersion(navigator.appVersion);
+  }
+
+  /**
+   * Clear all resources for a previously created media stream
+   */
+  clearMediaStream(stream: MediaStream): void {
+    for (const track of stream.getTracks()) {
+      track.stop();
+      stream.removeTrack(track);
+    }
   }
 
   /** @internal */
@@ -577,10 +662,7 @@ export class JanusService {
       this.videoElement.remove();
     }
     if (this.localStream) {
-      for (const track of this.localStream.getTracks()) {
-        track.stop();
-        this.localStream.removeTrack(track);
-      }
+      this.webrtcService.clearMediaStream(this.localStream);
     }
     this.drawLoopActive &#x3D; false;
   }
@@ -710,7 +792,7 @@ export class JanusService {
         handle.send({message: body, jsep: jsepBody});
       },
       error(error): void {
-        console.log(&#x27;ERROR in JSEP RESPONSE&#x27;);
+        console.log(&#x27;ERROR in JSEP RESPONSE&#x27;, error);
       }
     });
   }
@@ -778,6 +860,16 @@ export class JanusService {
     };
   }
 
+  _videoElementSafariHacks(videoElement): void {
+    // safari requires that the video element be in the body
+    const body &#x3D; document.getElementsByTagName(&#x27;body&#x27;)[0];
+    body.appendChild(videoElement);
+    videoElement.setAttribute(&#x27;style&#x27;, &#x27;width: 0; height: 0;&#x27;);
+
+    // safari doesn&#x27;t always auto-play the way you&#x27;d like it to
+    videoElement.addEventListener(&#x27;canplay&#x27;, () &#x3D;&gt; videoElement.play());
+  }
+
   _createVideoElement(canvasId: string, videoStream: any): any {
     // Create the video element and attach it to the canvas
 
@@ -786,12 +878,14 @@ export class JanusService {
     const canvasStream &#x3D; canvasElement.captureStream();
     const videoSettings &#x3D; videoStream.getVideoTracks()[0].getSettings();
 
+    this._videoElementSafariHacks(videoElement);
+
     Janus.attachMediaStream(videoElement, videoStream);
     videoElement.autoplay &#x3D; true;
     videoElement.setAttribute(&#x27;playsinline&#x27;, &#x27;true&#x27;);
     videoElement.setAttribute(&#x27;id&#x27;, &#x27;self-video&#x27;);
 
-    // Chrome doesn&#x27;t like it if we set the muted attribute before the video is playing
+    // Some browsers don&#x27;t like it if we set the muted attribute before the video is playing
     this._muteVideo(videoElement);
 
     const { canvasWidth, canvasHeight } &#x3D; this._sizeCanvasElement(videoSettings.width, videoSettings.height);
