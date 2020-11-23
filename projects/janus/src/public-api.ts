@@ -8,4 +8,4 @@ export * from './lib/containers/device-selector/device-selector.component';
 export * from './lib/janus.module';
 
 export * from './lib/models';
-export * from './lib/factories/janus.factories';
+// export * from './lib/factories/janus.factories';
