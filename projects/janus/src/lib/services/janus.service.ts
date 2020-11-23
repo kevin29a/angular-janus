@@ -28,7 +28,7 @@ export class WebrtcService {
    * @param audioDeviceId Device ID of the desired audio device. If null, audio will not be included
    * @param videoDeviceId Device ID of the desired video device.
    */
-  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise<any> {
+  getUserMedia(audioDeviceId: string | null, videoDeviceId: string): Promise<MediaStream> {
     const constraints = {
       audio: audioDeviceId !== null ? {deviceId: audioDeviceId} : false,
       video: {deviceId: videoDeviceId, width: 1920, height: 1080},
@@ -75,6 +75,16 @@ export class WebrtcService {
    */
   isSupportedDevice(): boolean {
     return this.supportsAppVersion(navigator.appVersion);
+  }
+
+  /**
+   * Clear all resources for a previously created media stream
+   */
+  clearMediaStream(stream: MediaStream): void {
+    for (const track of stream.getTracks()) {
+      track.stop();
+      stream.removeTrack(track);
+    }
   }
 
   /** @internal */
@@ -173,10 +183,7 @@ export class JanusService {
       this.videoElement.remove();
     }
     if (this.localStream) {
-      for (const track of this.localStream.getTracks()) {
-        track.stop();
-        this.localStream.removeTrack(track);
-      }
+      this.webrtcService.clearMediaStream(this.localStream);
     }
     this.drawLoopActive = false;
   }
