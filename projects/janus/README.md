@@ -83,7 +83,7 @@ yarn add janus-angular
 The `JanusModule` must be included in your `imports` for the module in which you wish to use the directive
 
 ```
-import { JanusModule } from 'janus';
+import { JanusModule } from 'janus-angular';
 ...
 @NgModule({
   declarations: [
