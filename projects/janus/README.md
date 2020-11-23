@@ -38,6 +38,7 @@ The core function provided by this library is a component called `JanusVideoroom
 - **Devices** Device IDs can be input and dynamically changed so that users can change which input or output devices to use.
 - **ICE Servers** In addition the the janus gateway, custom STUN/TURN servers can be specified.
 - **Mute Audio** Audio can be muted for publishers.
+- **Supported Platforms** Tested and works on Chrome (Windows, macOS, and android) and Safari (macOS and iOS).
 
 ## What does this **not** implement?
 
