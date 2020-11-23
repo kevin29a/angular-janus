@@ -306,7 +306,7 @@ export class JanusService {
         handle.send({message: body, jsep: jsepBody});
       },
       error(error): void {
-        console.log('ERROR in JSEP RESPONSE');
+        console.log('ERROR in JSEP RESPONSE', error);
       }
     });
   }
@@ -374,6 +374,16 @@ export class JanusService {
     };
   }
 
+  _videoElementSafariHacks(videoElement): void {
+    // safari requires that the video element be in the body
+    const body = document.getElementsByTagName('body')[0];
+    body.appendChild(videoElement);
+    videoElement.setAttribute('style', 'width: 0; height: 0;');
+
+    // safari doesn't always auto-play the way you'd like it to
+    videoElement.addEventListener('canplay', () => videoElement.play());
+  }
+
   _createVideoElement(canvasId: string, videoStream: any): any {
     // Create the video element and attach it to the canvas
 
@@ -382,12 +392,14 @@ export class JanusService {
     const canvasStream = canvasElement.captureStream();
     const videoSettings = videoStream.getVideoTracks()[0].getSettings();
 
+    this._videoElementSafariHacks(videoElement);
+
     Janus.attachMediaStream(videoElement, videoStream);
     videoElement.autoplay = true;
     videoElement.setAttribute('playsinline', 'true');
     videoElement.setAttribute('id', 'self-video');
 
-    // Chrome doesn't like it if we set the muted attribute before the video is playing
+    // Some browsers don't like it if we set the muted attribute before the video is playing
     this._muteVideo(videoElement);
 
     const { canvasWidth, canvasHeight } = this._sizeCanvasElement(videoSettings.width, videoSettings.height);
