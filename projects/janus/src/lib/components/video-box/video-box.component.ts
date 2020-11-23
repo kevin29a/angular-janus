@@ -84,16 +84,14 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   ngOnChanges(changes): void {
     if ('remoteFeed' in changes) {
       // If there's a change in the remoteFeed, run the video quality monitor task
-      const slowLink = false;
+      let slowLink = false;
 
-      /*  Taking this out of this release. Just not enough time to test it
       if (
         changes.remoteFeed.previousValue
         && changes.remoteFeed.previousValue.slowLink !== changes.remoteFeed.currentValue.slowLink
       ) {
         slowLink = true;
       }
-      */
 
       this.monitorVideoQuality(slowLink);
     }

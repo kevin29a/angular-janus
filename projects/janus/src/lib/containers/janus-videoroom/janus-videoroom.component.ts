@@ -30,6 +30,7 @@ import {
 import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 import { JanusStore } from '../../store/janus.store';
 import { JanusErrors } from '../../models/janus-server.models';
+import { WebrtcService } from '../../services/janus.service';
 
 /**
  * Janus videoroom component. This is a high level component to easily embed a janus videoroom in any angular webapp.
@@ -154,10 +155,11 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   private janusServerUrl: string;
 
   constructor(
-    private readonly janusStore: JanusStore
+    private readonly janusStore: JanusStore,
+    private webrtc: WebrtcService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     // Initialize variables and load the room/user
 
     this.janusServerUrl = this.wsUrl ? this.wsUrl : this.httpUrl;
@@ -170,13 +172,17 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
       shareReplay(1)
     );
 
-    this.setupJanusRoom();
-
     // @ts-ignore
     if (window.Cypress) {
       // @ts-ignore
       window.janusStore = this.janusStore;
     }
+
+    // This ensures that the user has already granted all permissions before we
+    // start setting up the videoroom. Otherwise there are a lot of weird race
+    // conditions to consider
+    await this.webrtc.getUserMedia(this.devices.audioDeviceId, this.devices.videoDeviceId);
+    this.setupJanusRoom();
   }
 
   ngOnDestroy(): void {

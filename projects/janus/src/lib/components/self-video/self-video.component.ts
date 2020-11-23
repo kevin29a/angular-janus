@@ -8,7 +8,6 @@ import {
   Output
 } from '@angular/core';
 
-import { WebrtcService } from '../../services/janus.service';
 import {
   RoomInfo,
   RoomInfoState,
@@ -51,9 +50,7 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
   private currentDevices: Devices;
   private afterViewInitRan = false;
 
-  constructor(
-    private webrtc: WebrtcService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
