@@ -128,6 +128,12 @@ component docs is [here](https://kevin29a.github.io/angular-janus/components/Jan
 We have written a small, sample application to show how to use the library. The
 repo lives [here](https://github.com/kevin29a/angular-janus-sample-app).
 
+### Janus setup
+
+This is a client library tightly coupled with a Janus webrtc Server with the
+videoroom plugin.  The documentation for that can be found on that Janus
+website [here](https://janus.conf.meetecho.com).
+
 ## Future Work
 
 In addition to tireless bug fixing and making sure it works on all platforms
