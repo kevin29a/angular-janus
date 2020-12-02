@@ -20,6 +20,7 @@ export interface PublishOwnFeedPayload {
   audioDeviceId: string;
   videoDeviceId: string;
   canvasId: string;
+  skipVideoCapture: boolean;
 }
 
 /** @internal */

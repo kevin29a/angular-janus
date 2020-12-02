@@ -102,8 +102,8 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
       mergeMap((payload: actions.PublishOwnFeedPayload) => {
         this.log('publishOwnFeed', payload);
         this.reduce(new actions.PublishOwnFeed(payload));
-        const {audioDeviceId, videoDeviceId, canvasId} = payload;
-        return this.janusService.publishOwnFeed(audioDeviceId, videoDeviceId, canvasId)
+        const {audioDeviceId, videoDeviceId, canvasId, skipVideoCapture} = payload;
+        return this.janusService.publishOwnFeed(audioDeviceId, videoDeviceId, canvasId, skipVideoCapture)
           .pipe(
             tap(() => {
               this.reduce(new actions.PublishOwnFeedSuccess());

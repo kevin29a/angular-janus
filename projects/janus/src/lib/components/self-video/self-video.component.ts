@@ -72,6 +72,7 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       audioDeviceId,
       videoDeviceId,
       canvasId: 'canvas-self',
+      skipVideoCapture: false,
     });
   }
 

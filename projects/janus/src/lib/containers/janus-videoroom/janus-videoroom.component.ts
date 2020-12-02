@@ -1,7 +1,9 @@
 import * as moment from 'moment';
 
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -10,6 +12,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 
 import { first, startWith, shareReplay, takeUntil, switchMap } from 'rxjs/operators';
@@ -52,7 +55,7 @@ import { WebrtcService } from '../../services/janus.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [JanusStore],
 })
-export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
+export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
   /**
    * *Required* Janus room id. Can be either a string or a number. This must match server configuration.
@@ -150,6 +153,13 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   /** @internal */
   remoteFeeds$: Observable<RemoteFeed[]>;
 
+  /** @internal */
+  @ViewChild('container')
+  container: ElementRef;
+
+  /** @internal */
+  showDefaultRoom = false;
+
   private muted = false;
   private destroy$ = new Subject();
   private janusServerUrl: string;
@@ -157,6 +167,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private readonly janusStore: JanusStore,
     private webrtc: WebrtcService,
+    private changeDetector: ChangeDetectorRef,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -190,6 +201,14 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.container.nativeElement.childNodes.length === 0) {
+      this.showDefaultRoom = true;
+    }
+
+    this.changeDetector.detectChanges();
   }
 
   ngOnChanges(changes): void {

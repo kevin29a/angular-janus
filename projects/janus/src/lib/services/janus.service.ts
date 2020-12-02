@@ -437,6 +437,7 @@ export class JanusService {
     audioDeviceId: string | null,
     videoDeviceId: string,
     canvasId: string = 'canvas-self',
+    skipVideoCapture: boolean = false,
   ): Observable<boolean> {
     // Publish our own feed
     return new Observable(
@@ -448,66 +449,83 @@ export class JanusService {
             takeWhile(() => this.publishWebrtcState)
           ).subscribe({
             complete: () => {
-              this.createOffer(subscriber, audioDeviceId, videoDeviceId, canvasId);
+              this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
             }
           });
         } else {
           // Simple case. Not publishing yet
-          this.createOffer(subscriber, audioDeviceId, videoDeviceId, canvasId);
+          this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
         }
       }
     );
   }
 
-  createOffer(
+  createStreamAndOffer(
     subscriber,
     audioDeviceId: string | null,
     videoDeviceId: string,
     canvasId: string,
+    skipVideoCapture: boolean,
     retryCount = 0,
   ): void {
     const instance = this;
-    instance.webrtcService.getUserMedia(audioDeviceId, videoDeviceId)
-    .then(
-      (videoStream) => {
-        instance.localStream = videoStream;
-        const {videoElement, canvasStream} = instance._createVideoElement(canvasId, videoStream);
-        instance.videoElement = videoElement;
-        this.handle.createOffer({
-          media: { audioRecv: false, videoRecv: false, audioSend: true, videoSend: true },
-          success(jsep): void {
-            const publish = { request: 'configure', audio: true, video: true };
-            instance.handle.send({message: publish, jsep});
-            subscriber.next(true);
-            subscriber.complete();
-          },
-          error(error): void {
-            subscriber.error(error);
-          },
-          simulcast: true,
-          simulcastMaxBitrates: {
-            high: 256000,
-            medium: 128000,
-            low: 64000,
-          },
-          stream: canvasStream,
-          trickle: true,
-        });
-      }
-    ).catch((error) => {
-      // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future would might
-      // find a race condition where we need to wait for an event before calling getUserMedia
-      if (retryCount < 2) {
-        setTimeout(() => {
-          instance.createOffer(
-            subscriber,
-            audioDeviceId,
-            videoDeviceId,
-            canvasId,
-            retryCount = retryCount + 1,
-          );
-        }, 1000);
-      }
+    if (skipVideoCapture) {
+      // We don't create any video element, etc.
+      const canvasElement: any = document.getElementById(canvasId);
+      const canvasStream = canvasElement.captureStream();
+      return this.createOffer(subscriber, canvasStream);
+    } else {
+      // Common case. We need to create a video element
+      instance.webrtcService.getUserMedia(audioDeviceId, videoDeviceId)
+        .then((videoStream) => {
+          instance.localStream = videoStream;
+          const {videoElement, canvasStream} = instance._createVideoElement(canvasId, videoStream);
+          instance.videoElement = videoElement;
+          this.createOffer(subscriber, canvasStream);
+        }
+      ).catch((error) => {
+        // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future work might
+        // find a race condition where we need to wait for an event before calling getUserMedia
+        if (retryCount < 2) {
+          setTimeout(() => {
+            instance.createStreamAndOffer(
+              subscriber,
+              audioDeviceId,
+              videoDeviceId,
+              canvasId,
+              skipVideoCapture,
+              retryCount + 1,
+            );
+          }, 1000);
+        }
+      });
+    }
+  }
+
+  createOffer(
+    subscriber,
+    stream,
+  ): void {
+    const instance = this;
+    this.handle.createOffer({
+      media: { audioRecv: false, videoRecv: false, audioSend: true, videoSend: true },
+      success(jsep): void {
+        const publish = { request: 'configure', audio: true, video: true };
+        instance.handle.send({message: publish, jsep});
+        subscriber.next(true);
+        subscriber.complete();
+      },
+      error(error): void {
+        subscriber.error(error);
+      },
+      simulcast: true,
+      simulcastMaxBitrates: {
+        high: 256000,
+        medium: 128000,
+        low: 64000,
+      },
+      trickle: true,
+      stream,
     });
   }
 

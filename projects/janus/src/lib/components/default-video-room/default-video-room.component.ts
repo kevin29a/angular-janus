@@ -13,8 +13,8 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { fromEvent, Observable, Subscription, interval } from 'rxjs';
-import { debounce, withLatestFrom } from 'rxjs/operators';
+import { fromEvent, Observable, Subscription, interval, Subject } from 'rxjs';
+import { debounce, takeUntil } from 'rxjs/operators';
 
 import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 
@@ -37,9 +37,15 @@ import {
 export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() roomInfo: RoomInfo;
-  @Input() remoteFeeds$: Observable<RemoteFeed[]>;
   @Input() role: JanusRole;
   @Input() devices?: Devices;
+
+  @Input()
+  get remoteFeeds(): RemoteFeed[] { return this.privateRemoteFeeds; }
+  set remoteFeeds(remoteFeeds: RemoteFeed[]) {
+    this.privateRemoteFeeds = remoteFeeds;
+    this.computeVideoWidth(remoteFeeds.length);
+  }
 
   @Output()
   requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
@@ -53,7 +59,10 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   private resizeObservable$: Observable<Event>;
 
   // subscriptions
-  private subs: { [id: string]: Subscription } = {};
+  private destroy$ = new Subject();
+
+  // Private remote feeds
+  private privateRemoteFeeds: RemoteFeed[] = [];
 
   public videoWidth = 0;
   public videoHeight = 0;
@@ -80,9 +89,8 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngOnDestroy(): void {
-    for (const key of Object.keys(this.subs)) {
-      this.subs[key].unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   get publishing(): boolean {
@@ -128,24 +136,13 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
 
   setupSubscriptions(): void {
     // Compute video width whenever the window is resized
-    this.subs[`resize`] = this.resizeObservable$
+    this.resizeObservable$
       .pipe(
         debounce(() => interval(500)),
-        withLatestFrom(this.remoteFeeds$),
+        takeUntil(this.destroy$),
       )
-      .subscribe(([event, remoteFeeds]) => {
-        this.computeVideoWidth(remoteFeeds.length);
-
-        // The window resize event is outside of angular, so change detection won't
-        // automatically pick this up. Smells a bit, but not sure there's a better
-        // solution
-        this.changeDetector.detectChanges();
-      });
-
-    // Compute video width whenever the remote feeds change
-    this.subs[`remoteFeeds`] = this.remoteFeeds$
-      .subscribe((remoteFeeds) => {
-        this.computeVideoWidth(remoteFeeds.length);
+      .subscribe((event) => {
+        this.computeVideoWidth(this.remoteFeeds.length);
       });
 
     // Do an initial calculation
@@ -153,6 +150,9 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   computeVideoWidth(numRemoteVideos): void {
+    if (!this.viewport) {
+      return;
+    }
     // Adding 1 for our local video
     let numVideos = numRemoteVideos;
     if (this.publishing) {
@@ -167,6 +167,11 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     this.videoHeight = this.videoWidth * 3 / 4;
 
     this.computeSpeakerModeDimensions();
+
+    // The window resize event is outside of angular, so change detection won't
+    // automatically pick this up. Smells a bit, but not sure there's a better
+    // solution
+    this.changeDetector.detectChanges();
   }
 
   computeSpeakerModeDimensions(aspectRatio: number = 4 / 3): void {
