@@ -17,7 +17,7 @@ import {
 import { Subject, interval, fromEvent } from 'rxjs';
 import { first, takeUntil, debounce } from 'rxjs/operators';
 
-import { RemoteFeed, JanusRole, Devices } from '../../models/janus.models';
+import { RemoteFeed, JanusRole, Devices, RequestSubstreamPayload } from '../../models';
 import { randomString } from '../../shared';
 import { JanusService } from '../../services/janus.service';
 
@@ -51,7 +51,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
   maximize = new EventEmitter<RemoteFeed>();
 
   @Output()
-  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+  requestSubstream = new EventEmitter<RequestSubstreamPayload>();
 
   public videoId: string;
   public optionsOpen = false;

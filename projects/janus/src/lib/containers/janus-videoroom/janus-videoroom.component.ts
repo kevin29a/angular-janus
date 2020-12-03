@@ -1,9 +1,7 @@
 import * as moment from 'moment';
 
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -30,9 +28,10 @@ import {
   IceServer,
 } from '../../models/janus.models';
 
-import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
+import { VideoRoomComponent } from '../../models/video-room-wrapper.models';
+
 import { JanusStore } from '../../store/janus.store';
-import { JanusErrors } from '../../models/janus-server.models';
+import { JanusErrors, PublishOwnFeedPayload, RequestSubstreamPayload } from '../../models';
 import { WebrtcService } from '../../services/janus.service';
 
 /**
@@ -55,7 +54,7 @@ import { WebrtcService } from '../../services/janus.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [JanusStore],
 })
-export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
   /**
    * *Required* Janus room id. Can be either a string or a number. This must match server configuration.
@@ -123,6 +122,12 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, Af
   iceServers: IceServer[] = [{urls: 'stun:stun2.l.google.com:19302'}];
 
   /**
+   * Component to use for implementing the video room
+   */
+  @Input()
+  component: VideoRoomComponent;
+
+  /**
    * When set to true, the user's audio is muted.
    */
   @Input()
@@ -135,6 +140,12 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, Af
    * @ignore
    */
   get isMuted(): boolean { return this.muted; }
+
+  /**
+   * Input/output devices to use. If not provided, will use the default system devices
+   */
+  @Input()
+  videoRoomComponent?: VideoRoomComponent;
 
   /**
    * Emits errors encountered. These errors are fatal.
@@ -167,7 +178,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, Af
   constructor(
     private readonly janusStore: JanusStore,
     private webrtc: WebrtcService,
-    private changeDetector: ChangeDetectorRef,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -201,14 +211,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, Af
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  ngAfterViewInit(): void {
-    if (this.container.nativeElement.childNodes.length === 0) {
-      this.showDefaultRoom = true;
-    }
-
-    this.changeDetector.detectChanges();
   }
 
   ngOnChanges(changes): void {
@@ -327,8 +329,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges, Af
   }
 
   /** @internal */
-  onRequestSubstream(payload: {feed: RemoteFeed, substreamId: number}): void {
-    const {feed, substreamId} = payload;
-    this.janusStore.requestSubstream({feed, substreamId});
+  onRequestSubstream(payload: RequestSubstreamPayload): void {
+    this.janusStore.requestSubstream(payload);
   }
 }

@@ -16,16 +16,16 @@ import {
 import { fromEvent, Observable, Subscription, interval, Subject } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
 
-import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
-
 import {
   Devices,
   JanusRole,
+  PublishOwnFeedPayload,
   RemoteFeed,
   RemoteFeedState,
+  RequestSubstreamPayload,
   RoomInfo,
   RoomInfoState,
-} from '../../models/janus.models';
+} from '../../models';
 
 /** @internal */
 @Component({
@@ -106,7 +106,7 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
-  onRequestSubstream(event: {feed: RemoteFeed, substreamId: number}): void {
+  onRequestSubstream(event: RequestSubstreamPayload): void {
     this.requestSubstream.emit(event);
   }
 

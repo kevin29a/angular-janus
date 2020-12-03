@@ -1,14 +1,9 @@
-<div #container>
-  <ng-content></ng-content>
-</div>
-
-<span *ngIf="showDefaultRoom">
-  <janus-default-video-room
-    [roomInfo]='roomInfo$ | async'
-    [remoteFeeds]='remoteFeeds$ | async'
-    [role]='role'
-    [devices]='devices'
-    (publishOwnFeed)='onPublishOwnFeed($event)'
-    (requestSubstream)='onRequestSubstream($event)'
-  ></janus-default-video-room>
-</span>
+<janus-video-room-wrapper
+  [roomInfo]='roomInfo$ | async'
+  [remoteFeeds]='remoteFeeds$ | async'
+  [role]='role'
+  [devices]='devices'
+  [component]='component'
+  (publishOwnFeed)='onPublishOwnFeed($event)'
+  (requestSubstream)='onRequestSubstream($event)'
+></janus-video-room-wrapper>

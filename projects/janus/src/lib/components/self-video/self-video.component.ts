@@ -9,13 +9,12 @@ import {
 } from '@angular/core';
 
 import {
+  Devices,
+  PublishOwnFeedPayload,
+  PublishState,
   RoomInfo,
   RoomInfoState,
-  PublishState,
-  Devices,
-} from '../../models/janus.models';
-
-import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
+} from '../../models';
 
 /** @internal
  *
