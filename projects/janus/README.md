@@ -145,6 +145,13 @@ app wants to implement buttons on a publisher video itself, or change the
 entire look and feel of the videoroom. We do this internally, and are working
 to release those touchpoints to the public package.
 
+## Donations
+
+Are you happy with the product and want to support future development? We
+accept donations
+[here](https://www.paypal.com/donate?hosted_button_id=F88QF46FGCGUY). Donations
+fund development of new features on the library.
+
 ## Source Code
 
 Source code for this library lives [here](https://github.com/kevin29a/angular-janus)
