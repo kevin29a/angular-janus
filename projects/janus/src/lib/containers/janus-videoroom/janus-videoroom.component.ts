@@ -181,7 +181,9 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
     // This ensures that the user has already granted all permissions before we
     // start setting up the videoroom. Otherwise there are a lot of weird race
     // conditions to consider
-    // const devices = await this.webrtc.getDefaultDevices();
+    if (!this.devices) {
+      this.devices = await this.webrtc.getDefaultDevices();
+    }
     const stream = await this.webrtc.getUserMedia('', '');
     this.webrtc.clearMediaStream(stream);
     this.setupJanusRoom();
