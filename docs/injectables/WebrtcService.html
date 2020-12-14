@@ -875,6 +875,10 @@ export class JanusService {
 
     const videoElement &#x3D; document.createElement(&#x27;video&#x27;);
     const canvasElement: any &#x3D; document.getElementById(canvasId);
+
+    // Firefox has a bug where calling captureStream before calling getContext results in an error.
+    canvasElement.getContext(&#x27;2d&#x27;);
+
     const canvasStream &#x3D; canvasElement.captureStream();
     const videoSettings &#x3D; videoStream.getVideoTracks()[0].getSettings();
 
@@ -986,6 +990,8 @@ export class JanusService {
             retryCount &#x3D; retryCount + 1,
           );
         }, 1000);
+      } else {
+        subscriber.error(&#x27;Could not open capture device&#x27;, error);
       }
     });
   }

@@ -20,8 +20,8 @@ import {
  *
  * Minor dragons:
  * publishOwnFeed won't work unless we know the devices **and** the canvas element already exists.
- * For this, we need both afterViewInit to have run and onDeviceChange to have run. However, the
- * order of those 2 are not guaranteed.
+ * Therefore, the first call to publishOwnFeed comes in ngAfterViewInit. After the first publish, we
+ * can adjust the devices in onDevicesChange.
  */
 @Component({
   selector: 'janus-self-video',
@@ -47,6 +47,7 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
   publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
 
   private currentDevices: Devices;
+  private devicesInitialized = false;
   private afterViewInitRan = false;
 
   constructor() { }
@@ -60,9 +61,9 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
       throw new Error('RoomInfo.state must be "joined" before creating a self-video component');
     }
 
-    if (this.devices) {
-      this._publishOwnFeed(this.devices.audioDeviceId, this.devices.videoDeviceId);
-    }
+    const audioDeviceId = this.devices ? this.devices.audioDeviceId : null;
+    const videoDeviceId = this.devices ? this.devices.videoDeviceId : null;
+    this._publishOwnFeed(audioDeviceId, videoDeviceId);
   }
 
   _publishOwnFeed(audioDeviceId: string, videoDeviceId: string): void {
