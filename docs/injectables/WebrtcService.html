@@ -929,17 +929,17 @@ export class JanusService {
         if (this.publishWebrtcState) {
           // Already publishing. Need to unpublish, wait until we&#x27;re done unpublishing, and then republish
           this.unPublishOwnFeed();
-          interval(100).pipe(
-            takeWhile(() &#x3D;&gt; this.publishWebrtcState)
-          ).subscribe({
-            complete: () &#x3D;&gt; {
-              this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
-            }
-          });
-        } else {
-          // Simple case. Not publishing yet
-          this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
         }
+
+        // Wait until we&#x27;re not publishing before starting to publish again. Note that
+        // this will immediately complete if we haven&#x27;t started publishing yet.
+        interval(100).pipe(
+          takeWhile(() &#x3D;&gt; this.publishWebrtcState)
+        ).subscribe({
+          complete: () &#x3D;&gt; {
+            this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
+          }
+        });
       }
     );
   }
@@ -970,7 +970,7 @@ export class JanusService {
       ).catch((error) &#x3D;&gt; {
         // Some devices get intermittent errors. I&#x27;m doing a retry here. Not a warm-fuzzy solution. Future work might
         // find a race condition where we need to wait for an event before calling getUserMedia
-        if (retryCount &lt; 2) {
+        if (retryCount &lt; 5) {
           setTimeout(() &#x3D;&gt; {
             instance.createStreamAndOffer(
               subscriber,
