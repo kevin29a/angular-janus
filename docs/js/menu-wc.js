@@ -92,21 +92,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                         </ul>
                                     </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' : 'data-target="#xs-directives-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' }>
-                                        <span class="icon ion-md-code-working"></span>
-                                        <span>Directives</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' :
-                                        'id="xs-directives-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' }>
-                                        <li class="link">
-                                            <a href="directives/VideoRoomWrapperDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">VideoRoomWrapperDirective</a>
-                                        </li>
-                                    </ul>
-                                </li>
                             </li>
                 </ul>
                 </li>
