@@ -445,7 +445,6 @@ export class JanusService {
   ): Observable<boolean> {
     // Publish our own feed
 
-    console.log("PUBLISHING MY OWN FEED", canvasId, skipVideoCapture);
     return new Observable(
       subscriber => {
         if (this.publishWebrtcState) {
@@ -512,7 +511,6 @@ export class JanusService {
     subscriber,
     stream,
   ): void {
-    console.log("CREATING OFFER", stream);
     const instance = this;
     this.handle.createOffer({
       media: { audioRecv: false, videoRecv: false, audioSend: true, videoSend: true },

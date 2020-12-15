@@ -1,12 +1,29 @@
 import { EventEmitter, } from '@angular/core';
 
-import { PublishOwnFeedPayload, RequestSubstreamPayload } from './janus-store.models';
 import {
   Devices,
   JanusRole,
   RemoteFeed,
   RoomInfo,
 } from './janus.models';
+
+
+export interface PublishOwnFeedEvent {
+  audioDeviceId: string;
+  videoDeviceId: string;
+  canvasId: string;
+  skipVideoCapture: boolean;
+}
+
+export interface RequestSubstreamEvent {
+  feed: RemoteFeed;
+  substreamId: number;
+}
+
+export interface AttachRemoteFeedEvent {
+  feed: RemoteFeed;
+  roomInfo: RoomInfo;
+}
 
 /**
  * Interface for customer video room component
@@ -30,8 +47,11 @@ export interface VideoRoomComponent {
   remoteFeeds: RemoteFeed[];
 
   /** Event to request a different substream */
-  requestSubstream: EventEmitter<RequestSubstreamPayload>;
+  requestSubstream: EventEmitter<RequestSubstreamEvent>;
 
   /** Event to publish a locally collected feed */
-  publishOwnFeed: EventEmitter<PublishOwnFeedPayload>;
+  publishOwnFeed: EventEmitter<PublishOwnFeedEvent>;
+
+  /** Event to subscribe to another publisher's feed */
+  attachRemoteFeed: EventEmitter<AttachRemoteFeedEvent>;
 }

@@ -31,6 +31,10 @@ import { VideoRoomWrapperDirective } from './components/video-room-wrapper/video
   exports: [
     JanusVideoroomComponent,
     DeviceSelectorComponent,
+    SelfVideoComponent,
+    VideoBoxComponent,
+    AudioBoxComponent,
+    DefaultVideoRoomComponent,
   ]
 })
 export class JanusModule { }

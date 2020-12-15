@@ -1,20 +1,6 @@
 import { RemoteFeed, RoomInfo } from './janus.models';
 
 /** @internal */
-export interface RequestSubstreamPayload {
-  feed: RemoteFeed;
-  substreamId: number;
-}
-
-/** @internal */
-export interface PublishOwnFeedPayload {
-  audioDeviceId: string;
-  videoDeviceId: string;
-  canvasId: string;
-  skipVideoCapture: boolean;
-}
-
-/** @internal */
 export interface AttachRemoteFeedPayload {
   feed: RemoteFeed;
   roomInfo: RoomInfo;
@@ -30,8 +16,15 @@ export interface RegisterPayload {
 }
 
 /** @internal */
+export interface PublishOwnFeedPayload {
+  audioDeviceId: string;
+  videoDeviceId: string;
+  canvasId: string;
+  skipVideoCapture: boolean;
+}
+
+/** @internal */
 export interface RequestSubstreamPayload {
   feed: RemoteFeed;
   substreamId: number;
 }
-

@@ -31,7 +31,7 @@ import {
 import { VideoRoomComponent } from '../../models/video-room-wrapper.models';
 
 import { JanusStore } from '../../store/janus.store';
-import { JanusErrors, PublishOwnFeedPayload, RequestSubstreamPayload } from '../../models';
+import { JanusErrors, PublishOwnFeedEvent, RequestSubstreamEvent, AttachRemoteFeedEvent } from '../../models';
 import { WebrtcService } from '../../services/janus.service';
 
 /**
@@ -185,9 +185,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
     this.janusServerUrl = this.wsUrl ? this.wsUrl : this.httpUrl;
 
-    this.remoteFeeds$ = this.janusStore.readyRemoteFeeds$.pipe(
-      shareReplay(1),
-    );
+    this.remoteFeeds$ = this.janusStore.remoteFeeds$.pipe(shareReplay(1));
 
     this.roomInfo$ = this.janusStore.roomInfo$.pipe(
       shareReplay(1)
@@ -201,7 +199,9 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
 
     // This ensures that the user has already granted all permissions before we
     // start setting up the videoroom. Otherwise there are a lot of weird race
-    // conditions to consider
+    // conditions to consider. I don't love this because it doesn't handle the
+    // situation where a custom videoroom doesn't require permissions for any
+    // capture devices. However, that's probably not a common use case.
     if (!this.devices) {
       this.devices = await this.webrtc.getDefaultDevices();
     }
@@ -227,6 +227,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
       'role',
       'userName',
       'userId',
+      'component',
     ];
 
     for (const key of resetKeys) {
@@ -253,32 +254,11 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /** @internal */
-  attachRemoteFeeds(remoteFeeds: RemoteFeed[], roomInfo: RoomInfo, pin: string): void {
-    // Attach remote feeds
-
-    for (const feed of remoteFeeds) {
-      if (feed.state === RemoteFeedState.initialized) {
-
-        this.janusStore.attachRemoteFeed({
-          roomInfo,
-          feed,
-          pin,
-        });
-        // Only fire one dispatch per subscribe
-        break;
-      }
-    }
-  }
-
-  /** @internal */
   setupJanusRoom(): void {
     // Setup comms with janus server
 
     this.janusStore.initialize(this.iceServers);
 
-    const allRemoteFeeds$: Observable<RemoteFeed[]> = this.janusStore.remoteFeeds$.pipe(
-      startWith([])
-    );
     this.janusStore.state$.pipe(
       takeUntil(this.destroy$),
     ).subscribe(({roomInfo, remoteFeeds}) => {
@@ -293,7 +273,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
         this.janusError.emit({code: roomInfo.errorCode, message});
       }
 
-      this.attachRemoteFeeds(remoteFeedsArray, roomInfo, pin);
       this.emitRemoteFeeds(remoteFeedsArray);
 
       switch (roomInfo.state) {
@@ -326,12 +305,25 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /** @internal */
-  onPublishOwnFeed(payload: PublishOwnFeedPayload): void {
-    this.janusStore.publishOwnFeed(payload);
+  onPublishOwnFeed(event: PublishOwnFeedEvent): void {
+    this.janusStore.publishOwnFeed(event);
   }
 
   /** @internal */
-  onRequestSubstream(payload: RequestSubstreamPayload): void {
-    this.janusStore.requestSubstream(payload);
+  onRequestSubstream(event: RequestSubstreamEvent): void {
+    this.janusStore.requestSubstream(event);
+  }
+
+  /** @internal */
+  onAttachRemoteFeed(event: AttachRemoteFeedEvent): void {
+    // Attach remote feeds
+
+    const pin = this.pin ? this.pin : null;
+    const { feed, roomInfo } = event;
+    this.janusStore.attachRemoteFeed({
+      feed,
+      roomInfo,
+      pin,
+    });
   }
 }

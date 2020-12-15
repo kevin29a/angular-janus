@@ -17,12 +17,13 @@ import { fromEvent, Observable, Subscription, interval, Subject } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
 
 import {
+  AttachRemoteFeedEvent,
   Devices,
   JanusRole,
-  PublishOwnFeedPayload,
+  PublishOwnFeedEvent,
   RemoteFeed,
   RemoteFeedState,
-  RequestSubstreamPayload,
+  RequestSubstreamEvent,
   RoomInfo,
   RoomInfoState,
 } from '../../models';
@@ -43,15 +44,20 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   @Input()
   get remoteFeeds(): RemoteFeed[] { return this.privateRemoteFeeds; }
   set remoteFeeds(remoteFeeds: RemoteFeed[]) {
+    this.onRemoteFeedsChange(this.privateRemoteFeeds, remoteFeeds);
     this.privateRemoteFeeds = remoteFeeds;
-    this.computeVideoWidth(remoteFeeds.length);
   }
 
-  @Output()
-  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+  readyRemoteFeeds: RemoteFeed[] = [];
 
   @Output()
-  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
+  requestSubstream = new EventEmitter<RequestSubstreamEvent>();
+
+  @Output()
+  publishOwnFeed = new EventEmitter<PublishOwnFeedEvent>();
+
+  @Output()
+  attachRemoteFeed = new EventEmitter<AttachRemoteFeedEvent>();
 
   @ViewChild('viewport') viewport: ElementRef;
 
@@ -106,12 +112,27 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
-  onRequestSubstream(event: RequestSubstreamPayload): void {
+  onRequestSubstream(event: RequestSubstreamEvent): void {
     this.requestSubstream.emit(event);
   }
 
-  onPublishOwnFeed(event: PublishOwnFeedPayload): void {
+  onPublishOwnFeed(event: PublishOwnFeedEvent): void {
     this.publishOwnFeed.emit(event);
+  }
+
+  onRemoteFeedsChange(previousRemoteFeeds: RemoteFeed[], currentRemoteFeeds: RemoteFeed[]): void {
+
+    this.computeVideoWidth(currentRemoteFeeds.length);
+    for (const feed of currentRemoteFeeds) {
+      if (feed.state === RemoteFeedState.initialized) {
+        this.attachRemoteFeed.emit({
+          roomInfo: this.roomInfo,
+          feed,
+        });
+      }
+    }
+
+    this.readyRemoteFeeds = currentRemoteFeeds.filter((x) => x.state === RemoteFeedState.ready);
   }
 
   trackByFeedId(index: number, remoteFeed: RemoteFeed): string {

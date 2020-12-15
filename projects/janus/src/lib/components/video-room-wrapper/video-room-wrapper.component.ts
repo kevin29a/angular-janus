@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { DefaultVideoRoomComponent } from '../default-video-room/default-video-room.component';
-import { PublishOwnFeedPayload, RequestSubstreamPayload, VideoRoomComponent } from '../../models';
+import { PublishOwnFeedEvent, RequestSubstreamEvent, AttachRemoteFeedEvent, VideoRoomComponent } from '../../models';
 import { VideoRoomWrapperDirective } from './video-room-wrapper.directive';
 
 import {
@@ -42,10 +42,13 @@ export class VideoRoomWrapperComponent implements OnInit, OnDestroy, OnChanges {
   @Input() component?: Type<VideoRoomComponent>;
 
   @Output()
-  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+  requestSubstream = new EventEmitter<RequestSubstreamEvent>();
 
   @Output()
-  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
+  publishOwnFeed = new EventEmitter<PublishOwnFeedEvent>();
+
+  @Output()
+  attachRemoteFeed = new EventEmitter<AttachRemoteFeedEvent>();
 
   @ViewChild(VideoRoomWrapperDirective, {static: true}) janusVideoRoomWrapper: VideoRoomWrapperDirective;
 
@@ -64,9 +67,13 @@ export class VideoRoomWrapperComponent implements OnInit, OnDestroy, OnChanges {
     this.destroy$.complete();
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes): void {
     if (this.componentRef) {
       this.syncComponentData();
+    }
+
+    if ('component' in changes && !changes.component.firstChange) {
+      this.loadComponent();
     }
   }
 
@@ -81,14 +88,20 @@ export class VideoRoomWrapperComponent implements OnInit, OnDestroy, OnChanges {
     // Listen to the event and emit them here
     this.componentRef.instance.publishOwnFeed.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((payload: PublishOwnFeedPayload) => {
+    ).subscribe((payload: PublishOwnFeedEvent) => {
       this.publishOwnFeed.emit(payload);
     });
 
     this.componentRef.instance.requestSubstream.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((payload: any) => {
+    ).subscribe((payload: RequestSubstreamEvent) => {
       this.requestSubstream.emit(payload);
+    });
+
+    this.componentRef.instance.attachRemoteFeed.pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((payload: AttachRemoteFeedEvent) => {
+      this.attachRemoteFeed.emit(payload);
     });
 
     this.syncComponentData();
@@ -99,13 +112,5 @@ export class VideoRoomWrapperComponent implements OnInit, OnDestroy, OnChanges {
     this.componentRef.instance.role = this.role;
     this.componentRef.instance.devices = this.devices;
     this.componentRef.instance.remoteFeeds = this.remoteFeeds;
-  }
-
-  onPublishOwnFeed(payload: PublishOwnFeedPayload): void {
-    this.publishOwnFeed.emit(payload);
-  }
-
-  onRequestSubstream(payload: RequestSubstreamPayload): void {
-    this.requestSubstream.emit(payload);
   }
 }
