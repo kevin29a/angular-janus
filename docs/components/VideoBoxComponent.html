@@ -1,0 +1,1297 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>VideoBoxComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/video-box/video-box.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for rendering an audio/video stream received from a remote publisher</p>
+<p>In addition to rendering the video content, this will keep track of the streaming
+performance and request higher/lower bitrate streams when simulcast is available.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>janus-video-box</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./video-box.component.scss,<br>../../styles/video-styles.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./video-box.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#videoQualityHelper">videoQualityHelper</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#monitorVideoQuality">monitorVideoQuality</a>
+                            </li>
+                            <li>
+                                <a href="#onDeviceChange">onDeviceChange</a>
+                            </li>
+                            <li>
+                                <a href="#onMaximize">onMaximize</a>
+                            </li>
+                            <li>
+                                <a href="#setupSubscriptions">setupSubscriptions</a>
+                            </li>
+                            <li>
+                                <a href="#switchSubstream">switchSubstream</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#devices">devices</a>
+                            </li>
+                            <li>
+                                <a href="#mode">mode</a>
+                            </li>
+                            <li>
+                                <a href="#remoteFeed">remoteFeed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#maximize">maximize</a>
+                            </li>
+                            <li>
+                                <a href="#requestSubstream">requestSubstream</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#devices">devices</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(janusService: JanusService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:89</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>janusService</td>
+                                                  
+                                                        <td>
+                                                                    <code>JanusService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <b>devices</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:54</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Requested output device (speaker). If available, this will dynamically change the
+speaker device. This is not available in chrome on android</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mode"></a>
+                        <b>mode</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;speaker&quot; | &quot;grid&quot;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:48</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current mode of the videoroom </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="remoteFeed"></a>
+                        <b>remoteFeed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:45</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>RemoteFeed object </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="maximize"></a>
+                        <b>maximize</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event for switching to speaker/grid view </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requestSubstream"></a>
+                        <b>requestSubstream</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:68</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event for switching to speaker/grid view </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="monitorVideoQuality"></a>
+                    <span class="name">
+                        <b>
+                            monitorVideoQuality
+                        </b>
+                        <a href="#monitorVideoQuality"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>monitorVideoQuality(slowLink: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/lib/components/video-box/video-box.component.ts:166</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called anytime the <code>remoteFeed</code> changes plus on a set interval </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>slowLink</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDeviceChange"></a>
+                    <span class="name">
+                        <b>
+                            onDeviceChange
+                        </b>
+                        <a href="#onDeviceChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDeviceChange(devices: <a href="../interfaces/Devices.html">Devices</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/lib/components/video-box/video-box.component.ts:211</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Attempts to change speaker if requested </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>devices</td>
+                                    <td>
+                                                <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMaximize"></a>
+                    <span class="name">
+                        <b>
+                            onMaximize
+                        </b>
+                        <a href="#onMaximize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMaximize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/lib/components/video-box/video-box.component.ts:206</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Callback for the maximize button </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupSubscriptions"></a>
+                    <span class="name">
+                        <b>
+                            setupSubscriptions
+                        </b>
+                        <a href="#setupSubscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setupSubscriptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/lib/components/video-box/video-box.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Interval for checking video quality </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="switchSubstream"></a>
+                    <span class="name">
+                        <b>
+                            switchSubstream
+                        </b>
+                        <a href="#switchSubstream"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>switchSubstream(substreamId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/lib/components/video-box/video-box.component.ts:197</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called to request a new substream </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>substreamId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="videoQualityHelper"></a>
+                        <span class="name">
+                            <b>
+                            videoQualityHelper</b>
+                            <a href="#videoQualityHelper"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>VideoQualityHelper</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:80</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Helper class for monitoring video quality and determining when to request a new substream </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <span class="name"><b>devices</b><a href="#devices"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>devices(devices)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/lib/components/video-box/video-box.component.ts:57</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>devices</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as moment from &#x27;moment&#x27;;
+
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  OnChanges,
+  Output,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+
+import { Subject, interval, fromEvent } from &#x27;rxjs&#x27;;
+import { first, takeUntil, debounce } from &#x27;rxjs/operators&#x27;;
+
+import { RemoteFeed, JanusRole, Devices, RequestSubstreamEvent } from &#x27;../../models&#x27;;
+import { randomString } from &#x27;../../shared&#x27;;
+import { JanusService } from &#x27;../../services/janus.service&#x27;;
+
+import { VideoQualityHelper } from &#x27;./video-quality-helper&#x27;;
+
+
+/**
+ * Component for rendering an audio/video stream received from a remote publisher
+ *
+ * In addition to rendering the video content, this will keep track of the streaming
+ * performance and request higher/lower bitrate streams when simulcast is available.
+ */
+@Component({
+  selector: &#x27;janus-video-box&#x27;,
+  templateUrl: &#x27;./video-box.component.html&#x27;,
+  styleUrls: [
+    &#x27;./video-box.component.scss&#x27;,
+    &#x27;../../styles/video-styles.scss&#x27;,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+
+  /** RemoteFeed object */
+  @Input() remoteFeed: RemoteFeed;
+
+  /** Current mode of the videoroom */
+  @Input() mode: &#x27;speaker&#x27; | &#x27;grid&#x27;;
+
+  /** Requested output device (speaker). If available, this will dynamically change the
+   * speaker device. This is not available in chrome on android
+   */
+  @Input()
+  get devices(): Devices {
+    return this.localDevices;
+  }
+  set devices(devices: Devices) {
+    this.localDevices &#x3D; devices;
+    this.onDeviceChange(devices);
+  }
+
+  /** Event for switching to speaker/grid view */
+  @Output()
+  maximize &#x3D; new EventEmitter&lt;RemoteFeed&gt;();
+
+  /** Event for switching to speaker/grid view */
+  @Output()
+  requestSubstream &#x3D; new EventEmitter&lt;RequestSubstreamEvent&gt;();
+
+  /** @internal */
+  public videoId: string;
+
+  /** @internal */
+  public optionsOpen &#x3D; false;
+
+  /** @internal */
+  public videoAvailable &#x3D; false;
+
+  /** Helper class for monitoring video quality and determining when to request a new substream */
+  videoQualityHelper: VideoQualityHelper; // public for testing purposes
+
+  /** @internal */
+  private localDevices: Devices;
+
+  /** @internal */
+  private destroy$ &#x3D; new Subject();
+
+  /** @internal */
+  @ViewChild(&#x27;videoElement&#x27;) video: ElementRef;
+
+  constructor(
+    private janusService: JanusService
+  ) {
+    this.videoQualityHelper &#x3D; new VideoQualityHelper(3);
+  }
+
+  ngOnInit(): void {
+    // Set my unique id for the video
+    this.videoId &#x3D; &#x27;video-&#x27; + this.remoteFeed.id + this.mode;
+    this.setupSubscriptions();
+  }
+
+  ngAfterViewInit(): void {
+    this._attachMediaStream();
+    this.setSpeaker(this.devices);
+  }
+
+  ngOnChanges(changes): void {
+    if (&#x27;remoteFeed&#x27; in changes) {
+      // If there&#x27;s a change in the remoteFeed, run the video quality monitor task
+      let slowLink &#x3D; false;
+
+      if (
+        changes.remoteFeed.previousValue
+        &amp;&amp; changes.remoteFeed.previousValue.slowLink !&#x3D;&#x3D; changes.remoteFeed.currentValue.slowLink
+      ) {
+        slowLink &#x3D; true;
+      }
+
+      this.monitorVideoQuality(slowLink);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.video) {
+      this.video.nativeElement.pause();
+    }
+  }
+
+  /** Interval for checking video quality */
+  setupSubscriptions(): void {
+    interval(1000).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() &#x3D;&gt; {
+      this.monitorVideoQuality(false);
+    });
+  }
+
+  /** @internal */
+  _attachMediaStream(): void {
+    this.janusService.attachMediaStream(this.videoId, this.remoteFeed.streamId);
+  }
+
+  /** @internal */
+  private setSpeaker(devices: Devices): void {
+    // Given the devices, set the output sound device
+    if (
+      this.video
+      &amp;&amp; this.video.nativeElement
+      &amp;&amp; this.video.nativeElement.setSinkId
+      &amp;&amp; devices
+      &amp;&amp; devices.speakerDeviceId
+    ) {
+      this.video.nativeElement.setSinkId(devices.speakerDeviceId);
+    }
+  }
+
+  /** @internal */
+  onPlay(): void {
+    this.videoAvailable &#x3D; true;
+  }
+
+  /** Called anytime the &#x60;remoteFeed&#x60; changes plus on a set interval */
+  monitorVideoQuality(slowLink: boolean): void {
+    // Periodic task to monitor the video quality and change substream if necessary
+
+    if (!this.remoteFeed) {
+      // If we don&#x27;t have a remoteFeed, nothing we can do here
+      return;
+    }
+
+    if (!this.videoAvailable &amp;&amp; this.video) {
+      // Sometimes this needs a kick start. For example, if the user takes a second to click
+      // the &quot;allow&quot; button for video/mic access, the autoplay on the video element won&#x27;t
+      // actually autoplay
+      this.video.nativeElement.play();
+    }
+
+    const currentSubstream &#x3D; this.remoteFeed.currentSubstream;
+    if (this.remoteFeed.numVideoTracks &#x3D;&#x3D;&#x3D; 0 || slowLink) {
+      this.videoQualityHelper.streamError(currentSubstream);
+      if (currentSubstream &gt; 0) {
+        this.switchSubstream(currentSubstream - 1);
+      }
+    } else {
+      const newSubstream &#x3D; this.videoQualityHelper.ping(currentSubstream);
+      if (newSubstream &gt; currentSubstream) {
+        this.videoQualityHelper.streamEnd(currentSubstream);
+        this.switchSubstream(newSubstream);
+      }
+    }
+  }
+
+  /** Called to request a new substream */
+  switchSubstream(substreamId: number): void {
+    // Switch the substream if we haven&#x27;t already requested this substream
+    if (this.remoteFeed.requestedSubstream !&#x3D;&#x3D; substreamId) {
+      console.log(&#x27;switching substream&#x27;, substreamId, this.videoId);
+      this.requestSubstream.emit({feed: this.remoteFeed, substreamId});
+    }
+  }
+
+  /** Callback for the maximize button */
+  onMaximize(): void {
+    this.maximize.emit(this.remoteFeed);
+  }
+
+  /** Attempts to change speaker if requested */
+  onDeviceChange(devices: Devices): void {
+    this.setSpeaker(devices);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&#x27;video-container&#x27;&gt;
+  &lt;div class&#x3D;&#x27;interior-box&#x27;&gt;
+    &lt;video
+      #videoElement
+      id&#x3D;&#x27;{{videoId}}&#x27;
+      autoplay
+      playsinline
+      (play)&#x3D;&#x27;onPlay()&#x27;
+    &gt;&lt;/video&gt;
+
+    &lt;div
+      *ngIf&#x3D;&quot;remoteFeed.displayName&quot;
+      data-cy&#x3D;&#x27;video-box-display-name&#x27;
+      class&#x3D;&#x27;overlay display-name&#x27;&gt;
+      {{ remoteFeed.displayName }}
+    &lt;/div&gt;
+
+    &lt;div
+      data-cy&#x3D;&#x27;video-box-maximize-button&#x27;
+      class&#x3D;&#x27;overlay maximize&#x27;
+      (click)&#x3D;&#x27;onMaximize()&#x27; 
+      &gt;
+
+      &lt;i
+        *ngIf&#x3D;&#x27;mode &#x3D;&#x3D;&#x3D; &quot;grid&quot;&#x27;
+        class&#x3D;&quot;fas fa-expand&quot;
+        matTooltip&#x3D;&quot;Show Full Size&quot;&gt;
+      &lt;/i&gt;
+
+      &lt;i
+        *ngIf&#x3D;&#x27;mode &#x3D;&#x3D;&#x3D; &quot;speaker&quot;&#x27;
+        class&#x3D;&quot;fas fa-compress&quot;
+        matTooltip&#x3D;&quot;Show All Speakers&quot;&gt;
+      &lt;/i&gt;
+    &lt;/div&gt;
+
+    &lt;div 
+      *ngIf&#x3D;&#x27;!videoAvailable&#x27;
+      class&#x3D;&#x27;loading-blocker&#x27;&gt;
+      &lt;p&gt; Loading... &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./video-box.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">div.display-name {
+    display: flex;
+    z-index: 1;
+
+    span.separator {
+        margin: 0 5px 0 10px;
+    }
+
+    i.fas {
+        font-size: 14px;
+        margin: 0 5px 0 5px;
+        cursor: pointer;
+    }
+}
+
+div.maximize {
+   left: auto !important;
+   right: 1px;
+   cursor: pointer;
+   z-index: 1;
+}
+</code></pre>
+                <p class="comment">
+                    <code>../../styles/video-styles.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">div.video-container {
+    height: 100%;
+
+    video,canvas {
+        height: 100%;
+        width: 100%;
+        font-size: 0px;
+        display: block;
+        object-fit: fill;
+    }
+
+    canvas {
+        transform: scaleX(-1);
+    }
+    video {
+        /* border: 1px solid rgba(0,0,0,.5); */
+    }
+
+    div.interior-box {
+        height: 100%;
+        position: relative;
+        border: 1px solid rgba(0,0,0,.5);
+    }
+
+    div.self {
+        border: 1px solid #8ae010;
+    }
+
+    div.overlay {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        padding: 5px;
+        background-color: rgba(53,53,53,.7);
+
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        color: #ffffff;
+    }
+}
+
+div.loading-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 24px;
+        color: #777;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class=\'video-container\'>  <div class=\'interior-box\'>    <video      #videoElement      id=\'{{videoId}}\'      autoplay      playsinline      (play)=\'onPlay()\'    ></video>    <div      *ngIf="remoteFeed.displayName"      data-cy=\'video-box-display-name\'      class=\'overlay display-name\'>      {{ remoteFeed.displayName }}    </div>    <div      data-cy=\'video-box-maximize-button\'      class=\'overlay maximize\'      (click)=\'onMaximize()\'       >      <i        *ngIf=\'mode === "grid"\'        class="fas fa-expand"        matTooltip="Show Full Size">      </i>      <i        *ngIf=\'mode === "speaker"\'        class="fas fa-compress"        matTooltip="Show All Speakers">      </i>    </div>    <div       *ngIf=\'!videoAvailable\'      class=\'loading-blocker\'>      <p> Loading... </p>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AudioBoxComponent', 'selector': 'janus-nvid-audio-box'},{'name': 'DefaultVideoRoomComponent', 'selector': 'janus-default-video-room'},{'name': 'DeviceSelectorComponent', 'selector': 'janus-device-selector'},{'name': 'JanusVideoroomComponent', 'selector': 'janus-videoroom'},{'name': 'SelfVideoComponent', 'selector': 'janus-self-video'},{'name': 'VideoBoxComponent', 'selector': 'janus-video-box'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'VideoBoxComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'VideoBoxComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

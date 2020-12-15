@@ -4,7 +4,6 @@ import * as moment from 'moment';
  * Device specifications
  */
 export interface Devices {
-
   /** Microphone Device ID */
   audioDeviceId: string;
 
@@ -16,8 +15,7 @@ export interface Devices {
 }
 
 /**
- * @internal
- * State for a room
+ * Room state machine
  */
 export enum RoomInfoState {
   start = 'start',
@@ -27,12 +25,13 @@ export enum RoomInfoState {
   attached = 'attached',
   attach_failed = 'attach_failed',
   joining = 'joining',
+
+  /** Once joined, you can start publishing */
   joined = 'joined',
   error = 'error',
 }
 
 /**
- * @internal
  * Current publish status
  */
 export enum PublishState {
@@ -44,27 +43,40 @@ export enum PublishState {
 }
 
 /**
- * @internal
- * State information for a room
+ * Metadata for a room
  */
 export interface RoomInfo {
+
+  /** State of the room */
   state: RoomInfoState;
+
+  /** roomId */
   id: string;
+
+  /** Description of the room */
   description: string;
+
+  /** private_id assigned by janus */
   privateId: number;
+
+  /** Value passed back in "joined" message */
   otherRoomId: number;  // This comes back in the "joined" message. Not sure what to use it for
 
+  /** Set to error code if there was an error in the room */
   errorCode: number;
 
-  // Local publishing state
+  /** Local publishing state */
   publishState: PublishState;
+
+  /** @internal Internal stream id */
   localStreamId: string;
+
+  /** True iff the audio is muted */
   muted: boolean;
 }
 
 /**
- * @internal
- * Possible states for a remote feed
+ * Remote feed state machine
  */
 export enum RemoteFeedState {
   initialized = 'initialized',
@@ -75,21 +87,45 @@ export enum RemoteFeedState {
 }
 
 /**
- * @internal
  * Current state of a remote feed
+ * There exists a remote feed object for each available publisher in the video
+ * room. It's possible to attach to these
  */
 export interface RemoteFeed {
+  /** Current state of the feed */
   state: RemoteFeedState;
+
+  /** Id of the publisher */
   id: string;
+
+  /** @internal */
   streamId: string;
+
+  /** number of video tracks available */
   numVideoTracks: number;
+
+  /** Substream requested */
   requestedSubstream: number;
+
+  /** Substream currently being received */
   currentSubstream: number;
+
+  /** Display name of the publisher */
   displayName: string;
+
+  /** @internal */
   audio_codec: string;
+
+  /** @internal */
   video_codec: string;
+
+  /** @internal */
   volume: number;
+
+  /** @internal */
   muted: boolean;
+
+  /** timestamp of most recent slowLink event on this feed */
   slowLink: moment.Moment;
 }
 

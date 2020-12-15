@@ -1,0 +1,693 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SelfVideoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/self-video/self-video.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for rendering video captured from a local device. Component both renders
+the video and emits events to publish it to the janus server</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>janus-self-video</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./self-video.component.scss,<br>../../styles/video-styles.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./self-video.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#devices">devices</a>
+                            </li>
+                            <li>
+                                <a href="#roomInfo">roomInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#publishOwnFeed">publishOwnFeed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#devices">devices</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/components/self-video/self-video.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <b>devices</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/lib/components/self-video/self-video.component.ts:41</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Devices to capture </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roomInfo"></a>
+                        <b>roomInfo</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/RoomInfo.html" target="_self" >RoomInfo</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/components/self-video/self-video.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>roomInfo object. Component will raise a fatal error if the state
+is not <code>RoomInfoState.joined</code></p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="publishOwnFeed"></a>
+                        <b>publishOwnFeed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/components/self-video/self-video.component.ts:49</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event to publish the local stream </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <span class="name"><b>devices</b><a href="#devices"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>devices(devices)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/lib/components/self-video/self-video.component.ts:42</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>devices</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from &#x27;@angular/core&#x27;;
+
+import {
+  Devices,
+  PublishOwnFeedEvent,
+  PublishState,
+  RoomInfo,
+  RoomInfoState,
+} from &#x27;../../models&#x27;;
+
+/**
+ * Component for rendering video captured from a local device. Component both renders
+ * the video and emits events to publish it to the janus server
+ */
+@Component({
+  selector: &#x27;janus-self-video&#x27;,
+  templateUrl: &#x27;./self-video.component.html&#x27;,
+  styleUrls: [
+    &#x27;./self-video.component.scss&#x27;,
+    &#x27;../../styles/video-styles.scss&#x27;,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class SelfVideoComponent implements OnInit, AfterViewInit {
+
+  /** roomInfo object. Component will raise a fatal error if the state
+   * is not &#x60;RoomInfoState.joined&#x60;
+   */
+  @Input() roomInfo: RoomInfo;
+
+  /** Devices to capture */
+  @Input()
+  get devices(): Devices { return this.currentDevices; }
+  set devices(devices) {
+    this.onDevicesChange(this.currentDevices, devices);
+    this.currentDevices &#x3D; devices;
+  }
+
+  /** Event to publish the local stream */
+  @Output()
+  publishOwnFeed &#x3D; new EventEmitter&lt;PublishOwnFeedEvent&gt;();
+
+  private currentDevices: Devices;
+  private devicesInitialized &#x3D; false;
+  private afterViewInitRan &#x3D; false;
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  async ngAfterViewInit(): Promise&lt;void&gt; {
+    // Attach the canvas-self element
+    this.afterViewInitRan &#x3D; true;
+    if (this.roomInfo.state !&#x3D;&#x3D; RoomInfoState.joined) {
+      throw new Error(&#x27;RoomInfo.state must be &quot;joined&quot; before creating a self-video component&#x27;);
+    }
+
+    const audioDeviceId &#x3D; this.devices ? this.devices.audioDeviceId : null;
+    const videoDeviceId &#x3D; this.devices ? this.devices.videoDeviceId : null;
+    this._publishOwnFeed(audioDeviceId, videoDeviceId);
+  }
+
+  /** @internal */
+  _publishOwnFeed(audioDeviceId: string, videoDeviceId: string): void {
+    // Separate this for testing
+    this.publishOwnFeed.emit({
+      audioDeviceId,
+      videoDeviceId,
+      canvasId: &#x27;canvas-self&#x27;,
+      skipVideoCapture: false,
+    });
+  }
+
+  /** @internal */
+  onDevicesChange(previousDevices: Devices, newDevices: Devices): void {
+    if (!newDevices) {
+      return;
+    }
+
+    /* Minor dragon:
+     * publishOwnFeed won&#x27;t work unless we know the devices **and** the canvas element already exists.
+     * Therefore, the first call to publishOwnFeed comes in ngAfterViewInit. After the first publish, we
+     * can adjust the devices in onDevicesChange.
+     */
+    if (!this.afterViewInitRan) {
+      // Haven&#x27;t loaded yet
+      return;
+    }
+
+    if (
+      newDevices
+      &amp;&amp; previousDevices
+      &amp;&amp; newDevices.videoDeviceId &#x3D;&#x3D;&#x3D; previousDevices.videoDeviceId
+      &amp;&amp; newDevices.audioDeviceId &#x3D;&#x3D;&#x3D; previousDevices.audioDeviceId
+    ) {
+      // Same capture devices. nothing to do here
+      return;
+    }
+
+    // There still exists a tiny race condition here. If the user changes the deviceId between a publishOwnFeed
+    // call in ngAfterViewInit and before the publish is complete, that change won&#x27;t be registered :/
+    if (this.roomInfo.publishState &#x3D;&#x3D;&#x3D; PublishState.publishRequested) {
+      return;
+    }
+    this._publishOwnFeed(newDevices.audioDeviceId, newDevices.videoDeviceId);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&#x27;video-container&#x27;&gt;
+  &lt;div class&#x3D;&#x27;interior-box self&#x27;&gt;
+    &lt;canvas id&#x3D;&#x27;canvas-self&#x27;&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./self-video.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">ul.filter-list {
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: block;
+    }
+
+    img.active {
+        border: 1px solid white;
+    }
+
+    img:hover {
+        border: 1px solid #ccc;
+    }
+}
+
+div.filter-box {
+    img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 3px;
+        border: 1px solid rgba(0,0,0,0);    // Prevents resizing when adding a visible border
+    }
+
+    padding: 2px !important;
+}
+</code></pre>
+                <p class="comment">
+                    <code>../../styles/video-styles.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">div.video-container {
+    height: 100%;
+
+    video,canvas {
+        height: 100%;
+        width: 100%;
+        font-size: 0px;
+        display: block;
+        object-fit: fill;
+    }
+
+    canvas {
+        transform: scaleX(-1);
+    }
+    video {
+        /* border: 1px solid rgba(0,0,0,.5); */
+    }
+
+    div.interior-box {
+        height: 100%;
+        position: relative;
+        border: 1px solid rgba(0,0,0,.5);
+    }
+
+    div.self {
+        border: 1px solid #8ae010;
+    }
+
+    div.overlay {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        padding: 5px;
+        background-color: rgba(53,53,53,.7);
+
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        color: #ffffff;
+    }
+}
+
+div.loading-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 24px;
+        color: #777;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class=\'video-container\'>  <div class=\'interior-box self\'>    <canvas id=\'canvas-self\'></canvas>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AudioBoxComponent', 'selector': 'janus-nvid-audio-box'},{'name': 'DefaultVideoRoomComponent', 'selector': 'janus-default-video-room'},{'name': 'DeviceSelectorComponent', 'selector': 'janus-device-selector'},{'name': 'JanusVideoroomComponent', 'selector': 'janus-videoroom'},{'name': 'SelfVideoComponent', 'selector': 'janus-self-video'},{'name': 'VideoBoxComponent', 'selector': 'janus-video-box'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SelfVideoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SelfVideoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -21,7 +21,7 @@
     *ngIf='mode === "grid"'
     >
     <div
-      *ngFor="let remoteFeed of (remoteFeeds$ | async); trackBy:trackByFeedId"
+      *ngFor="let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId"
       [style.width.px]="videoWidth"
       [style.height.px]="videoHeight"
     >
@@ -53,7 +53,7 @@
     </div>
 
     <ng-container
-      *ngFor="let remoteFeed of (remoteFeeds$ | async); trackBy:trackByFeedId"
+      *ngFor="let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId"
     >
       <janus-audio-box
         *ngIf='remoteFeed.id !== speaker.id'

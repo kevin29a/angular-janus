@@ -9,20 +9,16 @@ import {
 } from '@angular/core';
 
 import {
+  Devices,
+  PublishOwnFeedEvent,
+  PublishState,
   RoomInfo,
   RoomInfoState,
-  PublishState,
-  Devices,
-} from '../../models/janus.models';
+} from '../../models';
 
-import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
-
-/** @internal
- *
- * Minor dragons:
- * publishOwnFeed won't work unless we know the devices **and** the canvas element already exists.
- * Therefore, the first call to publishOwnFeed comes in ngAfterViewInit. After the first publish, we
- * can adjust the devices in onDevicesChange.
+/**
+ * Component for rendering video captured from a local device. Component both renders
+ * the video and emits events to publish it to the janus server
  */
 @Component({
   selector: 'janus-self-video',
@@ -35,8 +31,12 @@ import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
 })
 export class SelfVideoComponent implements OnInit, AfterViewInit {
 
+  /** roomInfo object. Component will raise a fatal error if the state
+   * is not `RoomInfoState.joined`
+   */
   @Input() roomInfo: RoomInfo;
 
+  /** Devices to capture */
   @Input()
   get devices(): Devices { return this.currentDevices; }
   set devices(devices) {
@@ -44,8 +44,9 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
     this.currentDevices = devices;
   }
 
+  /** Event to publish the local stream */
   @Output()
-  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
+  publishOwnFeed = new EventEmitter<PublishOwnFeedEvent>();
 
   private currentDevices: Devices;
   private devicesInitialized = false;
@@ -67,20 +68,28 @@ export class SelfVideoComponent implements OnInit, AfterViewInit {
     this._publishOwnFeed(audioDeviceId, videoDeviceId);
   }
 
+  /** @internal */
   _publishOwnFeed(audioDeviceId: string, videoDeviceId: string): void {
     // Separate this for testing
     this.publishOwnFeed.emit({
       audioDeviceId,
       videoDeviceId,
       canvasId: 'canvas-self',
+      skipVideoCapture: false,
     });
   }
 
+  /** @internal */
   onDevicesChange(previousDevices: Devices, newDevices: Devices): void {
     if (!newDevices) {
       return;
     }
 
+    /* Minor dragon:
+     * publishOwnFeed won't work unless we know the devices **and** the canvas element already exists.
+     * Therefore, the first call to publishOwnFeed comes in ngAfterViewInit. After the first publish, we
+     * can adjust the devices in onDevicesChange.
+     */
     if (!this.afterViewInitRan) {
       // Haven't loaded yet
       return;

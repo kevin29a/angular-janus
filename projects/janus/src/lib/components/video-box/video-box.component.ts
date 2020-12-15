@@ -17,14 +17,19 @@ import {
 import { Subject, interval, fromEvent } from 'rxjs';
 import { first, takeUntil, debounce } from 'rxjs/operators';
 
-import { RemoteFeed, JanusRole, Devices } from '../../models/janus.models';
+import { RemoteFeed, JanusRole, Devices, RequestSubstreamEvent } from '../../models';
 import { randomString } from '../../shared';
 import { JanusService } from '../../services/janus.service';
 
 import { VideoQualityHelper } from './video-quality-helper';
 
 
-/** @internal */
+/**
+ * Component for rendering an audio/video stream received from a remote publisher
+ *
+ * In addition to rendering the video content, this will keep track of the streaming
+ * performance and request higher/lower bitrate streams when simulcast is available.
+ */
 @Component({
   selector: 'janus-video-box',
   templateUrl: './video-box.component.html',
@@ -36,8 +41,15 @@ import { VideoQualityHelper } from './video-quality-helper';
 })
 export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
+  /** RemoteFeed object */
   @Input() remoteFeed: RemoteFeed;
+
+  /** Current mode of the videoroom */
   @Input() mode: 'speaker' | 'grid';
+
+  /** Requested output device (speaker). If available, this will dynamically change the
+   * speaker device. This is not available in chrome on android
+   */
   @Input()
   get devices(): Devices {
     return this.localDevices;
@@ -47,21 +59,33 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     this.onDeviceChange(devices);
   }
 
+  /** Event for switching to speaker/grid view */
   @Output()
   maximize = new EventEmitter<RemoteFeed>();
 
+  /** Event for switching to speaker/grid view */
   @Output()
-  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+  requestSubstream = new EventEmitter<RequestSubstreamEvent>();
 
+  /** @internal */
   public videoId: string;
+
+  /** @internal */
   public optionsOpen = false;
+
+  /** @internal */
   public videoAvailable = false;
 
+  /** Helper class for monitoring video quality and determining when to request a new substream */
   videoQualityHelper: VideoQualityHelper; // public for testing purposes
 
+  /** @internal */
   private localDevices: Devices;
+
+  /** @internal */
   private destroy$ = new Subject();
 
+  /** @internal */
   @ViewChild('videoElement') video: ElementRef;
 
   constructor(
@@ -105,6 +129,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     }
   }
 
+  /** Interval for checking video quality */
   setupSubscriptions(): void {
     interval(1000).pipe(
       takeUntil(this.destroy$)
@@ -113,10 +138,12 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     });
   }
 
+  /** @internal */
   _attachMediaStream(): void {
     this.janusService.attachMediaStream(this.videoId, this.remoteFeed.streamId);
   }
 
+  /** @internal */
   private setSpeaker(devices: Devices): void {
     // Given the devices, set the output sound device
     if (
@@ -130,10 +157,12 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     }
   }
 
+  /** @internal */
   onPlay(): void {
     this.videoAvailable = true;
   }
 
+  /** Called anytime the `remoteFeed` changes plus on a set interval */
   monitorVideoQuality(slowLink: boolean): void {
     // Periodic task to monitor the video quality and change substream if necessary
 
@@ -164,6 +193,7 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     }
   }
 
+  /** Called to request a new substream */
   switchSubstream(substreamId: number): void {
     // Switch the substream if we haven't already requested this substream
     if (this.remoteFeed.requestedSubstream !== substreamId) {
@@ -172,10 +202,12 @@ export class VideoBoxComponent implements OnInit, OnChanges, OnDestroy, AfterVie
     }
   }
 
+  /** Callback for the maximize button */
   onMaximize(): void {
     this.maximize.emit(this.remoteFeed);
   }
 
+  /** Attempts to change speaker if requested */
   onDeviceChange(devices: Devices): void {
     this.setSpeaker(devices);
   }

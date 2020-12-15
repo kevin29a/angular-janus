@@ -6,6 +6,12 @@ import { switchMap, mergeMap, tap, map, catchError, filter } from 'rxjs/operator
 
 import { VideoroomState, initialState, reducer } from './reducers/janus.reducers';
 import * as actions from './actions/janus.actions';
+import {
+  AttachRemoteFeedPayload,
+  PublishOwnFeedPayload,
+  RegisterPayload,
+  RequestSubstreamPayload,
+} from '../models';
 import { JanusService } from '../services/janus.service';
 import { IceServer, RoomInfo, RemoteFeed, RemoteFeedState } from '../models/janus.models';
 import { JanusAttachCallbackData } from '../models/janus-server.models';
@@ -97,13 +103,13 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
-  readonly publishOwnFeed = this.effect((payload$: Observable<actions.PublishOwnFeedPayload>) => {
+  readonly publishOwnFeed = this.effect((payload$: Observable<PublishOwnFeedPayload>) => {
     return payload$.pipe(
-      mergeMap((payload: actions.PublishOwnFeedPayload) => {
+      mergeMap((payload: PublishOwnFeedPayload) => {
         this.log('publishOwnFeed', payload);
         this.reduce(new actions.PublishOwnFeed(payload));
-        const {audioDeviceId, videoDeviceId, canvasId} = payload;
-        return this.janusService.publishOwnFeed(audioDeviceId, videoDeviceId, canvasId)
+        const {audioDeviceId, videoDeviceId, canvasId, skipVideoCapture} = payload;
+        return this.janusService.publishOwnFeed(audioDeviceId, videoDeviceId, canvasId, skipVideoCapture)
           .pipe(
             tap(() => {
               this.reduce(new actions.PublishOwnFeedSuccess());
@@ -116,9 +122,9 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
-  readonly attachRemoteFeed = this.effect((payload$: Observable<actions.AttachRemoteFeedPayload>) => {
+  readonly attachRemoteFeed = this.effect((payload$: Observable<AttachRemoteFeedPayload>) => {
     return payload$.pipe(
-      mergeMap((payload: actions.AttachRemoteFeedPayload) => {
+      mergeMap((payload: AttachRemoteFeedPayload) => {
         this.log('attachRemoteFeed', payload);
         this.reduce(new actions.AttachRemoteFeed(payload));
         const {feed, roomInfo, pin} = payload;
@@ -136,9 +142,9 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
-  readonly register = this.effect((payload$: Observable<actions.RegisterPayload>) => {
+  readonly register = this.effect((payload$: Observable<RegisterPayload>) => {
     return payload$.pipe(
-      tap((payload: actions.RegisterPayload) => {
+      tap((payload: RegisterPayload) => {
         const {name, userId, roomId, pin} = payload;
         this.log('register', payload);
         this.reduce(new actions.Register(payload));
@@ -147,9 +153,9 @@ export class JanusStore extends ComponentStore<VideoroomState> implements OnDest
     );
   });
 
-  readonly requestSubstream = this.effect((payload$: Observable<actions.RequestSubstreamPayload>) => {
+  readonly requestSubstream = this.effect((payload$: Observable<RequestSubstreamPayload>) => {
     return payload$.pipe(
-      tap((payload: actions.RequestSubstreamPayload) => {
+      tap((payload: RequestSubstreamPayload) => {
         const {feed, substreamId} = payload;
         this.log('requestSubstream', payload);
         this.reduce(new actions.RequestSubstream({feed, substreamId}));

@@ -1,0 +1,1602 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>DefaultVideoRoomComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/default-video-room/default-video-room.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Reference implementation of a video room display component.</p>
+<p>This component displays the visual elements of a videoroom. The webRTC signalling is
+mostly abstracted away in higher level components. There are a small number of events
+this component can emit in order to affect the webRTC signalling.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>janus-default-video-room</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./default-video-room.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./default-video-room.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#mode">mode</a>
+                            </li>
+                            <li>
+                                <a href="#readyRemoteFeeds">readyRemoteFeeds</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#speaker">speaker</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#computeVideoWidth">computeVideoWidth</a>
+                            </li>
+                            <li>
+                                <a href="#onMaximize">onMaximize</a>
+                            </li>
+                            <li>
+                                <a href="#onPublishOwnFeed">onPublishOwnFeed</a>
+                            </li>
+                            <li>
+                                <a href="#onRemoteFeedsChange">onRemoteFeedsChange</a>
+                            </li>
+                            <li>
+                                <a href="#onRequestSubstream">onRequestSubstream</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#devices">devices</a>
+                            </li>
+                            <li>
+                                <a href="#remoteFeeds">remoteFeeds</a>
+                            </li>
+                            <li>
+                                <a href="#role">role</a>
+                            </li>
+                            <li>
+                                <a href="#roomInfo">roomInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attachRemoteFeed">attachRemoteFeed</a>
+                            </li>
+                            <li>
+                                <a href="#publishOwnFeed">publishOwnFeed</a>
+                            </li>
+                            <li>
+                                <a href="#requestSubstream">requestSubstream</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#remoteFeeds">remoteFeeds</a>
+                                </li>
+                                <li>
+                                    <a href="#publishing">publishing</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(changeDetector: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:114</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>changeDetector</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devices"></a>
+                        <b>devices</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Devices.html" target="_self" >Devices</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Requested devices </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="remoteFeeds"></a>
+                        <b>remoteFeeds</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:63</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Existing <code>RemoteFeeds</code>. This component must request any desired <code>RemoteFeed</code> be streamed by
+emitting a attachRemoteStream event. This is not done automatically because it might not be
+desired to receive all remote feeds, depending on the product. A <code>RemoteFeed</code> can be attached
+to iff its current state is <code>RemoteFeedState.initialized</code>. A <code>RemoteFeed</code> that is in the
+<code>RemoteFeedState.ready</code> state can be streamed materialized by calling
+<code>JanusService.attachMediaStream</code>.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="role"></a>
+                        <b>role</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#JanusRole" target="_self" >JanusRole</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>User&#39;s role in this videoroom </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roomInfo"></a>
+                        <b>roomInfo</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/RoomInfo.html" target="_self" >RoomInfo</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><code>RoomInfo</code> object </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attachRemoteFeed"></a>
+                        <b>attachRemoteFeed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:82</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event to begin streaming a remote feed </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="publishOwnFeed"></a>
+                        <b>publishOwnFeed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:78</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event to publish a local stream </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requestSubstream"></a>
+                        <b>requestSubstream</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event to request a different substream </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="computeVideoWidth"></a>
+                    <span class="name">
+                        <b>
+                            computeVideoWidth
+                        </b>
+                        <a href="#computeVideoWidth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>computeVideoWidth(numRemoteVideos)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:216</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computes the ideal width of each video assuming all videos are the same size.
+Called whenever the screen is resized or <code>remoteFeeds</code> changes</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>numRemoteVideos</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMaximize"></a>
+                    <span class="name">
+                        <b>
+                            onMaximize
+                        </b>
+                        <a href="#onMaximize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMaximize(remoteFeed: <a href="../interfaces/RemoteFeed.html">RemoteFeed</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event callback to switch to/from speaker mode </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>remoteFeed</td>
+                                    <td>
+                                                <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPublishOwnFeed"></a>
+                    <span class="name">
+                        <b>
+                            onPublishOwnFeed
+                        </b>
+                        <a href="#onPublishOwnFeed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPublishOwnFeed(event: <a href="../interfaces/PublishOwnFeedEvent.html">PublishOwnFeedEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:154</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event callback to publish a local stream </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="../interfaces/PublishOwnFeedEvent.html" target="_self" >PublishOwnFeedEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRemoteFeedsChange"></a>
+                    <span class="name">
+                        <b>
+                            onRemoteFeedsChange
+                        </b>
+                        <a href="#onRemoteFeedsChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRemoteFeedsChange(previousRemoteFeeds: <a href="../interfaces/RemoteFeed.html">RemoteFeed[]</a>, currentRemoteFeeds: <a href="../interfaces/RemoteFeed.html">RemoteFeed[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called on all changes of <code>remoteFeeds</code> </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>previousRemoteFeeds</td>
+                                    <td>
+                                                <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>currentRemoteFeeds</td>
+                                    <td>
+                                                <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRequestSubstream"></a>
+                    <span class="name">
+                        <b>
+                            onRequestSubstream
+                        </b>
+                        <a href="#onRequestSubstream"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRequestSubstream(event: <a href="../interfaces/RequestSubstreamEvent.html">RequestSubstreamEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event callback to request a new substream </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestSubstreamEvent.html" target="_self" >RequestSubstreamEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mode"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            mode</b>
+                            <a href="#mode"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>&quot;grid&quot; | &quot;speaker&quot;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;grid&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:111</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current mode of the video room </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="readyRemoteFeeds"></a>
+                        <span class="name">
+                            <b>
+                            readyRemoteFeeds</b>
+                            <a href="#readyRemoteFeeds"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:70</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>List of <code>RemoteFeeds</code> objects that are in the <code>RemoteFeedState.ready</code> state. </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="speaker"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            speaker</b>
+                            <a href="#speaker"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:114</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current speaker in the event we&#39;re in speaker mode </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="remoteFeeds"></a>
+                        <span class="name"><b>remoteFeeds</b><a href="#remoteFeeds"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>remoteFeeds(remoteFeeds: [])</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:64</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>remoteFeeds</td>
+                                                    
+                                                            <td>
+                                                                        <code>[]</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="publishing"></a>
+                        <span class="name"><b>publishing</b><a href="#publishing"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>publishing()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/components/default-video-room/default-video-room.component.ts:134</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+
+import { fromEvent, Observable, Subscription, interval, Subject } from &#x27;rxjs&#x27;;
+import { debounce, takeUntil } from &#x27;rxjs/operators&#x27;;
+
+import {
+  AttachRemoteFeedEvent,
+  Devices,
+  JanusRole,
+  PublishOwnFeedEvent,
+  RemoteFeed,
+  RemoteFeedState,
+  RequestSubstreamEvent,
+  RoomInfo,
+  RoomInfoState,
+} from &#x27;../../models&#x27;;
+
+/**
+ * Reference implementation of a video room display component.
+ *
+ * This component displays the visual elements of a videoroom. The webRTC signalling is
+ * mostly abstracted away in higher level components. There are a small number of events
+ * this component can emit in order to affect the webRTC signalling.
+ */
+@Component({
+  selector: &#x27;janus-default-video-room&#x27;,
+  templateUrl: &#x27;./default-video-room.component.html&#x27;,
+  styleUrls: [&#x27;./default-video-room.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  /** &#x60;RoomInfo&#x60; object */
+  @Input() roomInfo: RoomInfo;
+
+  /** User&#x27;s role in this videoroom */
+  @Input() role: JanusRole;
+
+  /** Requested devices */
+  @Input() devices?: Devices;
+
+  /** Existing &#x60;RemoteFeeds&#x60;. This component must request any desired &#x60;RemoteFeed&#x60; be streamed by
+   * emitting a attachRemoteStream event. This is not done automatically because it might not be
+   * desired to receive all remote feeds, depending on the product. A &#x60;RemoteFeed&#x60; can be attached
+   * to iff its current state is &#x60;RemoteFeedState.initialized&#x60;. A &#x60;RemoteFeed&#x60; that is in the
+   * &#x60;RemoteFeedState.ready&#x60; state can be streamed materialized by calling
+   * &#x60;JanusService.attachMediaStream&#x60;.
+   */
+  @Input()
+  get remoteFeeds(): RemoteFeed[] { return this.privateRemoteFeeds; }
+  set remoteFeeds(remoteFeeds: RemoteFeed[]) {
+    this.onRemoteFeedsChange(this.privateRemoteFeeds, remoteFeeds);
+    this.privateRemoteFeeds &#x3D; remoteFeeds;
+  }
+
+  /** List of &#x60;RemoteFeeds&#x60; objects that are in the &#x60;RemoteFeedState.ready&#x60; state. */
+  readyRemoteFeeds: RemoteFeed[] &#x3D; [];
+
+  /** Event to request a different substream */
+  @Output()
+  requestSubstream &#x3D; new EventEmitter&lt;RequestSubstreamEvent&gt;();
+
+  /** Event to publish a local stream */
+  @Output()
+  publishOwnFeed &#x3D; new EventEmitter&lt;PublishOwnFeedEvent&gt;();
+
+  /** Event to begin streaming a remote feed */
+  @Output()
+  attachRemoteFeed &#x3D; new EventEmitter&lt;AttachRemoteFeedEvent&gt;();
+
+  /** @internal */
+  @ViewChild(&#x27;viewport&#x27;) viewport: ElementRef;
+
+  /** @internal */
+  private resizeObservable$: Observable&lt;Event&gt;;
+
+  /** @internal */
+  private destroy$ &#x3D; new Subject();
+
+  /** @internal */
+  private privateRemoteFeeds: RemoteFeed[] &#x3D; [];
+
+  /** @internal */
+  public videoWidth &#x3D; 0;
+  /** @internal */
+  public videoHeight &#x3D; 0;
+  /** @internal */
+  public speakerWidth &#x3D; 0;
+  /** @internal */
+  public speakerHeight &#x3D; 0;
+
+  /** @internal */
+  public selfVideoRight &#x3D; 0;
+  /** @internal */
+  public selfVideoBottom &#x3D; 0;
+
+  /** Current mode of the video room */
+  public mode: &#x27;grid&#x27; | &#x27;speaker&#x27; &#x3D; &#x27;grid&#x27;;
+
+  /** Current speaker in the event we&#x27;re in speaker mode */
+  public speaker: RemoteFeed;
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+  ) { }
+
+  ngOnInit(): void {
+    // subscribe to resize events
+    this.resizeObservable$ &#x3D; fromEvent(window, &#x27;resize&#x27;);
+  }
+
+  ngAfterViewInit(): void {
+    this.setupSubscriptions();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  get publishing(): boolean {
+    return this.role &#x3D;&#x3D;&#x3D; &#x27;publisher&#x27;;
+  }
+
+  /** Event callback to switch to/from speaker mode */
+  onMaximize(remoteFeed: RemoteFeed): void {
+    if (this.mode &#x3D;&#x3D;&#x3D; &#x27;grid&#x27;) {
+      this.speaker &#x3D; remoteFeed;
+      this.mode &#x3D; &#x27;speaker&#x27;;
+    } else {
+      this.mode &#x3D; &#x27;grid&#x27;;
+    }
+  }
+
+  /** Event callback to request a new substream */
+  onRequestSubstream(event: RequestSubstreamEvent): void {
+    this.requestSubstream.emit(event);
+  }
+
+  /** Event callback to publish a local stream */
+  onPublishOwnFeed(event: PublishOwnFeedEvent): void {
+    this.publishOwnFeed.emit(event);
+  }
+
+  /** Called on all changes of &#x60;remoteFeeds&#x60; */
+  onRemoteFeedsChange(previousRemoteFeeds: RemoteFeed[], currentRemoteFeeds: RemoteFeed[]): void {
+
+    this.computeVideoWidth(currentRemoteFeeds.length);
+    for (const feed of currentRemoteFeeds) {
+      if (feed.state &#x3D;&#x3D;&#x3D; RemoteFeedState.initialized) {
+        this.attachRemoteFeed.emit({
+          roomInfo: this.roomInfo,
+          feed,
+        });
+      }
+    }
+
+    this.readyRemoteFeeds &#x3D; currentRemoteFeeds.filter((x) &#x3D;&gt; x.state &#x3D;&#x3D;&#x3D; RemoteFeedState.ready);
+  }
+
+  /** @internal */
+  trackByFeedId(index: number, remoteFeed: RemoteFeed): string {
+    return remoteFeed.id;
+  }
+
+  /** @internal */
+  get selfVideoHeight(): number {
+    if (this.mode &#x3D;&#x3D;&#x3D; &#x27;grid&#x27;) {
+      return this.videoHeight;
+    } else {
+      return this.speakerHeight / 5;
+    }
+  }
+
+  /** @internal */
+  get selfVideoWidth(): number {
+    if (this.mode &#x3D;&#x3D;&#x3D; &#x27;grid&#x27;) {
+      return this.videoWidth;
+    } else {
+      return this.speakerWidth / 5;
+    }
+  }
+
+  /** @internal */
+  setupSubscriptions(): void {
+    // Compute video width whenever the window is resized
+    this.resizeObservable$
+      .pipe(
+        debounce(() &#x3D;&gt; interval(500)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((event) &#x3D;&gt; {
+        this.computeVideoWidth(this.remoteFeeds.length);
+      });
+
+    // Do an initial calculation
+    this.computeVideoWidth(0);
+  }
+
+  /** Computes the ideal width of each video assuming all videos are the same size.
+   * Called whenever the screen is resized or &#x60;remoteFeeds&#x60; changes
+   */
+  computeVideoWidth(numRemoteVideos): void {
+    if (!this.viewport) {
+      return;
+    }
+    // Adding 1 for our local video
+    let numVideos &#x3D; numRemoteVideos;
+    if (this.publishing) {
+      numVideos +&#x3D; 1;
+    }
+
+    this.videoWidth &#x3D; this.findIdealWidth(
+      this.viewport.nativeElement.offsetWidth,
+      this.viewport.nativeElement.offsetHeight,
+      numVideos);
+
+    this.videoHeight &#x3D; this.videoWidth * 3 / 4;
+
+    this.computeSpeakerModeDimensions();
+
+    // The window resize event is outside of angular, so change detection won&#x27;t
+    // automatically pick this up. Smells a bit, but not sure there&#x27;s a better
+    // solution
+    this.changeDetector.detectChanges();
+  }
+
+  /** @internal */
+  computeSpeakerModeDimensions(aspectRatio: number &#x3D; 4 / 3): void {
+    const width &#x3D; this.viewport.nativeElement.offsetWidth;
+    const height &#x3D; this.viewport.nativeElement.offsetHeight;
+
+    const calculatedWidth &#x3D; height * aspectRatio;
+
+    if (calculatedWidth &gt; width) {
+      this.speakerWidth &#x3D; width;
+    } else {
+      this.speakerWidth &#x3D; calculatedWidth;
+    }
+    this.speakerHeight &#x3D; this.speakerWidth * 3 / 4;
+
+    this.selfVideoBottom &#x3D; (height - (this.speakerWidth / aspectRatio)) / 2;
+    this.selfVideoRight &#x3D; (width - this.speakerWidth) / 2;
+  }
+
+  /** @internal */
+  findIdealWidth(
+    viewportWidth: number,
+    viewportHeight: number,
+    numVideos: number,
+    aspectRatio: number &#x3D; 4 / 3
+  ): number {
+    // Do a bisect search for the largest width that will fit in our viewport
+
+    const isValidWidth &#x3D; ((testWidth: number) &#x3D;&gt; {
+      if (testWidth &gt; viewportWidth) {
+        return false;
+      }
+      const numColumns &#x3D; Math.min(numVideos, Math.floor(viewportWidth / testWidth));
+      const numRows &#x3D; Math.ceil(numVideos / numColumns);
+      const testHeight &#x3D; Math.ceil(testWidth / aspectRatio);
+
+      // console.log(&#x27;is valid: &#x27;, testWidth, testHeight, numColumns, numRows, (testHeight * numRows) &lt;&#x3D; viewportHeight);
+
+      if ((testHeight * numRows) &lt;&#x3D; viewportHeight) {
+        return true;
+      }
+      return false;
+    });
+
+    // Starting point
+    const maxWidth &#x3D; viewportWidth;
+    const minWidth &#x3D; 1;
+
+    let maxFits &#x3D; 0;
+    let minOver &#x3D; maxWidth + 1;
+
+    let iterations &#x3D; 0;
+    while (minOver &gt; maxFits + 1) {
+      iterations +&#x3D; 1;
+      const ptr &#x3D; Math.floor((maxFits + minOver) / 2);
+      if (isValidWidth(ptr)) {
+        maxFits &#x3D; ptr;
+      } else {
+        minOver &#x3D; ptr;
+      }
+
+      if (iterations &gt; 50) {
+        break;
+      }
+    }
+
+    // console.log(&#x27;searching&#x27;, viewportWidth, viewportHeight, numVideos, maxFits);
+    return maxFits;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&#x27;video-room-viewport&#x27; #viewport&gt;
+
+  &lt;div
+    *ngIf&#x3D;&#x27;publishing&#x27;
+    [ngStyle]&#x3D;&quot;{ &#x27;width.px&#x27;: selfVideoWidth,
+                 &#x27;height.px&#x27;: selfVideoHeight,
+                 &#x27;right.px&#x27;: selfVideoRight,
+                 &#x27;bottom.px&#x27;: selfVideoBottom}&quot;
+    [class.speaker]&#x3D;&#x27;mode &#x3D;&#x3D;&#x3D; &quot;speaker&quot;&#x27;
+  &gt;
+    &lt;janus-self-video
+      *ngIf&#x3D;&quot;roomInfo &amp;&amp; roomInfo.state &#x3D;&#x3D;&#x3D; &#x27;joined&#x27;&quot;
+      data-cy&#x3D;&#x27;default-video-room-self-video&#x27;
+      [roomInfo]&#x3D;&quot;roomInfo&quot;
+      [devices]&#x3D;&#x27;devices&#x27;
+      (publishOwnFeed)&#x3D;&#x27;onPublishOwnFeed($event)&#x27;
+      &gt;&lt;/janus-self-video&gt;
+  &lt;/div&gt;
+
+  &lt;ng-container
+    *ngIf&#x3D;&#x27;mode &#x3D;&#x3D;&#x3D; &quot;grid&quot;&#x27;
+    &gt;
+    &lt;div
+      *ngFor&#x3D;&quot;let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId&quot;
+      [style.width.px]&#x3D;&quot;videoWidth&quot;
+      [style.height.px]&#x3D;&quot;videoHeight&quot;
+    &gt;
+      &lt;janus-video-box
+        data-cy&#x3D;&#x27;default-video-room-video-box&#x27;
+        [remoteFeed]&#x3D;&#x27;remoteFeed&#x27;
+        [mode]&#x3D;&#x27;mode&#x27;
+        [devices]&#x3D;&#x27;devices&#x27;
+        (maximize)&#x3D;&#x27;onMaximize($event)&#x27;
+        (requestSubstream)&#x3D;&#x27;onRequestSubstream($event)&#x27;
+      &gt;&lt;/janus-video-box&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container
+    *ngIf&#x3D;&#x27;mode &#x3D;&#x3D;&#x3D; &quot;speaker&quot;&#x27;
+    &gt;
+    &lt;div
+      class&#x3D;&#x27;speaker-box&#x27;
+      [ngStyle]&#x3D;&quot;{ &#x27;width.px&#x27;: speakerWidth, &#x27;height.px&#x27;: speakerHeight }&quot;&gt;
+      &lt;janus-video-box
+        data-cy&#x3D;&#x27;default-video-room-speaker-video-box&#x27;
+        [remoteFeed]&#x3D;&#x27;speaker&#x27;
+        [mode]&#x3D;&#x27;mode&#x27;
+        [devices]&#x3D;&#x27;devices&#x27;
+        (maximize)&#x3D;&#x27;onMaximize($event)&#x27;
+        (requestSubstream)&#x3D;&#x27;onRequestSubstream($event)&#x27;
+      &gt;&lt;/janus-video-box&gt;
+    &lt;/div&gt;
+
+    &lt;ng-container
+      *ngFor&#x3D;&quot;let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId&quot;
+    &gt;
+      &lt;janus-audio-box
+        *ngIf&#x3D;&#x27;remoteFeed.id !&#x3D;&#x3D; speaker.id&#x27;
+        data-cy&#x3D;&#x27;default-video-room-speaker-audio-box&#x27;
+        [remoteFeed]&#x3D;&#x27;remoteFeed&#x27;
+        [devices]&#x3D;&#x27;devices&#x27;
+        (maximize)&#x3D;&#x27;onMaximize($event)&#x27;&gt;
+
+      &lt;/janus-audio-box&gt;
+
+    &lt;/ng-container&gt;
+  &lt;/ng-container&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./default-video-room.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">div.video-room-viewport {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    /* background-color: #a5adb7; */
+
+    div {
+        /* border: 2px solid black; */ 
+    }
+}
+
+div.speaker {
+    position: absolute;
+    z-index: 1;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class=\'video-room-viewport\' #viewport>  <div    *ngIf=\'publishing\'    [ngStyle]="{ \'width.px\': selfVideoWidth,                 \'height.px\': selfVideoHeight,                 \'right.px\': selfVideoRight,                 \'bottom.px\': selfVideoBottom}"    [class.speaker]=\'mode === "speaker"\'  >    <janus-self-video      *ngIf="roomInfo && roomInfo.state === \'joined\'"      data-cy=\'default-video-room-self-video\'      [roomInfo]="roomInfo"      [devices]=\'devices\'      (publishOwnFeed)=\'onPublishOwnFeed($event)\'      ></janus-self-video>  </div>  <ng-container    *ngIf=\'mode === "grid"\'    >    <div      *ngFor="let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId"      [style.width.px]="videoWidth"      [style.height.px]="videoHeight"    >      <janus-video-box        data-cy=\'default-video-room-video-box\'        [remoteFeed]=\'remoteFeed\'        [mode]=\'mode\'        [devices]=\'devices\'        (maximize)=\'onMaximize($event)\'        (requestSubstream)=\'onRequestSubstream($event)\'      ></janus-video-box>    </div>  </ng-container>  <ng-container    *ngIf=\'mode === "speaker"\'    >    <div      class=\'speaker-box\'      [ngStyle]="{ \'width.px\': speakerWidth, \'height.px\': speakerHeight }">      <janus-video-box        data-cy=\'default-video-room-speaker-video-box\'        [remoteFeed]=\'speaker\'        [mode]=\'mode\'        [devices]=\'devices\'        (maximize)=\'onMaximize($event)\'        (requestSubstream)=\'onRequestSubstream($event)\'      ></janus-video-box>    </div>    <ng-container      *ngFor="let remoteFeed of readyRemoteFeeds; trackBy:trackByFeedId"    >      <janus-audio-box        *ngIf=\'remoteFeed.id !== speaker.id\'        data-cy=\'default-video-room-speaker-audio-box\'        [remoteFeed]=\'remoteFeed\'        [devices]=\'devices\'        (maximize)=\'onMaximize($event)\'>      </janus-audio-box>    </ng-container>  </ng-container></div></div>'
+    var COMPONENTS = [{'name': 'AudioBoxComponent', 'selector': 'janus-nvid-audio-box'},{'name': 'DefaultVideoRoomComponent', 'selector': 'janus-default-video-room'},{'name': 'DeviceSelectorComponent', 'selector': 'janus-device-selector'},{'name': 'JanusVideoroomComponent', 'selector': 'janus-videoroom'},{'name': 'SelfVideoComponent', 'selector': 'janus-self-video'},{'name': 'VideoBoxComponent', 'selector': 'janus-video-box'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DefaultVideoRoomComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DefaultVideoRoomComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

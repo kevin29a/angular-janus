@@ -9,6 +9,8 @@ import { AudioBoxComponent } from './components/audio-box/audio-box.component';
 import { DefaultVideoRoomComponent } from './components/default-video-room/default-video-room.component';
 import { SelfVideoComponent } from './components/self-video/self-video.component';
 import { VideoBoxComponent } from './components/video-box/video-box.component';
+import { VideoRoomWrapperComponent } from './components/video-room-wrapper/video-room-wrapper.component';
+import { VideoRoomWrapperDirective } from './components/video-room-wrapper/video-room-wrapper.directive';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { VideoBoxComponent } from './components/video-box/video-box.component';
     DefaultVideoRoomComponent,
     SelfVideoComponent,
     VideoBoxComponent,
+    VideoRoomWrapperComponent,
+    VideoRoomWrapperDirective,
   ],
   imports: [
     ReactiveFormsModule,
@@ -27,6 +31,10 @@ import { VideoBoxComponent } from './components/video-box/video-box.component';
   exports: [
     JanusVideoroomComponent,
     DeviceSelectorComponent,
+    SelfVideoComponent,
+    VideoBoxComponent,
+    AudioBoxComponent,
+    DefaultVideoRoomComponent,
   ]
 })
 export class JanusModule { }

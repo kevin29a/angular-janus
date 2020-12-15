@@ -13,21 +13,28 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { fromEvent, Observable, Subscription, interval } from 'rxjs';
-import { debounce, withLatestFrom } from 'rxjs/operators';
-
-import { PublishOwnFeedPayload } from '../../store/actions/janus.actions';
+import { fromEvent, Observable, Subscription, interval, Subject } from 'rxjs';
+import { debounce, takeUntil } from 'rxjs/operators';
 
 import {
+  AttachRemoteFeedEvent,
   Devices,
   JanusRole,
+  PublishOwnFeedEvent,
   RemoteFeed,
   RemoteFeedState,
+  RequestSubstreamEvent,
   RoomInfo,
   RoomInfoState,
-} from '../../models/janus.models';
+} from '../../models';
 
-/** @internal */
+/**
+ * Reference implementation of a video room display component.
+ *
+ * This component displays the visual elements of a videoroom. The webRTC signalling is
+ * mostly abstracted away in higher level components. There are a small number of events
+ * this component can emit in order to affect the webRTC signalling.
+ */
 @Component({
   selector: 'janus-default-video-room',
   templateUrl: './default-video-room.component.html',
@@ -36,34 +43,74 @@ import {
 })
 export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  /** `RoomInfo` object */
   @Input() roomInfo: RoomInfo;
-  @Input() remoteFeeds$: Observable<RemoteFeed[]>;
+
+  /** User's role in this videoroom */
   @Input() role: JanusRole;
+
+  /** Requested devices */
   @Input() devices?: Devices;
 
-  @Output()
-  requestSubstream = new EventEmitter<{feed: RemoteFeed, substreamId: number}>();
+  /** Existing `RemoteFeeds`. This component must request any desired `RemoteFeed` be streamed by
+   * emitting a attachRemoteStream event. This is not done automatically because it might not be
+   * desired to receive all remote feeds, depending on the product. A `RemoteFeed` can be attached
+   * to iff its current state is `RemoteFeedState.initialized`. A `RemoteFeed` that is in the
+   * `RemoteFeedState.ready` state can be streamed materialized by calling
+   * `JanusService.attachMediaStream`.
+   */
+  @Input()
+  get remoteFeeds(): RemoteFeed[] { return this.privateRemoteFeeds; }
+  set remoteFeeds(remoteFeeds: RemoteFeed[]) {
+    this.onRemoteFeedsChange(this.privateRemoteFeeds, remoteFeeds);
+    this.privateRemoteFeeds = remoteFeeds;
+  }
 
-  @Output()
-  publishOwnFeed = new EventEmitter<PublishOwnFeedPayload>();
+  /** List of `RemoteFeeds` objects that are in the `RemoteFeedState.ready` state. */
+  readyRemoteFeeds: RemoteFeed[] = [];
 
+  /** Event to request a different substream */
+  @Output()
+  requestSubstream = new EventEmitter<RequestSubstreamEvent>();
+
+  /** Event to publish a local stream */
+  @Output()
+  publishOwnFeed = new EventEmitter<PublishOwnFeedEvent>();
+
+  /** Event to begin streaming a remote feed */
+  @Output()
+  attachRemoteFeed = new EventEmitter<AttachRemoteFeedEvent>();
+
+  /** @internal */
   @ViewChild('viewport') viewport: ElementRef;
 
-  // Resize events
+  /** @internal */
   private resizeObservable$: Observable<Event>;
 
-  // subscriptions
-  private subs: { [id: string]: Subscription } = {};
+  /** @internal */
+  private destroy$ = new Subject();
 
+  /** @internal */
+  private privateRemoteFeeds: RemoteFeed[] = [];
+
+  /** @internal */
   public videoWidth = 0;
+  /** @internal */
   public videoHeight = 0;
+  /** @internal */
   public speakerWidth = 0;
+  /** @internal */
   public speakerHeight = 0;
 
+  /** @internal */
   public selfVideoRight = 0;
+  /** @internal */
   public selfVideoBottom = 0;
 
+  /** Current mode of the video room */
   public mode: 'grid' | 'speaker' = 'grid';
+
+  /** Current speaker in the event we're in speaker mode */
   public speaker: RemoteFeed;
 
   constructor(
@@ -80,15 +127,15 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngOnDestroy(): void {
-    for (const key of Object.keys(this.subs)) {
-      this.subs[key].unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   get publishing(): boolean {
     return this.role === 'publisher';
   }
 
+  /** Event callback to switch to/from speaker mode */
   onMaximize(remoteFeed: RemoteFeed): void {
     if (this.mode === 'grid') {
       this.speaker = remoteFeed;
@@ -98,18 +145,38 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
-  onRequestSubstream(event: {feed: RemoteFeed, substreamId: number}): void {
+  /** Event callback to request a new substream */
+  onRequestSubstream(event: RequestSubstreamEvent): void {
     this.requestSubstream.emit(event);
   }
 
-  onPublishOwnFeed(event: PublishOwnFeedPayload): void {
+  /** Event callback to publish a local stream */
+  onPublishOwnFeed(event: PublishOwnFeedEvent): void {
     this.publishOwnFeed.emit(event);
   }
 
+  /** Called on all changes of `remoteFeeds` */
+  onRemoteFeedsChange(previousRemoteFeeds: RemoteFeed[], currentRemoteFeeds: RemoteFeed[]): void {
+
+    this.computeVideoWidth(currentRemoteFeeds.length);
+    for (const feed of currentRemoteFeeds) {
+      if (feed.state === RemoteFeedState.initialized) {
+        this.attachRemoteFeed.emit({
+          roomInfo: this.roomInfo,
+          feed,
+        });
+      }
+    }
+
+    this.readyRemoteFeeds = currentRemoteFeeds.filter((x) => x.state === RemoteFeedState.ready);
+  }
+
+  /** @internal */
   trackByFeedId(index: number, remoteFeed: RemoteFeed): string {
     return remoteFeed.id;
   }
 
+  /** @internal */
   get selfVideoHeight(): number {
     if (this.mode === 'grid') {
       return this.videoHeight;
@@ -118,6 +185,7 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
+  /** @internal */
   get selfVideoWidth(): number {
     if (this.mode === 'grid') {
       return this.videoWidth;
@@ -126,33 +194,29 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
+  /** @internal */
   setupSubscriptions(): void {
     // Compute video width whenever the window is resized
-    this.subs[`resize`] = this.resizeObservable$
+    this.resizeObservable$
       .pipe(
         debounce(() => interval(500)),
-        withLatestFrom(this.remoteFeeds$),
+        takeUntil(this.destroy$),
       )
-      .subscribe(([event, remoteFeeds]) => {
-        this.computeVideoWidth(remoteFeeds.length);
-
-        // The window resize event is outside of angular, so change detection won't
-        // automatically pick this up. Smells a bit, but not sure there's a better
-        // solution
-        this.changeDetector.detectChanges();
-      });
-
-    // Compute video width whenever the remote feeds change
-    this.subs[`remoteFeeds`] = this.remoteFeeds$
-      .subscribe((remoteFeeds) => {
-        this.computeVideoWidth(remoteFeeds.length);
+      .subscribe((event) => {
+        this.computeVideoWidth(this.remoteFeeds.length);
       });
 
     // Do an initial calculation
     this.computeVideoWidth(0);
   }
 
+  /** Computes the ideal width of each video assuming all videos are the same size.
+   * Called whenever the screen is resized or `remoteFeeds` changes
+   */
   computeVideoWidth(numRemoteVideos): void {
+    if (!this.viewport) {
+      return;
+    }
     // Adding 1 for our local video
     let numVideos = numRemoteVideos;
     if (this.publishing) {
@@ -167,8 +231,14 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     this.videoHeight = this.videoWidth * 3 / 4;
 
     this.computeSpeakerModeDimensions();
+
+    // The window resize event is outside of angular, so change detection won't
+    // automatically pick this up. Smells a bit, but not sure there's a better
+    // solution
+    this.changeDetector.detectChanges();
   }
 
+  /** @internal */
   computeSpeakerModeDimensions(aspectRatio: number = 4 / 3): void {
     const width = this.viewport.nativeElement.offsetWidth;
     const height = this.viewport.nativeElement.offsetHeight;
@@ -186,6 +256,7 @@ export class DefaultVideoRoomComponent implements OnInit, OnDestroy, AfterViewIn
     this.selfVideoRight = (width - this.speakerWidth) / 2;
   }
 
+  /** @internal */
   findIdealWidth(
     viewportWidth: number,
     viewportHeight: number,

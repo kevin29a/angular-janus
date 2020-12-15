@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>janus-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">janus-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>AttachRemoteFeedEvent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/models/video-room-wrapper.models.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data for the attachRemoteFeedEvent. The event will negotiate a connection to
+receive the remote stream. This must be called on each remote feed the user wishes
+to receive.</p>
+
+            </p>
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#feed">feed</a>
+                                </li>
+                                <li>
+                                        <a href="#roomInfo">roomInfo</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="feed"></a>
+                                        <span class="name"><b>feed</b><a href="#feed"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>feed:         <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/RemoteFeed.html" target="_self" >RemoteFeed</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Remote feed that we&#39;re requesting. The stream must be in the <code>RemoteFeedState.initialized</code> state. </p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="roomInfo"></a>
+                                        <span class="name"><b>roomInfo</b><a href="#roomInfo"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>roomInfo:         <code><a href="../interfaces/RoomInfo.html" target="_self" >RoomInfo</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/RoomInfo.html" target="_self" >RoomInfo</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Room info object for the room the remote feed belongs to. </p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventEmitter, } from &#x27;@angular/core&#x27;;
+
+import {
+  Devices,
+  JanusRole,
+  RemoteFeed,
+  RoomInfo,
+} from &#x27;./janus.models&#x27;;
+
+
+/**
+ * Data for the publishOwnFeed event emitted by a videoroom. This event will
+ * tell the system to start publishing the local feed of the user. By default,
+ * you can specify an audioDeviceId and videoDeviceId and the system will capture
+ * video/audio from those devices. Alternatively, if skipVideoCapture is set to
+ * true, the stream from the canvas element will be published without audio. The
+ * videoroom will take full responsibility for drawing to the canvas element
+ */
+export interface PublishOwnFeedEvent {
+
+  /** Device ID for the microphone. ID matches what is returned by &#x60;navigator.mediaDevics.enumerateDevices&#x60; */
+  audioDeviceId: string;
+
+  /** Device ID for the camera. ID matches what is returned by &#x60;navigator.mediaDevics.enumerateDevices&#x60; */
+  videoDeviceId: string;
+
+  /** HTML ID of the canvas element. Must exist in all use cases, even not drawing on
+   * the canvas manually. If document.getElementById([canvasId]) does not return a canvas
+   * element, this will fail
+   */
+  canvasId: string;
+
+  /** If true, directs the service to not setup a video element. It will instead transmit
+   * a video stream from the canvas element
+   */
+  skipVideoCapture: boolean;
+}
+
+
+/** Data for the requestSubstream event. The event is used to request different
+ * substreams when the publisher is using multicast, which is the default.
+ */
+export interface RequestSubstreamEvent {
+  /** Remote feed that we&#x27;re requesting a different substream for. */
+  feed: RemoteFeed;
+
+  /** The integer id of the stream to request. */
+  substreamId: number;
+}
+
+/** Data for the attachRemoteFeedEvent. The event will negotiate a connection to
+ * receive the remote stream. This must be called on each remote feed the user wishes
+ * to receive.
+ */
+export interface AttachRemoteFeedEvent {
+  /** Remote feed that we&#x27;re requesting. The stream must be in the &#x60;RemoteFeedState.initialized&#x60; state. */
+  feed: RemoteFeed;
+
+  /** Room info object for the room the remote feed belongs to. */
+  roomInfo: RoomInfo;
+}
+
+/**
+ * Interface for customer video room component
+ *
+ * Any provided custom video room must implement this interface. You need not use all of the
+ * data if your use case doesn&#x27;t require it. For example, a room might be publish only, in which
+ * case the remoteFeeds can be ignored
+ */
+export interface VideoRoomComponent {
+
+  /** roomInfo object */
+  roomInfo: RoomInfo;
+
+  /** Role of the user */
+  role: JanusRole;
+
+  /** Which devices to user */
+  devices?: Devices;
+
+  /** List of available feeds */
+  remoteFeeds: RemoteFeed[];
+
+  /** Event to request a different substream */
+  requestSubstream: EventEmitter&lt;RequestSubstreamEvent&gt;;
+
+  /** Event to publish a locally collected feed */
+  publishOwnFeed: EventEmitter&lt;PublishOwnFeedEvent&gt;;
+
+  /** Event to subscribe to another publisher&#x27;s feed */
+  attachRemoteFeed: EventEmitter&lt;AttachRemoteFeedEvent&gt;;
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'AttachRemoteFeedEvent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

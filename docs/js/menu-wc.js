@@ -55,13 +55,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/JanusModule.html" data-type="entity-link">JanusModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' : 'data-target="#xs-components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' }>
+                                            'data-target="#components-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' : 'data-target="#xs-components-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' :
-                                            'id="xs-components-links-module-JanusModule-1a74d8ab76da23ba87f667e97ed2f7e7"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' :
+                                            'id="xs-components-links-module-JanusModule-bb5aa156746445b6ac97185fbde65ff0"' }>
+                                            <li class="link">
+                                                <a href="components/AudioBoxComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">AudioBoxComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/DefaultVideoRoomComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">DefaultVideoRoomComponent</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="components/DeviceSelectorComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">DeviceSelectorComponent</a>
@@ -69,6 +77,14 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/JanusVideoroomComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">JanusVideoroomComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SelfVideoComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SelfVideoComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/VideoBoxComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">VideoBoxComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -97,6 +113,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/AttachRemoteFeedEvent.html" data-type="entity-link">AttachRemoteFeedEvent</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Devices.html" data-type="entity-link">Devices</a>
                             </li>
                             <li class="link">
@@ -104,6 +123,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/Publisher.html" data-type="entity-link">Publisher</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PublishOwnFeedEvent.html" data-type="entity-link">PublishOwnFeedEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RemoteFeed.html" data-type="entity-link">RemoteFeed</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RequestSubstreamEvent.html" data-type="entity-link">RequestSubstreamEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RoomInfo.html" data-type="entity-link">RoomInfo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/VideoRoomComponent.html" data-type="entity-link">VideoRoomComponent</a>
                             </li>
                         </ul>
                     </li>
