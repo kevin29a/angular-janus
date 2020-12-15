@@ -491,7 +491,7 @@ export class JanusService {
       ).catch((error) => {
         // Some devices get intermittent errors. I'm doing a retry here. Not a warm-fuzzy solution. Future work might
         // find a race condition where we need to wait for an event before calling getUserMedia
-        if (retryCount < 2) {
+        if (retryCount < 5) {
           setTimeout(() => {
             instance.createStreamAndOffer(
               subscriber,
