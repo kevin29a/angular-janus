@@ -10,7 +10,6 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild,
 } from '@angular/core';
 
 import { first, startWith, shareReplay, takeUntil, switchMap } from 'rxjs/operators';
@@ -157,13 +156,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
   roomInfo$: Observable<RoomInfo>;
   /** @internal */
   remoteFeeds$: Observable<RemoteFeed[]>;
-
-  /** @internal */
-  @ViewChild('container')
-  container: ElementRef;
-
-  /** @internal */
-  showDefaultRoom = false;
 
   private muted = false;
   private destroy$ = new Subject();

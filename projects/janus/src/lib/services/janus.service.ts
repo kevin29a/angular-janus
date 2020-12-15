@@ -450,17 +450,17 @@ export class JanusService {
         if (this.publishWebrtcState) {
           // Already publishing. Need to unpublish, wait until we're done unpublishing, and then republish
           this.unPublishOwnFeed();
-          interval(100).pipe(
-            takeWhile(() => this.publishWebrtcState)
-          ).subscribe({
-            complete: () => {
-              this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
-            }
-          });
-        } else {
-          // Simple case. Not publishing yet
-          this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
         }
+
+        // Wait until we're not publishing before starting to publish again. Note that
+        // this will immediately complete if we haven't started publishing yet.
+        interval(100).pipe(
+          takeWhile(() => this.publishWebrtcState)
+        ).subscribe({
+          complete: () => {
+            this.createStreamAndOffer(subscriber, audioDeviceId, videoDeviceId, canvasId, skipVideoCapture);
+          }
+        });
       }
     );
   }
