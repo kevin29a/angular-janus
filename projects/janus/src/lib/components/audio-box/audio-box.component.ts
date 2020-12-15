@@ -3,7 +3,11 @@ import { AfterViewInit, Component, Input, OnInit, ChangeDetectionStrategy, ViewC
 import { RemoteFeed, Devices } from '../../models/janus.models';
 import { JanusService } from '../../services/janus.service';
 
-/** @internal */
+/**
+ * Component for playing audio from a stream.
+ *
+ * This will play the audio from a remoteFeed without rendering the video at all.
+ */
 @Component({
   selector: 'janus-nvid-audio-box',
   templateUrl: './audio-box.component.html',
@@ -12,7 +16,12 @@ import { JanusService } from '../../services/janus.service';
 })
 export class AudioBoxComponent implements OnInit, AfterViewInit {
 
+  /** `RemoteFeed` object */
   @Input() remoteFeed: RemoteFeed;
+
+  /** Requested output device (speaker). If available, this will dynamically change the
+   * speaker device. This is not available in chrome on android
+   */
   @Input()
   get devices(): Devices {
     return this.localDevices;
@@ -22,9 +31,13 @@ export class AudioBoxComponent implements OnInit, AfterViewInit {
     this.localDevices = devices;
   }
 
+  /** @internal */
   private localDevices: Devices;
+
+  /** @internal */
   public audioId: string;
 
+  /** @internal */
   @ViewChild('audioElement') audio: ElementRef;
 
   constructor(
@@ -41,6 +54,7 @@ export class AudioBoxComponent implements OnInit, AfterViewInit {
     this.janusService.attachMediaStream(this.audioId, this.remoteFeed.streamId);
   }
 
+  /** @internal */
   setSpeaker(devices: Devices): void {
     if (
       this.audio
@@ -53,6 +67,7 @@ export class AudioBoxComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /** Attempts to change speaker if requested */
   onDeviceChange(devices: Devices): void {
     this.setSpeaker(devices);
   }
