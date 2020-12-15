@@ -125,7 +125,7 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
    * Component to use for implementing the video room
    */
   @Input()
-  component: VideoRoomComponent;
+  component?: VideoRoomComponent;
 
   /**
    * When set to true, the user's audio is muted.
@@ -140,12 +140,6 @@ export class JanusVideoroomComponent implements OnInit, OnDestroy, OnChanges {
    * @ignore
    */
   get isMuted(): boolean { return this.muted; }
-
-  /**
-   * Input/output devices to use. If not provided, will use the default system devices
-   */
-  @Input()
-  videoRoomComponent?: VideoRoomComponent;
 
   /**
    * Emits errors encountered. These errors are fatal.
