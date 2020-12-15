@@ -86,10 +86,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/VideoBoxComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">VideoBoxComponent</a>
                                             </li>
-                                            <li class="link">
-                                                <a href="components/VideoRoomWrapperComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">VideoRoomWrapperComponent</a>
-                                            </li>
                                         </ul>
                                     </li>
                             </li>

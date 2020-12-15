@@ -26,6 +26,7 @@ import {
   RoomInfo,
 } from '../../models/janus.models';
 
+/** @internal */
 @Component({
   selector: 'janus-video-room-wrapper',
   templateUrl: './video-room-wrapper.component.html',
